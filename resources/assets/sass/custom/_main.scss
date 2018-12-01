@@ -1,0 +1,125 @@
+//
+// Custom Main
+//
+// Add your own styles or override existing ones
+//
+// This file is included last, so you have access
+// to all Bootstrap and Dashmix functions/mixins/styles etc
+// --------------------------------------------------
+
+// If you have many custom styles, you can create and import additional files
+// For example you can create _component1.scss and include it as follows:
+// @import 'component1';
+
+.panel-header {
+
+    background-color: $title-header-bg;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    padding: 5px;
+}
+
+h1.panel-title, h2.panel-title, h3.panel-title {
+    color: $panel-title-color;
+    font-weight: bold;
+    padding: 0px;
+    margin: 0px;
+    text-align: center;
+}
+
+.content-header {
+    background-color: $title-header-bg;
+    color: $title-header-color;
+}
+
+.btn-dual-light {
+    color: $color-light;
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.side-header {
+    background-color: $side-header-bg;
+}
+
+.full-width {
+    width: 100%;
+}
+
+#notifications-div {
+    display: contents;
+    margin: 0px;
+    padding: 0px;
+}
+
+th {
+    background-color: #3c90df;
+    color: #ffffff;
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+.hostname-table-col {
+    min-width: 200px;
+    max-width: 200px;
+}
+
+.ip-address-table-col {
+    min-width: 160px;
+    max-width: 160px;
+}
+
+.port-name-table-col {
+    min-width: 90px;
+    max-width: 90px;
+}
+
+.environment-table-col {
+    min-width: 200px;
+    max-width: 200px;
+}
+
+.datacenter-table-col {
+    min-width: 200px;
+    max-width: 200px;
+}
+
+.cluster-table-col {
+    min-width: 200px;
+    max-width: 200px;
+}
+
+.change-delete-btn-table-col {
+    min-width: 170px;
+    max-width: 170px;
+}
+
+.view-order-table-col {
+    min-width: 100px;
+    max-width: 100px;
+}
+
+.table-tbody {
+    display: block;
+    max-height: 800px;
+    overflow-y: auto;
+}
+
+.checkbox-form-col {
+    line-height: $line-height-sm;
+    vertical-align: middle;
+    display: inline-block;
+    margin-bottom: $label-margin-bottom;
+}
+
+.table-thead {
+    display: block;
+}
+
+
+.nav-item-bordered, .nav-submenu-item-bordered {
+    border: 1px solid $menu-item-border-color;
+    margin-bottom: 5px;
+}
