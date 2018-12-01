@@ -1964,6 +1964,11 @@ pre code {
   opacity: 1;
 }
 
+.form-control:-ms-input-placeholder {
+  color: #6c757d;
+  opacity: 1;
+}
+
 .form-control::-ms-input-placeholder {
   color: #6c757d;
   opacity: 1;
@@ -24734,7 +24739,9 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
   padding: 5px;
 }
 
-h1.panel-title, h2.panel-title, h3.panel-title {
+h1.panel-title,
+h2.panel-title,
+h3.panel-title {
   color: rgba(252, 216, 0, 0.75);
   font-weight: bold;
   padding: 0px;
@@ -24782,13 +24789,13 @@ th {
 }
 
 .ip-address-table-col {
-  min-width: 160px;
-  max-width: 160px;
+  min-width: 180px;
+  max-width: 180px;
 }
 
 .port-name-table-col {
-  min-width: 90px;
-  max-width: 90px;
+  min-width: 180px;
+  max-width: 180px;
 }
 
 .environment-table-col {
@@ -24816,6 +24823,11 @@ th {
   max-width: 100px;
 }
 
+.active-table-col {
+  min-width: 80px;
+  max-width: 80px;
+}
+
 .table-tbody {
   display: block;
   max-height: 800px;
@@ -24833,7 +24845,8 @@ th {
   display: block;
 }
 
-.nav-item-bordered, .nav-submenu-item-bordered {
+.nav-item-bordered,
+.nav-submenu-item-bordered {
   border: 1px solid gray;
   margin-bottom: 5px;
 }

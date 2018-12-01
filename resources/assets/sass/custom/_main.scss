@@ -19,7 +19,9 @@
     padding: 5px;
 }
 
-h1.panel-title, h2.panel-title, h3.panel-title {
+h1.panel-title,
+h2.panel-title,
+h3.panel-title {
     color: $panel-title-color;
     font-weight: bold;
     padding: 0px;
@@ -67,13 +69,13 @@ th {
 }
 
 .ip-address-table-col {
-    min-width: 160px;
-    max-width: 160px;
+    min-width: 180px;
+    max-width: 180px;
 }
 
 .port-name-table-col {
-    min-width: 90px;
-    max-width: 90px;
+    min-width: 180px;
+    max-width: 180px;
 }
 
 .environment-table-col {
@@ -101,6 +103,11 @@ th {
     max-width: 100px;
 }
 
+.active-table-col {
+    min-width: 80px;
+    max-width: 80px;
+}
+
 .table-tbody {
     display: block;
     max-height: 800px;
@@ -119,7 +126,8 @@ th {
 }
 
 
-.nav-item-bordered, .nav-submenu-item-bordered {
+.nav-item-bordered,
+.nav-submenu-item-bordered {
     border: 1px solid $menu-item-border-color;
     margin-bottom: 5px;
 }
