@@ -22,7 +22,10 @@
                                 <tr>
                                     <td class="environment-table-col">{{$env->name}}</td>
                                     <td class="view-order-table-col">{{$env->view_order}}</td>
-                                    <td class="change-delete-btn-table-col"><button class="btn btn-info">Change</button>&nbsp;<button class="btn btn-info">Delete</button></td>
+                                    <td class="change-delete-btn-table-col">
+                                        <button class="btn btn-info" onclick="location.href='/admin/environment/edit/{{$env->environment_id}}'">Edit</button>&nbsp;
+                                        <button class="btn btn-info" onclick="location.href='/admin/environment/delete/{{$env->environment_id}}'">Delete</button>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -32,7 +35,7 @@
             </div>
         </div>
         <div class="row justify-content-center">
-            <button class="btn btn-info">Add</button>
+            <a class="btn btn-info" href="/admin/environment/add">Add</a>
         </div>
 </div>
 

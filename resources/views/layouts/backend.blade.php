@@ -125,17 +125,17 @@
                                     </a>
                                 </li>
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link{{ request()->is('admin/environments') ? ' active' : '' }}" href="/admin/environments">
+                                    <a class="nav-main-link{{ request()->is('admin/environment/*') ? ' active' : '' }}" href="/admin/environment">
                                         <span class="nav-main-link-name">Environments</span>
                                     </a>
                                 </li>
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link{{ request()->is('admin/datacenters') ? ' active' : '' }}" href="/admin/datacenters">
+                                    <a class="nav-main-link{{ request()->is('admin/datacenter/*') ? ' active' : '' }}" href="/admin/datacenter">
                                         <span class="nav-main-link-name">Datacenters</span>
                                     </a>
                                 </li>
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link{{ request()->is('admin/clusters') ? ' active' : '' }}" href="/admin/clusters">
+                                    <a class="nav-main-link{{ request()->is('admin/cluster/*') ? ' active' : '' }}" href="/admin/cluster">
                                         <span class="nav-main-link-name">Clusters</span>
                                     </a>
                                 </li>
@@ -174,7 +174,7 @@
                     <!-- Left Section -->
                     <div class="full-width">
                     <h2 class="panel-title">Database Monitor</h2>
-   
+
                     </div>
                     <!-- END Left Section -->
 

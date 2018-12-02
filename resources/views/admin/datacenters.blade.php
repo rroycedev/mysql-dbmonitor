@@ -12,7 +12,7 @@
                         <table class="table table-striped table-hover">
                             <thead class="table-thead">
                                 <tr>
-                                    <th class="environment-table-col">Name</th>
+                                    <th class="datacenter-table-col">Name</th>
                                     <th class="view-order-table-col">View Order</th>
                                     <th class="change-delete-btn-table-col">&nbsp;</th>
                                 </tr>
@@ -20,9 +20,12 @@
                             <tbody class="table-tbody">
                                 @foreach($datacenters as $d)
                                 <tr>
-                                    <td class="environment-table-col">{{$d->name}}</td>
+                                    <td class="datacenter-table-col">{{$d->name}}</td>
                                     <td class="view-order-table-col">{{$d->view_order}}</td>
-                                    <td class="change-delete-btn-table-col"><button class="btn btn-info">Change</button>&nbsp;<button class="btn btn-info">Delete</button></td>
+                                    <td class="change-delete-btn-table-col">
+                                        <button class="btn btn-info" onclick="location.href='/admin/datacenter/edit/{{$d->datacenter_id}}'">Edit</button>&nbsp;
+                                        <button class="btn btn-info" onclick="location.href='/admin/datacenter/delete/{{$d->datacenter_id}}'">Delete</button>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -32,7 +35,7 @@
             </div>
         </div>
         <div class="row justify-content-center">
-            <button class="btn btn-info">Add</button>
+             <a class="btn btn-info" href="/admin/datacenter/add">Add</a>
         </div>
 </div>
 @endsection

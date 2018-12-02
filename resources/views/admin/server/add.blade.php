@@ -5,13 +5,13 @@
 
 
         {!! Form::open(['url' => 'admin/server/performaddserver']) !!}
-
-        <div class="row justify-content-center">
         @if (session('error'))
                 <div class="alert alert-danger">
                     {{ session('error') }}
                 </div>
             @endif
+        <div class="row justify-content-center">
+
             <div>
 
                 <div class="block block-rounded">

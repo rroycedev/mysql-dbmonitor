@@ -11,15 +11,10 @@
 |
  */
 
-// Example Routes
 Route::view('/', 'monitor');
 Route::get('/monitor', 'MonitorController@index');
 Route::get('/admin/monitor', 'AdminController@monitor');
-Route::get('/admin/server', 'AdminController@servers');
-Route::get('/admin/server/add', 'AdminController@addserver');
-Route::get('/admin/server/edit/{server_id}', 'AdminController@updateserver');
-Route::get('/admin/server/delete/{server_id}', 'AdminController@deleteserver');
-Route::get('/admin/environments', 'AdminController@environments');
+
 Route::get('/admin/clusters', 'AdminController@clusters');
 Route::get('/admin/datacenters', 'AdminController@datacenters');
 Route::view('/admin/aliases', 'admin.aliases');
@@ -27,6 +22,50 @@ Route::view('/admin/alerts', 'admin.alerts');
 Route::view('/admin/dataintegrity', 'admin.dataintegrity');
 Route::view('/admin/dbcompare', 'admin.dbcompare');
 
+// Server Admin
+
+Route::get('/admin/server', 'AdminController@servers');
+
+Route::get('/admin/server/add', 'AdminController@addserver');
+Route::get('/admin/server/edit/{server_id}', 'AdminController@updateserver');
+Route::get('/admin/server/delete/{server_id}', 'AdminController@deleteserver');
+
 Route::post('/admin/server/performaddserver', 'AdminController@performAddServer');
 Route::post('/admin/server/performupdateserver', 'AdminController@performUpdateServer');
 Route::post('/admin/server/performdeleteserver', 'AdminController@performDeleteServer');
+
+//  Environment Admin
+
+Route::get('/admin/environment', 'EnvironmentAdminController@environments');
+
+Route::get('/admin/environment/add', 'EnvironmentAdminController@addEnvironment');
+Route::get('/admin/environment/edit/{environment_id}', 'EnvironmentAdminController@updateEnvironment');
+Route::get('/admin/environment/delete/{environment_id}', 'EnvironmentAdminController@deleteEnvironment');
+
+Route::post('/admin/environment/performaddenvironment', 'EnvironmentAdminController@performAddEnvironment');
+Route::post('/admin/environment/performupdateenvironment', 'EnvironmentAdminController@performUpdateEnvironment');
+Route::post('/admin/environment/performdeleteenvironment', 'EnvironmentAdminController@performDeleteEnvironment');
+
+//  Datacenter Admin
+
+Route::get('/admin/datacenter', 'DatacenterAdminController@datacenters');
+
+Route::get('/admin/datacenter/add', 'DatacenterAdminController@addDatacenter');
+Route::get('/admin/datacenter/edit/{datacenter_id}', 'DatacenterAdminController@updateDatacenter');
+Route::get('/admin/datacenter/delete/{datacenter_id}', 'DatacenterAdminController@deleteDatacenter');
+
+Route::post('/admin/datacenter/performadddatacenter', 'DatacenterAdminController@performAddDatacenter');
+Route::post('/admin/datacenter/performupdatedatacenter', 'DatacenterAdminController@performUpdateDatacenter');
+Route::post('/admin/datacenter/performdeletedatacenter', 'DatacenterAdminController@performDeleteDatacenter');
+
+//  Cluster Admin
+
+Route::get('/admin/cluster', 'ClusterAdminController@clusters');
+
+Route::get('/admin/cluster/add', 'ClusterAdminController@addCluster');
+Route::get('/admin/cluster/edit/{cluster_id}', 'ClusterAdminController@updateCluster');
+Route::get('/admin/cluster/delete/{cluster_id}', 'ClusterAdminController@deleteCluster');
+
+Route::post('/admin/cluster/performaddcluster', 'ClusterAdminController@performAddCluster');
+Route::post('/admin/cluster/performupdatecluster', 'ClusterAdminController@performUpdateCluster');
+Route::post('/admin/cluster/performdeletecluster', 'ClusterAdminController@performDeleteCluster');

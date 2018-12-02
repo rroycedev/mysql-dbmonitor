@@ -14,5 +14,10 @@ class Cluster extends Model
     protected $attributes = [
     ];
 
-    protected $fillable = ['name', 'view_order'];
+    protected $fillable = ['name', 'parent_cluster_id', 'view_order'];
+
+    public function parent_cluster()
+    {
+        return $this->hasOne('App\Models\Cluster', 'cluster_id', 'parent_cluster_id');
+    }
 }

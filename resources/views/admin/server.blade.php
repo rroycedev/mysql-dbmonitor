@@ -38,7 +38,10 @@
                                     <td class="environment-table-col">{{$server->environment->name}}</td>
                                     <td class="datacenter-table-col">{{$server->datacenter->name}}</td>
                                     <td class="cluster-table-col">{{$server->cluster->name}}</td>
-                                    <td class="change-delete-btn-table-col"><button class="btn btn-info" onclick="location.href='/admin/server/edit/{{$server->server_id}}'">Edit</button>&nbsp;<button class="btn btn-info" onclick="location.href='/admin/server/delete/{{$server->server_id}}'">Delete</button></td>
+                                    <td class="change-delete-btn-table-col">
+                                        <button class="btn btn-info" onclick="location.href='/admin/server/edit/{{$server->server_id}}'">Edit</button>&nbsp;
+                                        <button class="btn btn-info" onclick="location.href='/admin/server/delete/{{$server->server_id}}'">Delete</button>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>

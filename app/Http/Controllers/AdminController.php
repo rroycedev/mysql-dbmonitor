@@ -12,15 +12,8 @@ class AdminController extends Controller
 {
     public function servers()
     {
-//        $rows = Server::orderBy('hostname')->get();
-        $rows = Server::with('cluster')->with('datacenter')->with('environment')->get();
-/*
-foreach ($rows as $row) {
-$row->environment()->get();
-$row->datacenter()->get();
-$row->cluster()->get();
-}
- */
+        $rows = Server::with('cluster')->with('datacenter')->with('environment')->orderBy('hostname')->get();
+
         return view('admin.server', array("servers" => $rows));
     }
 
