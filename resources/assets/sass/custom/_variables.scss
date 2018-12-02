@@ -11,20 +11,26 @@
 // $primary: #3b5998;
 
 
-$panel-title-color: rgba(252,216,0,.75);
+$app-title-color: #ffffff;
+$panel-title-color: rgba(252, 216, 0, 1);
 
 $color-light: #ffffff;
 $side-header-bg: transparent;
 
-$font-size-base:              .85rem;
-$font-size-lg:                ($font-size-base * 1.25);
-$font-size-sm:                ($font-size-base * .875);
+$font-size-base: 1rem;
+$font-size-lg: ($font-size-base * 1.25);
+$font-size-sm: ($font-size-base * .875);
 
 $header-dark-bg: rgb(2, 149, 190);
-$body-color-light:  rgba(252,216,0,1);
+$body-color-light: rgba(252, 216, 0, 1);
 $headings-color: #FCD800;
 $sidebar-dark-bg: #626569;
-$title-header-bg: #626569;
-$title-header-color: rgba(252,216,0,.75);
+$panel-title-header-bg: #626569;
+$title-header-bg: #0665d0;
+
+$title-header-color: rgba(252, 216, 0, .75);
 
 $menu-item-border-color: gray;
+
+$badge-padding-y: .4em;
+$badge-padding-x: .4em;

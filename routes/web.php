@@ -13,14 +13,12 @@
 
 Route::view('/', 'monitor');
 Route::get('/monitor', 'MonitorController@index');
-Route::get('/admin/monitor', 'AdminController@monitor');
 
-Route::get('/admin/clusters', 'AdminController@clusters');
-Route::get('/admin/datacenters', 'AdminController@datacenters');
 Route::view('/admin/aliases', 'admin.aliases');
 Route::view('/admin/alerts', 'admin.alerts');
-Route::view('/admin/dataintegrity', 'admin.dataintegrity');
-Route::view('/admin/dbcompare', 'admin.dbcompare');
+
+Route::view('/reports/dataintegrity', 'reports.dataintegrity');
+Route::view('/reports/dbcompare', 'reports.dbcompare');
 
 // Server Admin
 

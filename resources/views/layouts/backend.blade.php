@@ -108,14 +108,14 @@
                     <ul class="nav-main">
                         <li class="nav-main-item nav-item-bordered">
                             <a class="nav-main-link{{ request()->is('monitor') ? ' active' : '' }}" href="/monitor">
-                                <i class="nav-main-link-icon si si-cursor"></i>
+                                <i class="nav-main-link-icon si si-eyeglasses"></i>
                                 <span class="nav-main-link-name">Monitor</span>
                                 <span class="nav-main-link-badge badge badge-pill badge-success">5</span>
                             </a>
                         </li>
                         <li class="nav-main-item{{ request()->is('admin/*') ? ' open' : '' }} nav-item-bordered">
                             <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
-                                <i class="nav-main-link-icon si si-bulb"></i>
+                                <i class="nav-main-link-icon si si-settings"></i>
                                 <span class="nav-main-link-name">Administration</span>
                             </a>
                             <ul class="nav-main-submenu">
@@ -149,18 +149,27 @@
                                         <span class="nav-main-link-name">Alerts</span>
                                     </a>
                                 </li>
+                            </ul>
+                        </li>
+                        <li class="nav-main-item{{ request()->is('reports/*') ? ' open' : '' }} nav-item-bordered">
+                            <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
+                                <i class="nav-main-link-icon si si-chart"></i>
+                                <span class="nav-main-link-name">Reports</span>
+                            </a>
+                            <ul class="nav-main-submenu">
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link{{ request()->is('admin/dataintegrity') ? ' active' : '' }}" href="/admin/dataintegrity">
+                                    <a class="nav-main-link{{ request()->is('reports/dataintegrity') ? ' active' : '' }}" href="/reports/dataintegrity">
                                         <span class="nav-main-link-name">Data Integrity</span>
                                     </a>
                                 </li>
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link{{ request()->is('admin/dbcompare') ? ' active' : '' }}" href="/admin/dbcompare">
+                                    <a class="nav-main-link{{ request()->is('reports/dbcompare') ? ' active' : '' }}" href="/reports/dbcompare">
                                         <span class="nav-main-link-name">Database Comparison</span>
                                     </a>
                                 </li>
                             </ul>
                         </li>
+
                     </ul>
                 </div>
                 <!-- END Side Navigation -->
@@ -173,7 +182,7 @@
                 <div class="content-header">
                     <!-- Left Section -->
                     <div class="full-width">
-                    <h2 class="panel-title">Database Monitor</h2>
+                    <h2 class="app-title">Database Monitor</h2>
 
                     </div>
                     <!-- END Left Section -->
@@ -181,15 +190,15 @@
                     <!-- Right Section -->
                     <div id="notifications-div">
                         <!-- User Dropdown -->
-                        <div class="dropdown d-inline-block">
+                        <div class="dropdown d-inline-block mr-5">
                         </div>
                         <!-- END User Dropdown -->
 
                         <!-- Notifications Dropdown -->
-                        <div class="dropdown d-inline-block">
+                        <div class="dropdown d-inline-block mr-3">
                             <button type="button" class="btn btn-dual-light" id="page-header-notifications-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-fw fa-bell"></i>
-                                <span class="badge badge-primary badge-pill">5</span>
+                                <span class="badge badge-red">5</span>
                             </button>
                             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0" aria-labelledby="page-header-notifications-dropdown">
                                 <div class="bg-primary-dark rounded-top font-w600 text-white text-center p-3">

@@ -13,7 +13,7 @@
 
 .panel-header {
 
-    background-color: $title-header-bg;
+    background-color: $panel-title-header-bg;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
     padding: 5px;
@@ -23,6 +23,16 @@ h1.panel-title,
 h2.panel-title,
 h3.panel-title {
     color: $panel-title-color;
+    font-weight: bold;
+    padding: 0px;
+    margin: 0px;
+    text-align: center;
+}
+
+h1.app-title,
+h2.app-title,
+h3.app-title {
+    color: $app-title-color;
     font-weight: bold;
     padding: 0px;
     margin: 0px;
@@ -130,4 +140,9 @@ th {
 .nav-submenu-item-bordered {
     border: 1px solid $menu-item-border-color;
     margin-bottom: 5px;
+}
+
+.badge-red {
+    background-color: #ff0000;
+    color: rgba(255, 255, 255, .85);
 }

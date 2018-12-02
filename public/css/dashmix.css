@@ -25,7 +25,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 body {
   margin: 0;
   font-family: "Nunito Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  font-size: 0.85rem;
+  font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
   color: #495057;
@@ -335,31 +335,31 @@ h1, h2, h3, h4, h5, h6,
 }
 
 h1, .h1 {
-  font-size: 1.9125rem;
+  font-size: 2.25rem;
 }
 
 h2, .h2 {
-  font-size: 1.59375rem;
+  font-size: 1.875rem;
 }
 
 h3, .h3 {
-  font-size: 1.275rem;
+  font-size: 1.5rem;
 }
 
 h4, .h4 {
-  font-size: 1.0625rem;
+  font-size: 1.25rem;
 }
 
 h5, .h5 {
-  font-size: 0.95625rem;
+  font-size: 1.125rem;
 }
 
 h6, .h6 {
-  font-size: 0.85rem;
+  font-size: 1rem;
 }
 
 .lead {
-  font-size: 1.275rem;
+  font-size: 1.5rem;
   font-weight: 300;
 }
 
@@ -431,7 +431,7 @@ mark,
 
 .blockquote {
   margin-bottom: 1rem;
-  font-size: 1.0625rem;
+  font-size: 1.25rem;
 }
 
 .blockquote-footer {
@@ -1923,9 +1923,9 @@ pre code {
 .form-control {
   display: block;
   width: 100%;
-  height: calc(2.025rem + 2px);
+  height: calc(2.25rem + 2px);
   padding: 0.375rem 0.75rem;
-  font-size: 0.85rem;
+  font-size: 1rem;
   line-height: 1.5;
   color: #495057;
   background-color: #fff;
@@ -2006,14 +2006,14 @@ select.form-control:focus::-ms-value {
 .col-form-label-lg {
   padding-top: calc(0.5rem + 1px);
   padding-bottom: calc(0.5rem + 1px);
-  font-size: 1.0625rem;
+  font-size: 1.25rem;
   line-height: 1.5;
 }
 
 .col-form-label-sm {
   padding-top: calc(0.25rem + 1px);
   padding-bottom: calc(0.25rem + 1px);
-  font-size: 0.74375rem;
+  font-size: 0.875rem;
   line-height: 1.5;
 }
 
@@ -2036,17 +2036,17 @@ select.form-control:focus::-ms-value {
 }
 
 .form-control-sm {
-  height: calc(1.615625rem + 2px);
+  height: calc(1.8125rem + 2px);
   padding: 0.25rem 0.5rem;
-  font-size: 0.74375rem;
+  font-size: 0.875rem;
   line-height: 1.5;
   border-radius: 0.2rem;
 }
 
 .form-control-lg {
-  height: calc(2.59375rem + 2px);
+  height: calc(2.875rem + 2px);
   padding: 0.5rem 1rem;
-  font-size: 1.0625rem;
+  font-size: 1.25rem;
   line-height: 1.5;
   border-radius: 0.3rem;
 }
@@ -2126,7 +2126,7 @@ textarea.form-control {
   display: none;
   width: 100%;
   margin-top: 0.5rem;
-  font-size: 0.74375rem;
+  font-size: 0.875rem;
   color: #82b54b;
 }
 
@@ -2138,7 +2138,7 @@ textarea.form-control {
   max-width: 100%;
   padding: 0.25rem 0.75rem;
   margin-top: .1rem;
-  font-size: 0.74375rem;
+  font-size: 0.875rem;
   line-height: 1.5;
   color: #fff;
   background-color: rgba(130, 181, 75, 0.9);
@@ -2232,7 +2232,7 @@ textarea.form-control {
   display: none;
   width: 100%;
   margin-top: 0.5rem;
-  font-size: 0.74375rem;
+  font-size: 0.875rem;
   color: #e04f1a;
 }
 
@@ -2244,7 +2244,7 @@ textarea.form-control {
   max-width: 100%;
   padding: 0.25rem 0.75rem;
   margin-top: .1rem;
-  font-size: 0.74375rem;
+  font-size: 0.875rem;
   line-height: 1.5;
   color: #fff;
   background-color: rgba(224, 79, 26, 0.9);
@@ -2436,7 +2436,7 @@ textarea.form-control {
           user-select: none;
   border: 1px solid transparent;
   padding: 0.375rem 0.75rem;
-  font-size: 0.85rem;
+  font-size: 1rem;
   line-height: 1.5;
   border-radius: 0.25rem;
   -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
@@ -3078,14 +3078,14 @@ fieldset:disabled a.btn {
 
 .btn-lg, .btn-group-lg > .btn {
   padding: 0.5rem 1rem;
-  font-size: 1.0625rem;
+  font-size: 1.25rem;
   line-height: 1.5;
   border-radius: 0.3rem;
 }
 
 .btn-sm, .btn-group-sm > .btn {
   padding: 0.25rem 0.5rem;
-  font-size: 0.74375rem;
+  font-size: 0.875rem;
   line-height: 1.5;
   border-radius: 0.2rem;
 }
@@ -3174,7 +3174,7 @@ input[type="button"].btn-block {
   min-width: 12rem;
   padding: 0.5rem 0;
   margin: 0.125rem 0 0;
-  font-size: 0.85rem;
+  font-size: 1rem;
   color: #495057;
   text-align: left;
   list-style: none;
@@ -3333,7 +3333,7 @@ input[type="button"].btn-block {
   display: block;
   padding: 0.5rem 0.75rem;
   margin-bottom: 0;
-  font-size: 0.74375rem;
+  font-size: 0.875rem;
   color: #6c757d;
   white-space: nowrap;
 }
@@ -3611,7 +3611,7 @@ input[type="button"].btn-block {
           align-items: center;
   padding: 0.375rem 0.75rem;
   margin-bottom: 0;
-  font-size: 0.85rem;
+  font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
   color: #495057;
@@ -3632,9 +3632,9 @@ input[type="button"].btn-block {
 .input-group-lg > .input-group-append > .input-group-text,
 .input-group-lg > .input-group-prepend > .btn,
 .input-group-lg > .input-group-append > .btn {
-  height: calc(2.59375rem + 2px);
+  height: calc(2.875rem + 2px);
   padding: 0.5rem 1rem;
-  font-size: 1.0625rem;
+  font-size: 1.25rem;
   line-height: 1.5;
   border-radius: 0.3rem;
 }
@@ -3644,9 +3644,9 @@ input[type="button"].btn-block {
 .input-group-sm > .input-group-append > .input-group-text,
 .input-group-sm > .input-group-prepend > .btn,
 .input-group-sm > .input-group-append > .btn {
-  height: calc(1.615625rem + 2px);
+  height: calc(1.8125rem + 2px);
   padding: 0.25rem 0.5rem;
-  font-size: 0.74375rem;
+  font-size: 0.875rem;
   line-height: 1.5;
   border-radius: 0.2rem;
 }
@@ -3674,7 +3674,7 @@ input[type="button"].btn-block {
 .custom-control {
   position: relative;
   display: block;
-  min-height: 1.275rem;
+  min-height: 1.5rem;
   padding-left: 1.5rem;
 }
 
@@ -3721,7 +3721,7 @@ input[type="button"].btn-block {
 
 .custom-control-label::before {
   position: absolute;
-  top: 0.1375rem;
+  top: 0.25rem;
   left: -1.5rem;
   display: block;
   width: 1rem;
@@ -3737,7 +3737,7 @@ input[type="button"].btn-block {
 
 .custom-control-label::after {
   position: absolute;
-  top: 0.1375rem;
+  top: 0.25rem;
   left: -1.5rem;
   display: block;
   width: 1rem;
@@ -3795,7 +3795,7 @@ input[type="button"].btn-block {
 .custom-select {
   display: inline-block;
   width: 100%;
-  height: calc(2.025rem + 2px);
+  height: calc(2.25rem + 2px);
   padding: 0.375rem 1.75rem 0.375rem 0.75rem;
   line-height: 1.5;
   color: #495057;
@@ -3837,14 +3837,14 @@ input[type="button"].btn-block {
 }
 
 .custom-select-sm {
-  height: calc(1.615625rem + 2px);
+  height: calc(1.8125rem + 2px);
   padding-top: 0.375rem;
   padding-bottom: 0.375rem;
   font-size: 75%;
 }
 
 .custom-select-lg {
-  height: calc(2.59375rem + 2px);
+  height: calc(2.875rem + 2px);
   padding-top: 0.375rem;
   padding-bottom: 0.375rem;
   font-size: 125%;
@@ -3854,7 +3854,7 @@ input[type="button"].btn-block {
   position: relative;
   display: inline-block;
   width: 100%;
-  height: calc(2.025rem + 2px);
+  height: calc(2.25rem + 2px);
   margin-bottom: 0;
 }
 
@@ -3862,7 +3862,7 @@ input[type="button"].btn-block {
   position: relative;
   z-index: 2;
   width: 100%;
-  height: calc(2.025rem + 2px);
+  height: calc(2.25rem + 2px);
   margin: 0;
   opacity: 0;
 }
@@ -3891,7 +3891,7 @@ input[type="button"].btn-block {
   right: 0;
   left: 0;
   z-index: 1;
-  height: calc(2.025rem + 2px);
+  height: calc(2.25rem + 2px);
   padding: 0.375rem 0.75rem;
   line-height: 1.5;
   color: #495057;
@@ -3907,7 +3907,7 @@ input[type="button"].btn-block {
   bottom: 0;
   z-index: 3;
   display: block;
-  height: 2.025rem;
+  height: 2.25rem;
   padding: 0.375rem 0.75rem;
   line-height: 1.5;
   color: #495057;
@@ -4282,7 +4282,7 @@ input[type="button"].btn-block {
 
 .pagination-lg .page-link {
   padding: 0.75rem 1.5rem;
-  font-size: 1.0625rem;
+  font-size: 1.25rem;
   line-height: 1.5;
 }
 
@@ -4298,7 +4298,7 @@ input[type="button"].btn-block {
 
 .pagination-sm .page-link {
   padding: 0.25rem 0.5rem;
-  font-size: 0.74375rem;
+  font-size: 0.875rem;
   line-height: 1.5;
 }
 
@@ -4314,7 +4314,7 @@ input[type="button"].btn-block {
 
 .badge {
   display: inline-block;
-  padding: 0.25em 0.4em;
+  padding: 0.4em 0.4em;
   font-size: 75%;
   font-weight: 600;
   line-height: 1;
@@ -4463,7 +4463,7 @@ input[type="button"].btn-block {
 }
 
 .alert-dismissible {
-  padding-right: 3.775rem;
+  padding-right: 4rem;
 }
 
 .alert-dismissible .close {
@@ -4876,7 +4876,7 @@ input[type="button"].btn-block {
 
 .close {
   float: right;
-  font-size: 1.275rem;
+  font-size: 1.5rem;
   font-weight: 600;
   line-height: 1;
   color: #000;
@@ -5107,7 +5107,7 @@ button.close {
   word-spacing: normal;
   white-space: normal;
   line-break: auto;
-  font-size: 0.74375rem;
+  font-size: 0.875rem;
   word-wrap: break-word;
   opacity: 0;
 }
@@ -5220,7 +5220,7 @@ button.close {
   word-spacing: normal;
   white-space: normal;
   line-break: auto;
-  font-size: 0.74375rem;
+  font-size: 0.875rem;
   word-wrap: break-word;
   background-color: #fff;
   background-clip: padding-box;
@@ -5368,7 +5368,7 @@ button.close {
 .popover-header {
   padding: 0.75rem 0.625rem;
   margin-bottom: 0;
-  font-size: 0.85rem;
+  font-size: 1rem;
   color: #FCD800;
   background-color: #fff;
   border-bottom: 1px solid #f2f2f2;
@@ -9574,7 +9574,7 @@ p {
 .story p,
 p.story {
   line-height: 1.8;
-  font-size: 1.0625rem;
+  font-size: 1.25rem;
   color: #495057;
 }
 
@@ -9589,27 +9589,27 @@ label {
 }
 
 .font-size-h1 {
-  font-size: 1.9125rem;
+  font-size: 2.25rem;
 }
 
 .font-size-h2 {
-  font-size: 1.59375rem;
+  font-size: 1.875rem;
 }
 
 .font-size-h3 {
-  font-size: 1.275rem;
+  font-size: 1.5rem;
 }
 
 .font-size-h4 {
-  font-size: 1.0625rem;
+  font-size: 1.25rem;
 }
 
 .font-size-h5 {
-  font-size: 0.95625rem;
+  font-size: 1.125rem;
 }
 
 .font-size-h6 {
-  font-size: 0.85rem;
+  font-size: 1rem;
 }
 
 @media (max-width: 767.98px) {
@@ -9626,20 +9626,20 @@ label {
     font-size: 2.33333333rem;
   }
   h1, .h1, .font-size-h1 {
-    font-size: 1.59375rem;
+    font-size: 1.875rem;
   }
   h2, .h2, .font-size-h2 {
-    font-size: 1.275rem;
+    font-size: 1.5rem;
   }
   h3, .h3, .font-size-h3 {
-    font-size: 1.0625rem;
+    font-size: 1.25rem;
   }
   h4, .h4, .font-size-h4 {
-    font-size: 0.95625rem;
+    font-size: 1.125rem;
   }
   h5, .h5, .font-size-h5,
   h6, .h6, .font-size-h6 {
-    font-size: 0.85rem;
+    font-size: 1rem;
   }
 }
 
@@ -9647,7 +9647,7 @@ label {
   margin-bottom: 0.875rem;
   padding-top: 1rem;
   padding-bottom: .5rem;
-  font-size: 1.0625rem;
+  font-size: 1.25rem;
   font-weight: 400;
   line-height: 1.75;
   border-bottom: 1px solid #e6ebf4;
@@ -9822,7 +9822,7 @@ small,
   letter-spacing: .0625rem;
   font-weight: 700;
   padding: 0.625rem 1.5rem;
-  font-size: 0.74375rem;
+  font-size: 0.875rem;
   line-height: 1.5;
   border-radius: 0.25rem;
   background-color: #0665d0;
@@ -9882,7 +9882,7 @@ small,
   letter-spacing: .0625rem;
   font-weight: 700;
   padding: 0.625rem 1.5rem;
-  font-size: 0.74375rem;
+  font-size: 0.875rem;
   line-height: 1.5;
   border-radius: 0.25rem;
   background-color: #6c757d;
@@ -9942,7 +9942,7 @@ small,
   letter-spacing: .0625rem;
   font-weight: 700;
   padding: 0.625rem 1.5rem;
-  font-size: 0.74375rem;
+  font-size: 0.875rem;
   line-height: 1.5;
   border-radius: 0.25rem;
   background-color: #82b54b;
@@ -10002,7 +10002,7 @@ small,
   letter-spacing: .0625rem;
   font-weight: 700;
   padding: 0.625rem 1.5rem;
-  font-size: 0.74375rem;
+  font-size: 0.875rem;
   line-height: 1.5;
   border-radius: 0.25rem;
   background-color: #3c90df;
@@ -10062,7 +10062,7 @@ small,
   letter-spacing: .0625rem;
   font-weight: 700;
   padding: 0.625rem 1.5rem;
-  font-size: 0.74375rem;
+  font-size: 0.875rem;
   line-height: 1.5;
   border-radius: 0.25rem;
   background-color: #ffb119;
@@ -10122,7 +10122,7 @@ small,
   letter-spacing: .0625rem;
   font-weight: 700;
   padding: 0.625rem 1.5rem;
-  font-size: 0.74375rem;
+  font-size: 0.875rem;
   line-height: 1.5;
   border-radius: 0.25rem;
   background-color: #e04f1a;
@@ -10182,7 +10182,7 @@ small,
   letter-spacing: .0625rem;
   font-weight: 700;
   padding: 0.625rem 1.5rem;
-  font-size: 0.74375rem;
+  font-size: 0.875rem;
   line-height: 1.5;
   border-radius: 0.25rem;
   background-color: #343a40;
@@ -10242,7 +10242,7 @@ small,
   letter-spacing: .0625rem;
   font-weight: 700;
   padding: 0.625rem 1.5rem;
-  font-size: 0.74375rem;
+  font-size: 0.875rem;
   line-height: 1.5;
   border-radius: 0.25rem;
   background-color: #f8f9fa;
@@ -10298,14 +10298,14 @@ small,
 
 .btn-hero-lg {
   padding: 0.875rem 2.25rem;
-  font-size: 0.74375rem;
+  font-size: 0.875rem;
   line-height: 1.5;
   border-radius: 0.25rem;
 }
 
 .btn-hero-sm {
   padding: 0.375rem 1.25rem;
-  font-size: 0.74375rem;
+  font-size: 0.875rem;
   line-height: 1.5;
   border-radius: 0.25rem;
 }
@@ -10954,7 +10954,7 @@ small,
   top: 1px;
   width: 1.25rem;
   font-family: "simple-line-icons";
-  font-size: 0.74375rem;
+  font-size: 0.875rem;
   content: "\E606";
 }
 
@@ -11863,7 +11863,7 @@ small,
           flex: 1 1 auto;
   min-height: 1.75rem;
   margin: 0;
-  font-size: 0.95625rem;
+  font-size: 1.125rem;
   font-weight: 400;
   line-height: 1.75;
 }
@@ -12440,7 +12440,7 @@ a.block.block-themed .btn-block-option:focus,
 .nav-main-heading {
   padding-top: 1.75rem;
   padding-bottom: .25rem;
-  font-size: 0.74375rem;
+  font-size: 0.875rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: .0625rem;
@@ -12468,7 +12468,7 @@ a.block.block-themed .btn-block-option:focus,
   padding: .5rem .625rem;
   margin: 1px 0;
   min-height: 2.25rem;
-  font-size: 0.74375rem;
+  font-size: 0.875rem;
   font-weight: 600;
   line-height: 1rem;
   color: #495057;
@@ -12796,7 +12796,7 @@ a.block.block-themed .btn-block-option:focus,
 .list-events > li {
   margin-bottom: .25rem;
   padding: .5rem;
-  font-size: 0.74375rem;
+  font-size: 0.875rem;
   font-weight: 600;
   background-color: #a5ccf0;
   border-right: 0.125rem dashed rgba(0, 0, 0, 0.15);
@@ -14684,15 +14684,15 @@ button.bg-xinspire-lighter:focus {
 }
 
 .font-size-base {
-  font-size: 0.85rem !important;
+  font-size: 1rem !important;
 }
 
 .font-size-lg {
-  font-size: 1.0625rem !important;
+  font-size: 1.25rem !important;
 }
 
 .font-size-sm {
-  font-size: 0.74375rem !important;
+  font-size: 0.875rem !important;
 }
 
 .text-wrap-break-word {
@@ -24443,7 +24443,7 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
 }
 
 .select2-container .select2-selection--single {
-  height: calc(2.025rem + 2px);
+  height: calc(2.25rem + 2px);
 }
 
 .select2-container .select2-search--inline .select2-search__field {
@@ -24480,12 +24480,12 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
       -ms-flex-align: center;
           align-items: center;
   padding-left: 0.75rem;
-  height: calc(2.025rem + 2px);
+  height: calc(2.25rem + 2px);
   line-height: 1.5;
 }
 
 .select2-container--default .select2-selection--single .select2-selection__arrow {
-  height: calc(2.025rem + 2px);
+  height: calc(2.25rem + 2px);
 }
 
 .select2-container--default .select2-selection--single .select2-selection__placeholder {
@@ -24501,7 +24501,7 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
           align-items: center;
   border-color: #d8dfed;
   border-radius: 0.25rem;
-  min-height: calc(2.025rem + 2px);
+  min-height: calc(2.25rem + 2px);
 }
 
 .select2-container--default .select2-selection--multiple .select2-selection__rendered {
@@ -24553,7 +24553,7 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
   height: 1.375rem;
   line-height: 1.375rem;
   color: #fff;
-  font-size: 0.74375rem;
+  font-size: 0.875rem;
   font-weight: 600;
   background-color: #0665d0;
   border: none;
@@ -24742,7 +24742,17 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
 h1.panel-title,
 h2.panel-title,
 h3.panel-title {
-  color: rgba(252, 216, 0, 0.75);
+  color: #fcd800;
+  font-weight: bold;
+  padding: 0px;
+  margin: 0px;
+  text-align: center;
+}
+
+h1.app-title,
+h2.app-title,
+h3.app-title {
+  color: #ffffff;
   font-weight: bold;
   padding: 0px;
   margin: 0px;
@@ -24750,7 +24760,7 @@ h3.panel-title {
 }
 
 .content-header {
-  background-color: #626569;
+  background-color: #0665d0;
   color: rgba(252, 216, 0, 0.75);
 }
 
@@ -24849,4 +24859,9 @@ th {
 .nav-submenu-item-bordered {
   border: 1px solid gray;
   margin-bottom: 5px;
+}
+
+.badge-red {
+  background-color: #ff0000;
+  color: rgba(255, 255, 255, 0.85);
 }

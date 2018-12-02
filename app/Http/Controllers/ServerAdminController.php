@@ -8,7 +8,7 @@ use App\Models\Environment;
 use App\Models\Server;
 use Illuminate\Http\Request;
 
-class AdminController extends Controller
+class ServerAdminController extends Controller
 {
     public function servers()
     {
@@ -77,7 +77,7 @@ class AdminController extends Controller
         return view('admin.server.edit', array("server" => $server[0], "environments" => json_encode($envs), "datacenters" => json_encode($dcs), "clusters" => json_encode($clusters)));
     }
 
-    public function deleteDerver($server_id)
+    public function deleteServer($server_id)
     {
         $server = Server::where("server_id", $server_id)->get();
 
