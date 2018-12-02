@@ -1204,13 +1204,13 @@ select.form-control:focus::-ms-value {
 }
 
 .form-control.form-control-alt.is-invalid {
-  border-color: #fdf1ed;
-  background-color: #fdf1ed;
+  border-color: #fff0f0;
+  background-color: #fff0f0;
 }
 
 .form-control.form-control-alt.is-invalid:focus {
-  border-color: #fbe7df;
-  background-color: #fbe7df;
+  border-color: #ffe0e0;
+  background-color: #ffe0e0;
 }
 
 .input-group-text {
@@ -1273,7 +1273,7 @@ select.form-control:focus::-ms-value {
 }
 
 .border-danger-light {
-  border-color: #f1a184 !important;
+  border-color: #ff7a7a !important;
 }
 
 .border-primary {

@@ -3,10 +3,17 @@
 @section('content')
 <div class="content">
 
+
         {!! Form::open(['url' => 'admin/server/performaddserver']) !!}
 
         <div class="row justify-content-center">
+        @if (session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
             <div>
+
                 <div class="block block-rounded">
                     <div class="panel-header">
                         <h3 class="panel-title">Add Server</h3>
@@ -67,7 +74,7 @@
             </div>
         </div>
         <div class="row justify-content-center">
-            {!! Form::submit('Add', ['class' => 'btn btn-info']) !!}
+            {!! Form::submit('Add', ['class' => 'btn btn-info']) !!}&nbsp;<a href="/admin/server" class="btn btn-danger">Cancel</a>
         </div>
         {!! Form::close() !!}
 </div>

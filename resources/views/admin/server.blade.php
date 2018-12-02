@@ -2,9 +2,17 @@
 
 @section('content')
 <div class="content">
+
         <div class="row justify-content-center">
+
             <div>
+            @if (session('msg'))
+                <div class="alert alert-success">
+                    {{ session('msg') }}
+                </div>
+            @endif
                 <div class="block block-rounded">
+
                     <div class="panel-header">
                         <h3 class="panel-title">Servers</h3>
                     </div>
@@ -25,12 +33,12 @@
                                 @foreach($servers as $server)
                                 <tr>
                                     <td class="hostname-table-col">{{$server->hostname}}</td>
-                                    <td class="ip-address-table-col">{{$server->srv_id}}</td>
+                                    <td class="ip-address-table-col">{{$server->ipaddress}}</td>
                                     <td class="port-name-table-col">{{$server->port_name}}</td>
-                                    <td class="environment-table-col">{{$server->envname}}</td>
-                                    <td class="datacenter-table-col">{{$server->dcname}}</td>
-                                    <td class="cluster-table-col">{{$server->clustername}}</td>
-                                    <td class="change-delete-btn-table-col"><button class="btn btn-info">Change</button>&nbsp;<button class="btn btn-info">Delete</button></td>
+                                    <td class="environment-table-col">{{$server->environment->name}}</td>
+                                    <td class="datacenter-table-col">{{$server->datacenter->name}}</td>
+                                    <td class="cluster-table-col">{{$server->cluster->name}}</td>
+                                    <td class="change-delete-btn-table-col"><button class="btn btn-info" onclick="location.href='/admin/server/edit/{{$server->server_id}}'">Edit</button>&nbsp;<button class="btn btn-info" onclick="location.href='/admin/server/delete/{{$server->server_id}}'">Delete</button></td>
                                 </tr>
                                 @endforeach
                             </tbody>

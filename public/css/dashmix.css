@@ -9781,13 +9781,13 @@ small,
 }
 
 .form-control.form-control-alt.is-invalid {
-  border-color: #fdf1ed;
-  background-color: #fdf1ed;
+  border-color: #fff0f0;
+  background-color: #fff0f0;
 }
 
 .form-control.form-control-alt.is-invalid:focus {
-  border-color: #fbe7df;
-  background-color: #fbe7df;
+  border-color: #ffe0e0;
+  background-color: #ffe0e0;
 }
 
 .custom-control-label {
@@ -10698,7 +10698,7 @@ small,
 }
 
 .custom-control-danger.custom-block .custom-control-input:checked ~ .custom-control-label {
-  background-color: #f6c4b1;
+  background-color: #ffadad;
   border-color: #e04f1a;
 }
 
@@ -10708,7 +10708,7 @@ small,
 }
 
 .custom-control-danger .custom-control-label::before {
-  background-color: #f6c4b1;
+  background-color: #ffadad;
 }
 
 .custom-control-danger .custom-control-input:checked ~ .custom-control-label::before {
@@ -13720,13 +13720,13 @@ button.bg-info-light:focus {
 }
 
 .bg-danger-light {
-  background-color: #f1a184 !important;
+  background-color: #ff7a7a !important;
 }
 
 a.bg-danger-light:hover, a.bg-danger-light:focus,
 button.bg-danger-light:hover,
 button.bg-danger-light:focus {
-  background-color: #eb7e56 !important;
+  background-color: #ff4747 !important;
 }
 
 .bg-success-op {
@@ -13760,13 +13760,13 @@ button.bg-info-op:focus {
 }
 
 .bg-danger-op {
-  background-color: rgba(241, 161, 132, 0.95) !important;
+  background-color: rgba(255, 122, 122, 0.95) !important;
 }
 
 a.bg-danger-op:hover, a.bg-danger-op:focus,
 button.bg-danger-op:hover,
 button.bg-danger-op:focus {
-  background-color: rgba(235, 126, 86, 0.95) !important;
+  background-color: rgba(255, 71, 71, 0.95) !important;
 }
 
 .bg-body {
@@ -14784,15 +14784,15 @@ a.text-info-light:hover, a.text-info-light:focus {
 }
 
 .text-danger-light {
-  color: #f1a184 !important;
+  color: #ff7a7a !important;
 }
 
 a.text-danger-light.link-fx::before {
-  background-color: #f1a184;
+  background-color: #ff7a7a;
 }
 
 a.text-danger-light:hover, a.text-danger-light:focus {
-  color: #e65b28 !important;
+  color: #ff1414 !important;
 }
 
 .text-body-bg {
@@ -24830,7 +24830,7 @@ th {
 
 .table-tbody {
   display: block;
-  max-height: 800px;
+  max-height: 600px;
   overflow-y: auto;
 }
 
