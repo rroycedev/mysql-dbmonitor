@@ -17,28 +17,7 @@ class AdminController extends Controller
         return view('admin.server', array("servers" => $rows));
     }
 
-    public function environments()
-    {
-        $rows = Environment::orderBy('view_order')->get();
-
-        return view('admin.environments', array("environments" => $rows));
-    }
-
-    public function datacenters()
-    {
-        $rows = Datacenter::orderBy('view_order')->get();
-
-        return view('admin.datacenters', array("datacenters" => $rows));
-    }
-
-    public function clusters()
-    {
-        $rows = Cluster::orderBy('view_order')->get();
-
-        return view('admin.clusters', array("clusters" => $rows));
-    }
-
-    public function addserver()
+    public function addServer()
     {
         $rows = Environment::orderBy('view_order')->get();
 
@@ -67,7 +46,7 @@ class AdminController extends Controller
         return view('admin.server.add', array("environments" => json_encode($envs), "datacenters" => json_encode($dcs), "clusters" => json_encode($clusters)));
     }
 
-    public function updateserver($server_id)
+    public function updateServer($server_id)
     {
         $server = Server::where("server_id", $server_id)->get();
 
@@ -98,7 +77,7 @@ class AdminController extends Controller
         return view('admin.server.edit', array("server" => $server[0], "environments" => json_encode($envs), "datacenters" => json_encode($dcs), "clusters" => json_encode($clusters)));
     }
 
-    public function deleteserver($server_id)
+    public function deleteDerver($server_id)
     {
         $server = Server::where("server_id", $server_id)->get();
 

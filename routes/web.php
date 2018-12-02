@@ -24,15 +24,15 @@ Route::view('/admin/dbcompare', 'admin.dbcompare');
 
 // Server Admin
 
-Route::get('/admin/server', 'AdminController@servers');
+Route::get('/admin/server', 'ServerAdminController@servers');
 
-Route::get('/admin/server/add', 'AdminController@addserver');
-Route::get('/admin/server/edit/{server_id}', 'AdminController@updateserver');
-Route::get('/admin/server/delete/{server_id}', 'AdminController@deleteserver');
+Route::get('/admin/server/add', 'ServerAdminController@addServer');
+Route::get('/admin/server/edit/{server_id}', 'ServerAdminController@updateServer');
+Route::get('/admin/server/delete/{server_id}', 'ServerAdminController@deleteServer');
 
-Route::post('/admin/server/performaddserver', 'AdminController@performAddServer');
-Route::post('/admin/server/performupdateserver', 'AdminController@performUpdateServer');
-Route::post('/admin/server/performdeleteserver', 'AdminController@performDeleteServer');
+Route::post('/admin/server/performaddserver', 'ServerAdminController@performAddServer');
+Route::post('/admin/server/performupdateserver', 'ServerAdminController@performUpdateServer');
+Route::post('/admin/server/performdeleteserver', 'ServerAdminController@performDeleteServer');
 
 //  Environment Admin
 
