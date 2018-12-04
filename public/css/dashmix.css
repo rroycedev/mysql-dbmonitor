@@ -1679,11 +1679,12 @@ pre code {
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
-  background-color: #f9fafc;
+  background-color: #d9dce2;
 }
 
 .table-hover tbody tr:hover {
-  background-color: #eff2f8;
+  background-color: #626569;
+  color: #ffffff;
 }
 
 .table-primary,
@@ -1809,16 +1810,16 @@ pre code {
 .table-active,
 .table-active > th,
 .table-active > td {
-  background-color: #eff2f8;
+  background-color: #626569;
 }
 
 .table-hover .table-active:hover {
-  background-color: #dde3f0;
+  background-color: #56585c;
 }
 
 .table-hover .table-active:hover > td,
 .table-hover .table-active:hover > th {
-  background-color: #dde3f0;
+  background-color: #56585c;
 }
 
 .table .thead-dark th {
@@ -11978,6 +11979,10 @@ small,
 .block.block-rounded.block-mode-hidden > .block-header.block-header-default {
   border-bottom-right-radius: 0.2rem;
   border-bottom-left-radius: 0.2rem;
+}
+
+.block.block-rounded > .block-content {
+  border: 1px solid lightgray;
 }
 
 .block.block-rounded > .block-content:first-child {
@@ -24733,7 +24738,7 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
 }
 
 .panel-header {
-  background-color: #626569;
+  background-color: #0665d0;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   padding: 5px;
@@ -24742,7 +24747,7 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
 h1.panel-title,
 h2.panel-title,
 h3.panel-title {
-  color: #fcd800;
+  color: #ffffff;
   font-weight: bold;
   padding: 0px;
   margin: 0px;
@@ -24785,7 +24790,7 @@ h3.app-title {
 }
 
 th {
-  background-color: #3c90df;
+  background-color: #626569;
   color: #ffffff;
 }
 

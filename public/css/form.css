@@ -1,0 +1,23 @@
+.dns-alias-name {
+    min-width: 300px;
+    max-width: 300px;
+}
+
+.vip-port {
+    width: 100px;
+}
+
+.hidden {
+    display: none;
+}
+
+.ellipsis-text {
+    white-space: nowrap;
+    overflow:hidden;
+    text-overflow: ellipsis;
+}
+
+.alert-level-secs {
+    min-width: 140px;
+    max-width: 140px;
+}

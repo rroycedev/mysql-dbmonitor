@@ -25,7 +25,7 @@
                         <tbody class="table-tbody">
                             @foreach($environments as $env)
                             <tr>
-                                <td class="environment-table-col">{{$env->name}}</td>
+                                <td class="environment-table-col ellipsis-text" data-toggle="tooltip" title="{{$env->name}}">{{$env->name}}</td>
                                 <td class="view-order-table-col">{{$env->view_order}}</td>
                                 <td class="change-delete-btn-table-col">
                                     <button class="btn btn-info" onclick="location.href='/admin/environment/edit/{{$env->environment_id}}'">Edit</button>&nbsp;

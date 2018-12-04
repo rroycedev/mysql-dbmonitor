@@ -14,8 +14,6 @@
 Route::view('/', 'monitor');
 Route::get('/monitor', 'MonitorController@index');
 
-Route::view('/admin/aliases', 'admin.aliases');
-Route::view('/admin/alerts', 'admin.alerts');
 
 Route::view('/reports/dataintegrity', 'reports.dataintegrity');
 Route::view('/reports/dbcompare', 'reports.dbcompare');
@@ -67,3 +65,20 @@ Route::get('/admin/cluster/delete/{cluster_id}', 'ClusterAdminController@deleteC
 Route::post('/admin/cluster/performaddcluster', 'ClusterAdminController@performAddCluster');
 Route::post('/admin/cluster/performupdatecluster', 'ClusterAdminController@performUpdateCluster');
 Route::post('/admin/cluster/performdeletecluster', 'ClusterAdminController@performDeleteCluster');
+
+//  DNS Aliases Admin
+
+Route::get('/admin/dnsalias', 'DNSAliasAdminController@dnsaliases');
+
+Route::get('/admin/dnsalias/add', 'DNSAliasAdminController@addDNSAlias');
+Route::get('/admin/dnsalias/edit/{alias_id}', 'DNSAliasAdminController@updateDNSAlias');
+Route::get('/admin/dnsalias/delete/{alias_id}', 'DNSAliasAdminController@deleteDNSAlias');
+
+Route::post('/admin/dnsalias/performadddnsalias', 'DNSAliasAdminController@performAddDNSAlias');
+Route::post('/admin/dnsalias/performupdatednsalias', 'DNSAliasAdminController@performUpdateDNSAlias');
+Route::post('/admin/dnsalias/performdeletednsalias', 'DNSAliasAdminController@performDeleteDNSAlias');
+
+Route::get('/admin/alert/repllag', 'ReplicationLagAlertAdminController@alerts');
+Route::get('/admin/alert/repllag/add', 'ReplicationLagAlertAdminController@addAlert');
+Route::get('/admin/alert/repllag/edit/{server_id}', 'ReplicationLagAlertAdminController@updateAlert');
+Route::get('/admin/alert/repllag/delete/{server_id}', 'ReplicationLagAlertAdminController@deleteAlert');

@@ -104,6 +104,9 @@
         }
 
         > .block-content {
+            border: 1px solid lightgray;
+
+            
             &:first-child {
                 @include border-top-radius($border-radius-sm);
             }

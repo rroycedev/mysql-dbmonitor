@@ -1,0 +1,7 @@
+.tooltip-inner {
+    max-width: 800px;
+    background-color: #626569;
+    color: #fcd800;
+    font-weight: bold;
+    padding: 8px;
+}

@@ -12,7 +12,7 @@
 
 
 $app-title-color: #ffffff;
-$panel-title-color: rgba(252, 216, 0, 1);
+
 
 $color-light: #ffffff;
 $side-header-bg: transparent;
@@ -25,7 +25,7 @@ $header-dark-bg: rgb(2, 149, 190);
 $body-color-light: rgba(252, 216, 0, 1);
 $headings-color: #FCD800;
 $sidebar-dark-bg: #626569;
-$panel-title-header-bg: #626569;
+
 $title-header-bg: #0665d0;
 
 $title-header-color: rgba(252, 216, 0, .75);
@@ -34,3 +34,13 @@ $menu-item-border-color: gray;
 
 $badge-padding-y: .4em;
 $badge-padding-x: .4em;
+
+$panel-title-header-bg: $title-header-bg;
+$panel-title-color: #ffffff;
+
+$th-bg-color: $sidebar-dark-bg;
+
+
+$table-accent-bg: #d9dce2;
+$table-hover-bg: $sidebar-dark-bg;
+$table-hover-color: #ffffff;

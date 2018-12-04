@@ -23,6 +23,9 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,400i,600,700">
         <link rel="stylesheet" href="{{ mix('css/dashmix.css') }}">
 
+        <link rel="stylesheet" href="/css/form.css">
+        <link rel="stylesheet" href="/css/tooltip.css">
+
         <!-- You can include a specific file from public/css/themes/ folder to alter the default color theme of the template. eg: -->
         <!-- <link rel="stylesheet" href="{{ mix('css/themes/xwork.css') }}"> -->
         @yield('css_after')
@@ -30,7 +33,7 @@
         <!-- Scripts -->
         <script>window.Laravel = {!! json_encode(['csrfToken' => csrf_token(),]) !!};</script>
     </head>
-    <body>
+    <body >
         <div id="page-container" class="sidebar-o sidebar-dark enable-page-overlay side-scroll page-header page-header-dark main-content-narrow">
             <!-- Side Overlay-->
             <aside id="side-overlay">
@@ -140,14 +143,35 @@
                                     </a>
                                 </li>
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link{{ request()->is('admin/aliases') ? ' active' : '' }}" href="/admin/aliases">
+                                    <a class="nav-main-link{{ request()->is('admin/dnsalias/*') ? ' active' : '' }}" href="/admin/dnsalias">
                                         <span class="nav-main-link-name">DNS Aliases</span>
                                     </a>
                                 </li>
-                                <li class="nav-main-item">
-                                    <a class="nav-main-link{{ request()->is('admin/alerts') ? ' active' : '' }}" href="/admin/alerts">
+
+
+
+
+                                <li class="nav-main-item{{ request()->is('admin/alert/*') ? ' open' : '' }} ">
+                                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
                                         <span class="nav-main-link-name">Alerts</span>
                                     </a>
+                                    <ul class="nav-main-submenu">
+                                        <li class="nav-main-item">
+                                            <a class="nav-main-link{{ request()->is('admin/alert/repllag/*') ? ' active' : '' }}" href="/admin/alert/repllag">
+                                                <span class="nav-main-link-name">Replication Lag</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-main-item">
+                                            <a class="nav-main-link{{ request()->is('admin/alert/disk/*') ? ' active' : '' }}" href="/admin/alert/disk">
+                                                <span class="nav-main-link-name">Disk Space</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-main-item">
+                                            <a class="nav-main-link{{ request()->is('admin/alert/cpuload/*') ? ' active' : '' }}" href="/admin/alert/cpuload">
+                                                <span class="nav-main-link-name">CPU Load</span>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </li>
                             </ul>
                         </li>

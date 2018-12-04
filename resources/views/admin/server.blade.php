@@ -30,7 +30,7 @@
                         <tbody class="table-tbody">
                             @foreach($servers as $server)
                             <tr>
-                                <td class="hostname-table-col">{{$server->hostname}}</td>
+                                <td class="hostname-table-col ellipsis-text" data-toggle="tooltip" title="{{$server->hostname}}">{{$server->hostname}}</td>
                                 <td class="ip-address-table-col">{{$server->ipaddress}}</td>
                                 <td class="port-name-table-col">{{$server->port_name}}</td>
                                 <td class="environment-table-col">{{$server->environment->name}}</td>
