@@ -16,18 +16,7 @@ class DiskAlertAdminController extends Controller
                                         '=',
                                         'servers.server_id')->orderBy('servers.hostname')->get();
 
-
-        $servers = array();
-        $serversFound = array();
-
-        foreach ($rows as $row) {
-            if (!array_key_exists($row->hostname, $serversFound)) {
-                $serversFound[$row->hostname] = 1;
-
-                $servers[] = array("hostname" => $row->hostname);
-            }
-        }
-        return view('admin.alert.disk', array("servers" => $servers));
+        return view('admin.alert.disk', array("alerts" => $rows));
     }
 
     public function add()
@@ -45,45 +34,46 @@ class DiskAlertAdminController extends Controller
             }
         }
 
-        return view('admin.alert.repllag.add', array("servers" => json_encode($servers)));
+        return view('admin.alert.disk.add', array("servers" => json_encode($servers)));
     }
 
-    public function update($server_id)
+    public function update($alert_id)
     {
         $rows = DiskAlert::join(
             'servers',
-            'replication_lag_alerts.server_id',
+            'disk_alerts.server_id',
             '=',
-            'servers.server_id')->where("replication_lag_alerts.server_id", "=", $server_id)->orderBy('servers.hostname')->get();
+            'servers.server_id')->where("disk_alerts.alert_id", "=", $alert_id)->orderBy('servers.hostname')->get();
 
-
-        return view('admin.alert.repllag.edit', array("alert" => $rows[0]));
+        return view('admin.alert.disk.edit', array("alert" => $rows[0]));
     }
 
-    public function delete($server_id)
+    public function delete($alert_id)
     {
-        $alerts = DiskAlert::where("server_id", $server_id)->get();
+        $alerts = DiskAlert::where("alert_id", $alert_id)->get();
 
-        return view('admin.alert.repllag.delete', array("alert" => $alerts[0]));
+        return view('admin.alert.disk.delete', array("alert" => $alerts[0]));
     }
 
     public function performAdd(Request $request)
     {
         $serverId = $request->input('server');
 
-        $warningLevel = $request->input('warning_level_secs');
-        $errorLevel = $request->input('error_level_secs');
+        $warningLevel = $request->input('warning_level_pct');
+        $errorLevel = $request->input('error_level_pct');
+        $volume = $request->input('volume');
 
         $alert = new DiskAlert();
 
         $alert->server_id = $serverId;
-        $alert->warning_level_secs = $warningLevel;
-        $alert->error_level_secs = $errorLevel;        
+        $alert->volume = $volume;
+        $alert->warning_level_pct = $warningLevel;
+        $alert->error_level_pct = $errorLevel;
 
         try {
             $alert->save();
 
-            return redirect('/admin/alert/repllag')->with('msg', 'Alert has been saved successfully');
+            return redirect('/admin/alert/disk')->with('msg', 'Alert has been saved successfully');
         } catch (Illuminate\Database\QueryException $ex) {
             return back()->withInput()->with('error', $ex->getMessage());
         } catch (\PDOException $pdoEx) {
@@ -95,20 +85,22 @@ class DiskAlertAdminController extends Controller
 
     public function performUpdate(Request $request)
     {
-        $serverId = $request->input('server_id');
+        $alertId = $request->input('alert_id');
 
-        $warningLevel = $request->input('warning_level_secs');
-        $errorLevel = $request->input('error_level_secs');
+        $warningLevel = $request->input('warning_level_pct');
+        $errorLevel = $request->input('error_level_pct');
+        $volume = $request->input('volume');
 
-        $alert = DiskAlert::find($serverId);
+        $alert = DiskAlert::find($alertId);
 
-        $alert->warning_level_secs = $warningLevel;
-        $alert->error_level_secs = $errorLevel;        
+        $alert->volume = $volume;
+        $alert->warning_level_pct = $warningLevel;
+        $alert->error_level_pct = $errorLevel;
 
         try {
             $alert->save();
 
-            return redirect('/admin/alert/repllag')->with('msg', 'Alert has been saved successfully');
+            return redirect('/admin/alert/disk')->with('msg', 'Alert has been saved successfully');
         } catch (Illuminate\Database\QueryException $ex) {
             return back()->withInput()->with('error', $ex->getMessage());
         } catch (\PDOException $pdoEx) {

@@ -18,16 +18,20 @@
                         <thead class="table-thead">
                             <tr>
                                 <th class="hostname-table-col">Server Hostname</th>
+                                <th class="port-name-table-col">Server Port Name</th>
+                                <th class="volume-table-col">Volume</th>
                                 <th class="change-delete-btn-table-col">&nbsp;</th>
                             </tr>
                         </thead>
                         <tbody class="table-tbody">
-                            @foreach($servers as $server)
+                            @foreach($alerts as $alert)
                             <tr>
-                                <td class="hostname-table-col ellipsis-text" data-toggle="tooltip" title="">{{$server->hostname}}</td>
+                                <td class="hostname-table-col ellipsis-text" data-toggle="tooltip" title="">{{$alert->hostname}}</td>
+                                <td class="port-name-table-col ellipsis-text" data-toggle="tooltip" title="">{{$alert->port_name}}</td>
+                                <td class="volume-table-col ellipsis-text" data-toggle="tooltip" title="">{{$alert->volume}}</td>
                                 <td class="change-delete-btn-table-col">
-                                    <button class="btn btn-info" onclick="location.href='/admin/alert/repllag/edit/{{$alert->server_id}}'">Edit</button>&nbsp;
-                                    <button class="btn btn-info" onclick="location.href='/admin/alert/repllag/delete/{{$alert->server_id}}'">Delete</button>
+                                    <button class="btn btn-info" onclick="location.href='/admin/alert/disk/edit/{{$alert->alert_id}}'">Edit</button>&nbsp;
+                                    <button class="btn btn-info" onclick="location.href='/admin/alert/disk/delete/{{$alert->alert_id}}'">Delete</button>
                                 </td>
                             </tr>
                             @endforeach
@@ -38,7 +42,7 @@
         </div>
     </div>
     <div class="row justify-content-center">
-            <a class="btn btn-info" href="/admin/alert/repllag/add">Add</a>
+            <a class="btn btn-info" href="/admin/alert/disk/add">Add</a>
     </div>
 </div>
 @endsection

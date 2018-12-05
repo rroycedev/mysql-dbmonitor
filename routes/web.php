@@ -90,8 +90,8 @@ Route::post('/admin/alert/repllag/performdelete', 'ReplicationLagAlertAdminContr
 
 Route::get('/admin/alert/disk', 'DiskAlertAdminController@alerts');
 Route::get('/admin/alert/disk/add', 'DiskAlertAdminController@add');
-Route::get('/admin/alert/disk/edit/{server_id}', 'DiskAlertAdminController@update');
-Route::get('/admin/alert/disk/delete/{server_id}', 'DiskAlertAdminController@delete');
+Route::get('/admin/alert/disk/edit/{alert_id}', 'DiskAlertAdminController@update');
+Route::get('/admin/alert/disk/delete/{alert_id}', 'DiskAlertAdminController@delete');
 
 Route::post('/admin/alert/disk/performadd', 'DiskAlertAdminController@performAdd');
 Route::post('/admin/alert/disk/performupdate', 'DiskAlertAdminController@performUpdate');

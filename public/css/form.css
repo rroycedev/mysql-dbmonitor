@@ -22,7 +22,29 @@
     max-width: 140px;
 }
 
+.alert-level-input {
+    min-width: 56px;
+    max-width: 56px;
+    text-align: right;
+}
+
 .hostname-select {
     min-width: 300px;
     max-width: 300px;
+}
+
+.volume-table-col {
+    min-width: 300px;
+    max-width: 300px;
+}
+
+.percent-label {
+    padding-left: 3px;
+    float: left;
+    line-height: calc(2.25rem + 2px);
+    font-weight: bold;
+}
+
+.fl {
+    float: left;
 }
