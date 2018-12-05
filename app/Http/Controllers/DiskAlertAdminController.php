@@ -2,21 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ReplicationLagAlert;
+use App\Models\DiskAlert;
 use App\Models\Server;
 use Illuminate\Http\Request;
 
-class ReplicationLagAlertAdminController extends Controller
+class DiskAlertAdminController extends Controller
 {
     public function alerts()
     {
-        $rows = ReplicationLagAlert::join(
+        $rows = DiskAlert::join(
                                         'servers',
-                                        'replication_lag_alerts.server_id',
+                                        'disk_alerts.server_id',
                                         '=',
                                         'servers.server_id')->orderBy('servers.hostname')->get();
 
-        return view('admin.alert.repllag', array("alerts" => $rows));
+
+        $servers = array();
+        $serversFound = array();
+
+        foreach ($rows as $row) {
+            if (!array_key_exists($row->hostname, $serversFound)) {
+                $serversFound[$row->hostname] = 1;
+
+                $servers[] = array("hostname" => $row->hostname);
+            }
+        }
+        return view('admin.alert.disk', array("servers" => $servers));
     }
 
     public function add()
@@ -39,7 +50,7 @@ class ReplicationLagAlertAdminController extends Controller
 
     public function update($server_id)
     {
-        $rows = ReplicationLagAlert::join(
+        $rows = DiskAlert::join(
             'servers',
             'replication_lag_alerts.server_id',
             '=',
@@ -51,7 +62,7 @@ class ReplicationLagAlertAdminController extends Controller
 
     public function delete($server_id)
     {
-        $alerts = ReplicationLagAlert::where("server_id", $server_id)->get();
+        $alerts = DiskAlert::where("server_id", $server_id)->get();
 
         return view('admin.alert.repllag.delete', array("alert" => $alerts[0]));
     }
@@ -63,7 +74,7 @@ class ReplicationLagAlertAdminController extends Controller
         $warningLevel = $request->input('warning_level_secs');
         $errorLevel = $request->input('error_level_secs');
 
-        $alert = new ReplicationLagAlert();
+        $alert = new DiskAlert();
 
         $alert->server_id = $serverId;
         $alert->warning_level_secs = $warningLevel;
@@ -89,7 +100,7 @@ class ReplicationLagAlertAdminController extends Controller
         $warningLevel = $request->input('warning_level_secs');
         $errorLevel = $request->input('error_level_secs');
 
-        $alert = ReplicationLagAlert::find($serverId);
+        $alert = DiskAlert::find($serverId);
 
         $alert->warning_level_secs = $warningLevel;
         $alert->error_level_secs = $errorLevel;        
@@ -110,7 +121,7 @@ class ReplicationLagAlertAdminController extends Controller
     {
         $serverId = $request->input('server_id');
 
-        $alert = ReplicationLagAlert::find($serverId);
+        $alert = DiskAlert::find($serverId);
 
         try {
             $alert->delete();

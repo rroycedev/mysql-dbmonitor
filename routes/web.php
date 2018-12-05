@@ -79,6 +79,20 @@ Route::post('/admin/dnsalias/performupdatednsalias', 'DNSAliasAdminController@pe
 Route::post('/admin/dnsalias/performdeletednsalias', 'DNSAliasAdminController@performDeleteDNSAlias');
 
 Route::get('/admin/alert/repllag', 'ReplicationLagAlertAdminController@alerts');
-Route::get('/admin/alert/repllag/add', 'ReplicationLagAlertAdminController@addAlert');
-Route::get('/admin/alert/repllag/edit/{server_id}', 'ReplicationLagAlertAdminController@updateAlert');
-Route::get('/admin/alert/repllag/delete/{server_id}', 'ReplicationLagAlertAdminController@deleteAlert');
+Route::get('/admin/alert/repllag/add', 'ReplicationLagAlertAdminController@add');
+Route::get('/admin/alert/repllag/edit/{server_id}', 'ReplicationLagAlertAdminController@update');
+Route::get('/admin/alert/repllag/delete/{server_id}', 'ReplicationLagAlertAdminController@delete');
+
+Route::post('/admin/alert/repllag/performadd', 'ReplicationLagAlertAdminController@performAdd');
+Route::post('/admin/alert/repllag/performupdate', 'ReplicationLagAlertAdminController@performUpdate');
+Route::post('/admin/alert/repllag/performdelete', 'ReplicationLagAlertAdminController@performDelete');
+
+
+Route::get('/admin/alert/disk', 'DiskAlertAdminController@alerts');
+Route::get('/admin/alert/disk/add', 'DiskAlertAdminController@add');
+Route::get('/admin/alert/disk/edit/{server_id}', 'DiskAlertAdminController@update');
+Route::get('/admin/alert/disk/delete/{server_id}', 'DiskAlertAdminController@delete');
+
+Route::post('/admin/alert/disk/performadd', 'DiskAlertAdminController@performAdd');
+Route::post('/admin/alert/disk/performupdate', 'DiskAlertAdminController@performUpdate');
+Route::post('/admin/alert/disk/performdelete', 'DiskAlertAdminController@performDelete');

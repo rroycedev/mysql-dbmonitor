@@ -21,3 +21,8 @@
     min-width: 140px;
     max-width: 140px;
 }
+
+.hostname-select {
+    min-width: 300px;
+    max-width: 300px;
+}

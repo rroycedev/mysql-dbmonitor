@@ -343,11 +343,11 @@ h2, .h2 {
 }
 
 h3, .h3 {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
 }
 
 h4, .h4 {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
 }
 
 h5, .h5 {
@@ -9598,11 +9598,11 @@ label {
 }
 
 .font-size-h3 {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
 }
 
 .font-size-h4 {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
 }
 
 .font-size-h5 {
@@ -9630,10 +9630,10 @@ label {
     font-size: 1.875rem;
   }
   h2, .h2, .font-size-h2 {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
   }
   h3, .h3, .font-size-h3 {
-    font-size: 1.25rem;
+    font-size: 1.125rem;
   }
   h4, .h4, .font-size-h4 {
     font-size: 1.125rem;
