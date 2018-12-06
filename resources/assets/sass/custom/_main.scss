@@ -73,63 +73,6 @@ th {
     vertical-align: middle;
 }
 
-.hostname-table-col {
-    min-width: 200px;
-    max-width: 200px;
-}
-
-.ip-address-table-col {
-    min-width: 180px;
-    max-width: 180px;
-}
-
-.port-name-table-col {
-    min-width: 180px;
-    max-width: 180px;
-}
-
-.environment-table-col {
-    min-width: 200px;
-    max-width: 200px;
-}
-
-.datacenter-table-col {
-    min-width: 200px;
-    max-width: 200px;
-}
-
-.cluster-table-col {
-    min-width: 200px;
-    max-width: 200px;
-}
-
-.change-delete-btn-table-col {
-    min-width: 170px;
-    max-width: 170px;
-}
-
-.view-order-table-col {
-    min-width: 100px;
-    max-width: 100px;
-}
-
-.active-table-col {
-    min-width: 80px;
-    max-width: 80px;
-}
-
-.table-tbody {
-    display: block;
-    max-height: 600px;
-    overflow-y: auto;
-}
-
-.checkbox-form-col {
-    line-height: $line-height-sm;
-    vertical-align: middle;
-    display: inline-block;
-    margin-bottom: $label-margin-bottom;
-}
 
 .table-thead {
     display: block;

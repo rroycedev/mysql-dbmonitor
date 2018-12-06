@@ -123,27 +123,27 @@
                             </a>
                             <ul class="nav-main-submenu">
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link{{ request()->is('admin/server/*') ? ' active' : '' }}" href="/admin/server">
+                                    <a class="nav-main-link{{ (substr(request()->path(), 0, 12) == 'admin/server') ? ' active' : '' }}" href="/admin/server">
                                         <span class="nav-main-link-name">Servers</span>
                                     </a>
                                 </li>
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link{{ request()->is('admin/environment/*') ? ' active' : '' }}" href="/admin/environment">
+                                    <a class="nav-main-link{{ (substr(request()->path(), 0, 17) == 'admin/environment') ? ' active' : '' }}" href="/admin/environment">
                                         <span class="nav-main-link-name">Environments</span>
                                     </a>
                                 </li>
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link{{ request()->is('admin/datacenter/*') ? ' active' : '' }}" href="/admin/datacenter">
+                                    <a class="nav-main-link{{ (substr(request()->path(), 0, 16) == 'admin/datacenter') ? ' active' : '' }}" href="/admin/datacenter">
                                         <span class="nav-main-link-name">Datacenters</span>
                                     </a>
                                 </li>
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link{{ request()->is('admin/cluster/*') ? ' active' : '' }}" href="/admin/cluster">
+                                    <a class="nav-main-link{{ (substr(request()->path(), 0, 13) == 'admin/cluster')  ? ' active' : '' }}" href="/admin/cluster">
                                         <span class="nav-main-link-name">Clusters</span>
                                     </a>
                                 </li>
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link{{ request()->is('admin/dnsalias/*') ? ' active' : '' }}" href="/admin/dnsalias">
+                                    <a class="nav-main-link{{ (substr(request()->path(), 0, 14) == 'admin/dnsalias') ? ' active' : '' }}" href="/admin/dnsalias">
                                         <span class="nav-main-link-name">DNS Aliases</span>
                                     </a>
                                 </li>
@@ -157,17 +157,17 @@
                                     </a>
                                     <ul class="nav-main-submenu">
                                         <li class="nav-main-item">
-                                            <a class="nav-main-link{{ request()->is('admin/alert/repllag/*') ? ' active' : '' }}" href="/admin/alert/repllag">
+                                            <a class="nav-main-link{{ (substr(request()->path(), 0, strlen('admin/alert/repllag')) == 'admin/alert/repllag') ? ' active' : '' }}" href="/admin/alert/repllag">
                                                 <span class="nav-main-link-name">Replication Lag</span>
                                             </a>
                                         </li>
                                         <li class="nav-main-item">
-                                            <a class="nav-main-link{{ request()->is('admin/alert/disk/*') ? ' active' : '' }}" href="/admin/alert/disk">
+                                            <a class="nav-main-link{{ (substr(request()->path(), 0, strlen('admin/alert/disk')) == 'admin/alert/disk') ? ' active' : '' }}" href="/admin/alert/disk">
                                                 <span class="nav-main-link-name">Disk Space</span>
                                             </a>
                                         </li>
                                         <li class="nav-main-item">
-                                            <a class="nav-main-link{{ request()->is('admin/alert/cpuload/*') ? ' active' : '' }}" href="/admin/alert/cpuload">
+                                            <a class="nav-main-link{{ (substr(request()->path(), 0, strlen('admin/alert/cpuload')) == 'admin/alert/cpuload') ? ' active' : '' }}" href="/admin/alert/cpuload">
                                                 <span class="nav-main-link-name">CPU Load</span>
                                             </a>
                                         </li>

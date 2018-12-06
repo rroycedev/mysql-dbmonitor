@@ -13,7 +13,7 @@
 
 .ellipsis-text {
     white-space: nowrap;
-    overflow:hidden;
+    overflow: hidden;
     text-overflow: ellipsis;
 }
 
@@ -25,6 +25,12 @@
 .alert-level-input {
     min-width: 56px;
     max-width: 56px;
+    text-align: right;
+}
+
+.alert-level-load-input {
+    min-width: 82px;
+    max-width: 82px;
     text-align: right;
 }
 
@@ -47,4 +53,62 @@
 
 .fl {
     float: left;
+}
+
+.hostname-table-col {
+    min-width: 200px;
+    max-width: 200px;
+}
+
+.ip-address-table-col {
+    min-width: 180px;
+    max-width: 180px;
+}
+
+.port-name-table-col {
+    min-width: 180px;
+    max-width: 180px;
+}
+
+.environment-table-col {
+    min-width: 200px;
+    max-width: 200px;
+}
+
+.datacenter-table-col {
+    min-width: 200px;
+    max-width: 200px;
+}
+
+.cluster-table-col {
+    min-width: 200px;
+    max-width: 200px;
+}
+
+.change-delete-btn-table-col {
+    min-width: 170px;
+    max-width: 170px;
+}
+
+.view-order-table-col {
+    min-width: 120px;
+    max-width: 120px;
+}
+
+.active-table-col {
+    min-width: 80px;
+    max-width: 80px;
+}
+
+.table-tbody {
+    display: block;
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.checkbox-form-col {
+    line-height: $line-height-sm;
+    vertical-align: middle;
+    display: inline-block;
+    margin-bottom: $label-margin-bottom;
 }

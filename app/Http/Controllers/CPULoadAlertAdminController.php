@@ -16,21 +16,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ReplicationLagAlert;
+use App\Models\CPULoadAlert;
 use App\Models\Server;
 use Illuminate\Http\Request;
 
-class ReplicationLagAlertAdminController extends Controller
+class CPULoadAlertAdminController extends Controller
 {
     public function alerts()
     {
-        $rows = ReplicationLagAlert::join(
+        $rows = CPULoadAlert::join(
             'servers',
-            'replication_lag_alerts.server_id',
+            'cpu_load_alerts.server_id',
             '=',
             'servers.server_id')->orderBy('servers.hostname')->get();
 
-        return view('admin.alert.repllag', array("alerts" => $rows));
+        return view('admin.alert.cpuload', array("alerts" => $rows));
     }
 
     public function add()
@@ -47,44 +47,44 @@ class ReplicationLagAlertAdminController extends Controller
             }
         }
 
-        return view('admin.alert.repllag.add', array("servers" => json_encode($servers)));
+        return view('admin.alert.cpuload.add', array("servers" => json_encode($servers)));
     }
 
     public function update($server_id)
     {
-        $rows = ReplicationLagAlert::join(
+        $rows = CPULoadAlert::join(
             'servers',
-            'replication_lag_alerts.server_id',
+            'cpu_load_alerts.server_id',
             '=',
-            'servers.server_id')->where("replication_lag_alerts.server_id", "=", $server_id)->orderBy('servers.hostname')->get();
+            'servers.server_id')->where("cpu_load_alerts.server_id", "=", $server_id)->orderBy('servers.hostname')->get();
 
-        return view('admin.alert.repllag.edit', array("alert" => $rows[0]));
+        return view('admin.alert.cpuload.edit', array("alert" => $rows[0]));
     }
 
     public function delete($server_id)
     {
-        $alerts = ReplicationLagAlert::where("server_id", $server_id)->get();
+        $alerts = CPULoadAlert::where("server_id", $server_id)->get();
 
-        return view('admin.alert.repllag.delete', array("alert" => $alerts[0]));
+        return view('admin.alert.cpuload.delete', array("alert" => $alerts[0]));
     }
 
     public function performAdd(Request $request)
     {
         $serverId = $request->input('server');
 
-        $warningLevel = $request->input('warning_level_secs');
-        $errorLevel = $request->input('error_level_secs');
+        $warningLevel = $request->input('warning_level');
+        $errorLevel = $request->input('error_level');
 
-        $alert = new ReplicationLagAlert();
+        $alert = new CPULoadAlert();
 
         $alert->server_id = $serverId;
-        $alert->warning_level_secs = $warningLevel;
-        $alert->error_level_secs = $errorLevel;
+        $alert->warning_level = $warningLevel;
+        $alert->error_level = $errorLevel;
 
         try {
             $alert->save();
 
-            return redirect('/admin/alert/repllag')->with('msg', 'Alert has been saved successfully');
+            return redirect('/admin/alert/cpuload')->with('msg', 'Alert has been saved successfully');
         } catch (Illuminate\Database\QueryException $ex) {
             return back()->withInput()->with('error', $ex->getMessage());
         } catch (\PDOException $pdoEx) {
@@ -97,18 +97,18 @@ class ReplicationLagAlertAdminController extends Controller
     {
         $serverId = $request->input('server_id');
 
-        $warningLevel = $request->input('warning_level_secs');
-        $errorLevel = $request->input('error_level_secs');
+        $warningLevel = $request->input('warning_level');
+        $errorLevel = $request->input('error_level');
 
-        $alert = ReplicationLagAlert::find($serverId);
+        $alert = CPULoadAlert::find($serverId);
 
-        $alert->warning_level_secs = $warningLevel;
-        $alert->error_level_secs = $errorLevel;
+        $alert->warning_level = $warningLevel;
+        $alert->error_level = $errorLevel;
 
         try {
             $alert->save();
 
-            return redirect('/admin/alert/repllag')->with('msg', 'Alert has been saved successfully');
+            return redirect('/admin/alert/cpuload')->with('msg', 'Alert has been saved successfully');
         } catch (Illuminate\Database\QueryException $ex) {
             return back()->withInput()->with('error', $ex->getMessage());
         } catch (\PDOException $pdoEx) {
@@ -121,12 +121,12 @@ class ReplicationLagAlertAdminController extends Controller
     {
         $serverId = $request->input('server_id');
 
-        $alert = ReplicationLagAlert::find($serverId);
+        $alert = CPULoadAlert::find($serverId);
 
         try {
             $alert->delete();
 
-            return redirect('/admin/alert/repllag')->with('msg', 'Alert has been deleted successfully');
+            return redirect('/admin/alert/cpuload')->with('msg', 'Alert has been deleted successfully');
         } catch (Illuminate\Database\QueryException $ex) {
             return back()->withInput()->with('error', $ex->getMessage());
         } catch (\PDOException $pdoEx) {

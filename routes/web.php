@@ -293,3 +293,40 @@ Route::post(
     '/admin/alert/disk/performdelete',
     'DiskAlertAdminController@performDelete'
 );
+
+//  CPU Load Alerts Admin
+
+Route::get(
+    '/admin/alert/cpuload',
+    'CPULoadAlertAdminController@alerts'
+);
+
+Route::get(
+    '/admin/alert/cpuload/add',
+    'CPULoadAlertAdminController@add'
+);
+
+Route::get(
+    '/admin/alert/cpuload/edit/{alert_id}',
+    'CPULoadAlertAdminController@update'
+);
+
+Route::get(
+    '/admin/alert/cpuload/delete/{alert_id}',
+    'CPULoadAlertAdminController@delete'
+);
+
+Route::post(
+    '/admin/alert/cpuload/performadd',
+    'CPULoadAlertAdminController@performAdd'
+);
+
+Route::post(
+    '/admin/alert/cpuload/performupdate',
+    'CPULoadAlertAdminController@performUpdate'
+);
+
+Route::post(
+    '/admin/alert/cpuload/performdelete',
+    'CPULoadAlertAdminController@performDelete'
+);

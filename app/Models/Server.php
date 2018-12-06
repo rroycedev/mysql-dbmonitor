@@ -1,4 +1,18 @@
 <?php
+/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
+
+/**
+ * Model
+ *
+ * PHP version 7
+ *
+ * @category  File
+ * @package   MySQLDbmonitor
+ * @author    Ronald Royce <rroycedev@gmail.com>
+ * @copyright 2018 Ronald Royce
+ * @license   GPL http://opensource.org/licenses/gpl-license.php GNU Public License
+ * @link      http://www.rroycedev.com/
+ **/
 
 namespace App\Models;
 
@@ -32,7 +46,7 @@ class Server extends Model
         return $this->hasOne('App\Models\Environment', 'environment_id', 'environment_id');
     }
 
-    public function replication_lag_alerts() 
+    public function replication_lag_alerts()
     {
         return $this->hasOne('App\Models\ReplicationLagAlert', 'server_id', 'server_id');
     }
