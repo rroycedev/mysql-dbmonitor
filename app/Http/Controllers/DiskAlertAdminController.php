@@ -79,8 +79,6 @@ class DiskAlertAdminController extends Controller
         } catch (\PDOException $pdoEx) {
             return back()->withInput()->with('error', $pdoEx->getMessage());
         }
-
-
     }
 
     public function performUpdate(Request $request)
