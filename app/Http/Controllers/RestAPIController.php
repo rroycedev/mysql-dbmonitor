@@ -19,6 +19,8 @@ namespace App\Http\Controllers;
 use App\Models\Cluster;
 use App\Models\Datacenter;
 use App\Models\Environment;
+use App\Models\Server;
+use App\Models\ServerSlavesStatus;
 use Illuminate\Support\Facades\DB;
 
 class RestAPIController extends Controller
@@ -30,5 +32,18 @@ class RestAPIController extends Controller
         $clusters = Cluster::orderBy('view_order')->get();
 
         echo json_encode(array("environments" => $envs, "datacenters" => $dcs, "clusters" => $clusters));
+    }
+
+    public function getServerStatus()
+    {
+        $servers = Server::with('cluster')->with('datacenter')->with('environment')->orderBy('hostname')->get();
+
+        for ($i = 0; $i < count($servers); $i++) {
+            $slaves = ServerSlavesStatus::where("server_id", $servers[$i]->server_id)->orderBy("connection_name")->get();
+
+            $servers[$i]->slaves = $slaves;
+        }
+
+        echo json_encode(array("status" => $servers));
     }
 }

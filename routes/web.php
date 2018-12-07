@@ -337,3 +337,8 @@ Route::get(
     '/api/monitoringfilters',
     'RestAPIController@getMonitoringFilters'
 );
+
+Route::get(
+    '/api/serverstatus',
+    'RestAPIController@getServerStatus'
+);

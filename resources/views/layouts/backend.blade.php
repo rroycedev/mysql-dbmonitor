@@ -24,6 +24,7 @@
         <link rel="stylesheet" href="{{ mix('css/dashmix.css') }}">
 
         <link rel="stylesheet" href="/css/form.css">
+        <link rel="stylesheet" href="/css/monitoring.css">
         <link rel="stylesheet" href="/css/tooltip.css">
 
         <!-- You can include a specific file from public/css/themes/ folder to alter the default color theme of the template. eg: -->

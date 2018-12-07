@@ -15,7 +15,7 @@ window.Vue = require('vue');
  */
 
 Vue.component('monitor-component', require('./components/MonitorComponent.vue'));
-
+Vue.component('monitor-filterbar-component', require('./components/MonitorFilterbarComponent.vue'));
 
 
 const app = new Vue({

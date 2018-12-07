@@ -1,0 +1,195 @@
+.monitor-hostname-header-div {
+     float: left;
+     border: 1px solid gray;
+     padding: 5px;
+     min-width: 300px;
+     max-width: 300px;
+     color: #ffffff;
+     background-color: #0665d0;
+}
+
+.monitor-port-name-header-div {
+     float: left;
+     border: 1px solid gray;
+     padding: 5px;
+     min-width: 200px;
+     max-width: 200px;
+     min-height: 100%;
+     color: #ffffff;
+     background-color: #0665d0;
+}
+
+.monitor-ipaddress-header-div {
+     float: left;
+     border: 1px solid gray;
+     padding: 5px;
+     min-width: 150px;
+     max-width: 150px;
+     color: #ffffff;
+     background-color: #0665d0;
+}
+
+.monitor-hostname-div {
+     float: left;
+     border: 1px solid gray;
+     padding: 5px;
+     min-width: 300px;
+     max-width: 300px;
+}
+
+.monitor-port-name-div {
+     float: left;
+     border: 1px solid gray;
+     padding: 5px;
+     min-width: 200px;
+     max-width: 200px;
+     min-height: 100%;
+}
+
+.monitor-ipaddress-div {
+     float: left;
+     border: 1px solid gray;
+     padding: 5px;
+     min-width: 150px;
+     max-width: 150px;
+
+}
+
+.monitor-connection-name-header-div {
+     float: left;
+     min-width: 200px;
+     max-width: 200px;
+     padding: 5px;
+     border: 1px solid gray;
+     color: #ffffff;
+     background-color: #0665d0;
+}
+
+.monitor-master-binlog-filename-header-div {
+     float: left;
+     min-width: 300px;
+     max-width: 300px;
+     padding: 5px;
+     border: 1px solid gray;
+     color: #ffffff;
+     background-color: #0665d0;
+}
+
+.monitor-master-binlog-pos-header-div {
+     float: left;
+     min-width: 178px;
+     max-width: 178px;
+     padding: 5px;
+     border: 1px solid gray;
+     color: #ffffff;
+     background-color: #0665d0;
+}
+
+
+.monitor-connection-name-div {
+     float: left;
+     min-width: 200px;
+     max-width: 200px;
+     padding: 5px;
+     border: 1px solid gray;
+}
+
+.monitor-master-binlog-filename-div {
+     float: left;
+     min-width: 300px;
+     max-width: 300px;
+     padding: 5px;
+     border: 1px solid gray;
+}
+
+.monitor-master-binlog-pos-div {
+     float: left;
+     min-width: 178px;
+     max-width: 178px;
+     padding: 5px;
+     border: 1px solid gray;
+     text-align: right;
+}
+
+.monitor-server-header-div {
+     min-width: 1130px;
+     max-width: 1130px;
+     margin: auto;
+}
+
+.monitor-server-div {
+     min-width: 1130px;
+     max-width: 1130px;
+     margin: auto;
+}
+
+.monitor-server-slave-header-div {
+     min-width: 1108px;
+     max-width: 1108px;
+     margin: auto;
+     padding-left: 9px;
+     display: none;
+}
+
+.monitor-server-slave-div {
+     min-width: 1108px;
+     max-width: 1108px;
+     margin: auto;
+     padding-left: 9px;
+     display: none;
+}
+
+.monitor-lag-time-header-div {
+     float: left;
+     min-width: 100px;
+     max-width: 100px;
+     padding: 5px;
+     border: 1px solid gray;
+     color: #ffffff;
+     background-color: #0665d0;
+}
+
+.monitor-lag-time-div {
+     float: left;
+     min-width: 100px;
+     max-width: 100px;
+     padding: 5px;
+     border: 1px solid gray;
+     text-align: right;
+}
+
+.monitor-last-checked-header-div {
+     float: left;
+     min-width: 177px;
+     max-width: 177px;
+     padding: 5px;
+     border: 1px solid gray;
+     color: #ffffff;
+     background-color: #0665d0;
+}
+
+.monitor-last-checked-div {
+     float: left;
+     min-width: 177px;
+     max-width: 177px;
+     padding: 5px;
+     border: 1px solid gray;
+}
+
+.monitor-expand-collapse-header-div {
+     float: left;
+     min-width: 20px;
+     max-width: 20px;
+     padding: 5px;
+}
+
+.monitor-expand-collapse-div {
+     float: left;
+     min-width: 20px;
+     max-width: 20px;
+     padding: 5px;
+     border: 1px solid gray;
+     cursor: pointer;
+     background-color: #0064d8;
+     color: white;
+}
