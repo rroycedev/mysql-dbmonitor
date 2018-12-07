@@ -47,28 +47,36 @@
         <div style="clear: both;"></div>
       </div>
     </div>
-    <div>
+    <div class="monitor-main-div">
       <div v-for="server in status" v-bind:key="server.server_id">
         <div
           v-show="selectedEnvironments.includes(server.environment_id) && selectedClusters.includes(server.cluster_id) && selectedDatacenters.includes(server.datacenter_id)"
         >
           <div class="monitor-server-div">
-            <div class="monitor-expand-collapse-div" v-on:click="expandCollapse($event)">
-              <i class="fa fa-caret-down" aria-hidden="true"></i>
-            </div>
-            <div class="monitor-hostname-div">{{server.hostname}}</div>
             <div
-              class="monitor-port-name-div"
+              class="monitor-expand-collapse-div"
+              v-on:click="expandCollapseServer(server.server_id, $event)"
+            >
+              <i class="fa fa-caret-down" v-if="server.slaves.length > 0" aria-hidden="true"></i>
+              <div v-show="server.slaves.length == 0">&nbsp;</div>
+            </div>
+            <div class="monitor-hostname-div monitor-td">{{server.hostname}}</div>
+            <div
+              class="monitor-port-name-div monitor-td"
             >{{(server.port_name == "" ? "&nbsp;" : server.port_name) }}</div>
-            <div class="monitor-ipaddress-div">{{server.ipaddress}}</div>
+            <div class="monitor-ipaddress-div monitor-td">{{server.ipaddress}}</div>
             <div style="clear: both;"></div>
           </div>
         </div>
 
         <div
-          v-if="server.slaves.length > 0 && selectedEnvironments.includes(server.environment_id) && selectedClusters.includes(server.cluster_id) && selectedDatacenters.includes(server.datacenter_id)"
+          v-if="server.slaves.length > 0 && selectedEnvironments.includes(server.environment_id) && selectedClusters.includes(server.cluster_id) && 
+                              selectedDatacenters.includes(server.datacenter_id) && server.expanded"
         >
-          <div class="monitor-server-slave-header-div">
+          <div
+            v-bind:id="'slave-header-' + server.server_id"
+            class="monitor-server-slave-header-div"
+          >
             <div class="monitor-connection-name-header-div">Connection Name</div>
             <div class="monitor-master-binlog-filename-header-div">Master Binlog Filename</div>
             <div class="monitor-master-binlog-pos-header-div">Master Binlog Position</div>
@@ -79,14 +87,19 @@
         </div>
         <div v-for="slave in server.slaves" v-bind:key="slave.server_slave_status_id">
           <div
-            v-show="selectedEnvironments.includes(server.environment_id) && selectedClusters.includes(server.cluster_id) && selectedDatacenters.includes(server.datacenter_id)"
+            v-show="selectedEnvironments.includes(server.environment_id) && selectedClusters.includes(server.cluster_id) && 
+            selectedDatacenters.includes(server.datacenter_id) && server.expanded"
           >
             <div class="monitor-server-slave-div">
-              <div class="monitor-connection-name-div">{{ slave.connection_name }}</div>
-              <div class="monitor-master-binlog-filename-div">{{ slave.master_binlog_filename }}</div>
-              <div class="monitor-master-binlog-pos-div">{{ slave.master_binlog_position }}</div>
-              <div class="monitor-lag-time-div">{{ slave.lag_time_secs }}</div>
-              <div class="monitor-last-checked-div">{{ slave.check_datetime }}</div>
+              <div class="monitor-connection-name-div monitor-td">{{ slave.connection_name }}</div>
+              <div
+                class="monitor-master-binlog-filename-div monitor-td"
+              >{{ slave.master_binlog_filename }}</div>
+              <div
+                class="monitor-master-binlog-pos-div monitor-td"
+              >{{ slave.master_binlog_position }}</div>
+              <div class="monitor-lag-time-div monitor-td">{{ slave.lag_time_secs }}</div>
+              <div class="monitor-last-checked-div monitor-td">{{ slave.check_datetime }}</div>
               <div style="clear: both;"></div>
             </div>
           </div>
@@ -114,6 +127,15 @@ export default {
     };
   },
   methods: {
+    expandCollapseServer(server_id, $event) {
+      for (var i = 0; i < this.status.length; i++) {
+        if (this.status[i].server_id == server_id) {
+          this.status[i].expanded = !this.status[i].expanded;
+          this.$forceUpdate();
+          return;
+        }
+      }
+    },
     filterClicked(filterType, event) {
       var id = event.target.id;
       var key = parseInt(id.substring(filterType.length + 8), 10);

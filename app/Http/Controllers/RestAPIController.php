@@ -41,6 +41,7 @@ class RestAPIController extends Controller
         for ($i = 0; $i < count($servers); $i++) {
             $slaves = ServerSlavesStatus::where("server_id", $servers[$i]->server_id)->orderBy("connection_name")->get();
 
+            $servers[$i]->expanded = false;
             $servers[$i]->slaves = $slaves;
         }
 

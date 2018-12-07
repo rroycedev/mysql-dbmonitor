@@ -30590,6 +30590,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var monitoringItems = [];
 
@@ -30608,6 +30621,15 @@ function statusPoller(c) {}
     };
   },
   methods: {
+    expandCollapseServer: function expandCollapseServer(server_id, $event) {
+      for (var i = 0; i < this.status.length; i++) {
+        if (this.status[i].server_id == server_id) {
+          this.status[i].expanded = !this.status[i].expanded;
+          this.$forceUpdate();
+          return;
+        }
+      }
+    },
     filterClicked: function filterClicked(filterType, event) {
       var id = event.target.id;
       var key = parseInt(id.substring(filterType.length + 8), 10);
@@ -30793,6 +30815,7 @@ var render = function() {
     _vm._v(" "),
     _c(
       "div",
+      { staticClass: "monitor-main-div" },
       _vm._l(_vm.status, function(server) {
         return _c(
           "div",
@@ -30818,21 +30841,62 @@ var render = function() {
               },
               [
                 _c("div", { staticClass: "monitor-server-div" }, [
-                  _vm._m(1, true),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "monitor-expand-collapse-div",
+                      on: {
+                        click: function($event) {
+                          _vm.expandCollapseServer(server.server_id, $event)
+                        }
+                      }
+                    },
+                    [
+                      server.slaves.length > 0
+                        ? _c("i", {
+                            staticClass: "fa fa-caret-down",
+                            attrs: { "aria-hidden": "true" }
+                          })
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value: server.slaves.length == 0,
+                              expression: "server.slaves.length == 0"
+                            }
+                          ]
+                        },
+                        [_vm._v(" ")]
+                      )
+                    ]
+                  ),
                   _vm._v(" "),
-                  _c("div", { staticClass: "monitor-hostname-div" }, [
-                    _vm._v(_vm._s(server.hostname))
-                  ]),
+                  _c(
+                    "div",
+                    { staticClass: "monitor-hostname-div monitor-td" },
+                    [_vm._v(_vm._s(server.hostname))]
+                  ),
                   _vm._v(" "),
-                  _c("div", { staticClass: "monitor-port-name-div" }, [
-                    _vm._v(
-                      _vm._s(server.port_name == "" ? " " : server.port_name)
-                    )
-                  ]),
+                  _c(
+                    "div",
+                    { staticClass: "monitor-port-name-div monitor-td" },
+                    [
+                      _vm._v(
+                        _vm._s(server.port_name == "" ? " " : server.port_name)
+                      )
+                    ]
+                  ),
                   _vm._v(" "),
-                  _c("div", { staticClass: "monitor-ipaddress-div" }, [
-                    _vm._v(_vm._s(server.ipaddress))
-                  ]),
+                  _c(
+                    "div",
+                    { staticClass: "monitor-ipaddress-div monitor-td" },
+                    [_vm._v(_vm._s(server.ipaddress))]
+                  ),
                   _vm._v(" "),
                   _c("div", { staticStyle: { clear: "both" } })
                 ])
@@ -30842,8 +30906,53 @@ var render = function() {
             server.slaves.length > 0 &&
             _vm.selectedEnvironments.includes(server.environment_id) &&
             _vm.selectedClusters.includes(server.cluster_id) &&
-            _vm.selectedDatacenters.includes(server.datacenter_id)
-              ? _c("div", [_vm._m(2, true)])
+            _vm.selectedDatacenters.includes(server.datacenter_id) &&
+            server.expanded
+              ? _c("div", [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "monitor-server-slave-header-div",
+                      attrs: { id: "slave-header-" + server.server_id }
+                    },
+                    [
+                      _c(
+                        "div",
+                        { staticClass: "monitor-connection-name-header-div" },
+                        [_vm._v("Connection Name")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "monitor-master-binlog-filename-header-div"
+                        },
+                        [_vm._v("Master Binlog Filename")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "monitor-master-binlog-pos-header-div" },
+                        [_vm._v("Master Binlog Position")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "monitor-lag-time-header-div" },
+                        [_vm._v("Lag Time")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "monitor-last-checked-header-div" },
+                        [_vm._v("Last Checked")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticStyle: { clear: "both" } })
+                    ]
+                  )
+                ])
               : _vm._e(),
             _vm._v(" "),
             _vm._l(server.slaves, function(slave) {
@@ -30862,9 +30971,10 @@ var render = function() {
                           _vm.selectedClusters.includes(server.cluster_id) &&
                           _vm.selectedDatacenters.includes(
                             server.datacenter_id
-                          ),
+                          ) &&
+                          server.expanded,
                         expression:
-                          "selectedEnvironments.includes(server.environment_id) && selectedClusters.includes(server.cluster_id) && selectedDatacenters.includes(server.datacenter_id)"
+                          "selectedEnvironments.includes(server.environment_id) && selectedClusters.includes(server.cluster_id) && \n          selectedDatacenters.includes(server.datacenter_id) && server.expanded"
                       }
                     ]
                   },
@@ -30872,29 +30982,41 @@ var render = function() {
                     _c("div", { staticClass: "monitor-server-slave-div" }, [
                       _c(
                         "div",
-                        { staticClass: "monitor-connection-name-div" },
+                        {
+                          staticClass: "monitor-connection-name-div monitor-td"
+                        },
                         [_vm._v(_vm._s(slave.connection_name))]
                       ),
                       _vm._v(" "),
                       _c(
                         "div",
-                        { staticClass: "monitor-master-binlog-filename-div" },
+                        {
+                          staticClass:
+                            "monitor-master-binlog-filename-div monitor-td"
+                        },
                         [_vm._v(_vm._s(slave.master_binlog_filename))]
                       ),
                       _vm._v(" "),
                       _c(
                         "div",
-                        { staticClass: "monitor-master-binlog-pos-div" },
+                        {
+                          staticClass:
+                            "monitor-master-binlog-pos-div monitor-td"
+                        },
                         [_vm._v(_vm._s(slave.master_binlog_position))]
                       ),
                       _vm._v(" "),
-                      _c("div", { staticClass: "monitor-lag-time-div" }, [
-                        _vm._v(_vm._s(slave.lag_time_secs))
-                      ]),
+                      _c(
+                        "div",
+                        { staticClass: "monitor-lag-time-div monitor-td" },
+                        [_vm._v(_vm._s(slave.lag_time_secs))]
+                      ),
                       _vm._v(" "),
-                      _c("div", { staticClass: "monitor-last-checked-div" }, [
-                        _vm._v(_vm._s(slave.check_datetime))
-                      ]),
+                      _c(
+                        "div",
+                        { staticClass: "monitor-last-checked-div monitor-td" },
+                        [_vm._v(_vm._s(slave.check_datetime))]
+                      ),
                       _vm._v(" "),
                       _c("div", { staticStyle: { clear: "both" } })
                     ])
@@ -30934,45 +31056,6 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("div", { staticStyle: { clear: "both" } })
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "monitor-expand-collapse-div" }, [
-      _c("i", {
-        staticClass: "fa fa-caret-down",
-        attrs: { "aria-hidden": "true" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "monitor-server-slave-header-div" }, [
-      _c("div", { staticClass: "monitor-connection-name-header-div" }, [
-        _vm._v("Connection Name")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "monitor-master-binlog-filename-header-div" }, [
-        _vm._v("Master Binlog Filename")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "monitor-master-binlog-pos-header-div" }, [
-        _vm._v("Master Binlog Position")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "monitor-lag-time-header-div" }, [
-        _vm._v("Lag Time")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "monitor-last-checked-header-div" }, [
-        _vm._v("Last Checked")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticStyle: { clear: "both" } })
     ])
   }
 ]

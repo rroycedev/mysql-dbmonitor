@@ -128,7 +128,6 @@
      max-width: 1108px;
      margin: auto;
      padding-left: 9px;
-     display: none;
 }
 
 .monitor-server-slave-div {
@@ -136,7 +135,7 @@
      max-width: 1108px;
      margin: auto;
      padding-left: 9px;
-     display: none;
+
 }
 
 .monitor-lag-time-header-div {
@@ -192,4 +191,15 @@
      cursor: pointer;
      background-color: #0064d8;
      color: white;
+}
+
+.monitor-main-div {
+     border: 1px solid gray;
+     width: 1132px;
+     margin: auto;
+     background-color: lightgray;
+}
+
+.monitor-td {
+     background-color: #ffffff;
 }
