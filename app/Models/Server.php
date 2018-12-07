@@ -25,6 +25,8 @@ class Server extends Model
 
     public $timestamps = false;
 
+    public $port_name = "";
+    
     protected $attributes = [
     ];
 

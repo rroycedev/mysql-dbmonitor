@@ -330,3 +330,10 @@ Route::post(
     '/admin/alert/cpuload/performdelete',
     'CPULoadAlertAdminController@performDelete'
 );
+
+//  API Routes
+
+Route::get(
+    '/api/monitoringfilters',
+    'RestAPIController@getMonitoringFilters'
+);

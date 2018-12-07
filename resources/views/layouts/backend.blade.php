@@ -33,7 +33,7 @@
         <!-- Scripts -->
         <script>window.Laravel = {!! json_encode(['csrfToken' => csrf_token(),]) !!};</script>
     </head>
-    <body >
+    <body>
         <div id="page-container" class="sidebar-o sidebar-dark enable-page-overlay side-scroll page-header page-header-dark main-content-narrow">
             <!-- Side Overlay-->
             <aside id="side-overlay">

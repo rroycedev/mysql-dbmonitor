@@ -1,114 +1,151 @@
 .dns-alias-name {
-    min-width: 300px;
-    max-width: 300px;
+     min-width: 300px;
+     max-width: 300px;
 }
 
 .vip-port {
-    width: 100px;
+     width: 100px;
 }
 
 .hidden {
-    display: none;
+     display: none;
 }
 
 .ellipsis-text {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+     white-space: nowrap;
+     overflow: hidden;
+     text-overflow: ellipsis;
 }
 
 .alert-level-secs {
-    min-width: 140px;
-    max-width: 140px;
+     min-width: 140px;
+     max-width: 140px;
 }
 
 .alert-level-input {
-    min-width: 56px;
-    max-width: 56px;
-    text-align: right;
+     min-width: 56px;
+     max-width: 56px;
+     text-align: right;
 }
 
 .alert-level-load-input {
-    min-width: 82px;
-    max-width: 82px;
-    text-align: right;
+     min-width: 82px;
+     max-width: 82px;
+     text-align: right;
 }
 
 .hostname-select {
-    min-width: 300px;
-    max-width: 300px;
+     min-width: 300px;
+     max-width: 300px;
 }
 
 .volume-table-col {
-    min-width: 300px;
-    max-width: 300px;
+     min-width: 300px;
+     max-width: 300px;
 }
 
 .percent-label {
-    padding-left: 3px;
-    float: left;
-    line-height: calc(2.25rem + 2px);
-    font-weight: bold;
+     padding-left: 3px;
+     float: left;
+     line-height: calc(2.25rem + 2px);
+     font-weight: bold;
 }
 
 .fl {
-    float: left;
+     float: left;
 }
 
 .hostname-table-col {
-    min-width: 200px;
-    max-width: 200px;
+     min-width: 200px;
+     max-width: 200px;
 }
 
 .ip-address-table-col {
-    min-width: 180px;
-    max-width: 180px;
+     min-width: 180px;
+     max-width: 180px;
 }
 
 .port-name-table-col {
-    min-width: 180px;
-    max-width: 180px;
+     min-width: 180px;
+     max-width: 180px;
 }
 
 .environment-table-col {
-    min-width: 200px;
-    max-width: 200px;
+     min-width: 200px;
+     max-width: 200px;
 }
 
 .datacenter-table-col {
-    min-width: 200px;
-    max-width: 200px;
+     min-width: 200px;
+     max-width: 200px;
 }
 
 .cluster-table-col {
-    min-width: 200px;
-    max-width: 200px;
+     min-width: 200px;
+     max-width: 200px;
 }
 
 .change-delete-btn-table-col {
-    min-width: 170px;
-    max-width: 170px;
+     min-width: 170px;
+     max-width: 170px;
 }
 
 .view-order-table-col {
-    min-width: 120px;
-    max-width: 120px;
+     min-width: 120px;
+     max-width: 120px;
 }
 
 .active-table-col {
-    min-width: 80px;
-    max-width: 80px;
+     min-width: 80px;
+     max-width: 80px;
 }
 
 .table-tbody {
-    display: block;
-    max-height: 600px;
-    overflow-y: auto;
+     display: block;
+     max-height: 600px;
+     overflow-y: auto;
 }
 
 .checkbox-form-col {
-    line-height: $line-height-sm;
-    vertical-align: middle;
-    display: inline-block;
-    margin-bottom: $label-margin-bottom;
+     line-height: $line-height-sm;
+     vertical-align: middle;
+     display: inline-block;
+     margin-bottom: $label-margin-bottom;
+}
+
+.filter-div {
+     float: left;
+     margin-right: 10px;
+     background-color: #ffffff;
+     color: #000000;
+     border-radius: 6px;
+     padding: 7px;
+     font-weight: bold;
+     cursor: pointer;
+}
+
+.filter-div:nth-last-child(2) {
+     margin-right: 0px;
+}
+
+.filter-div:hover {
+     background-color: #0665d0;
+     color: #e7e96e
+}
+
+.filter-div.selected {
+     background-color: #0665d0;
+     color: white;
+}
+
+.filter-div.selected:hover {
+     color: #e7e96e
+}
+
+.filterbar-div {
+     background-color: #bec7d0;
+     padding: 10px;
+     border-radius: 6px;
+     margin-bottom: 5px;
+     border: 1px solid gray;
 }

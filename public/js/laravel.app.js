@@ -984,7 +984,6 @@ module.exports = __webpack_require__(50);
 /* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -1001,13 +1000,12 @@ window.Vue = __webpack_require__(38);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', __webpack_require__(41));
+Vue.component('monitor-component', __webpack_require__(41));
 
-/*
-const app = new Vue({
-    el: '#app'
+var app = new Vue({
+  el: '#app'
+
 });
-*/
 
 /***/ }),
 /* 16 */
@@ -30357,7 +30355,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/laravel/components/ExampleComponent.vue"
+Component.options.__file = "resources/assets/js/laravel/components/MonitorComponent.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -30366,9 +30364,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-0cc513d8", Component.options)
+    hotAPI.createRecord("data-v-7ee69fb8", Component.options)
   } else {
-    hotAPI.reload("data-v-0cc513d8", Component.options)
+    hotAPI.reload("data-v-7ee69fb8", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -30509,11 +30507,119 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+var monitoringItems = [];
+
+function statusPoller(c) {}
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {
-        console.log('Component mounted.');
+  data: function data() {
+    return {
+      clusters: [],
+      environments: [],
+      datacenters: [],
+      selectedClusters: [],
+      selectedEnvironments: [],
+      selectedDatacenters: []
+    };
+  },
+  methods: {
+    filterClicked: function filterClicked(filterType, event) {
+      var id = event.target.id;
+
+      switch (filterType) {
+        case "cluster":
+          if (this.selectedClusters.includes(id)) {
+            $("#" + id).removeClass("selected");
+            var index = this.selectedClusters.indexOf(id);
+            if (index > -1) {
+              this.selectedClusters.splice(index, 1);
+            }
+          } else {
+            $("#" + id).addClass("selected");
+            this.selectedClusters.push(id);
+          }
+          break;
+        case "environment":
+          if (this.selectedEnvironments.includes(id)) {
+            $("#" + id).removeClass("selected");
+            var index = this.selectedEnvironments.indexOf(id);
+            if (index > -1) {
+              this.selectedEnvironments.splice(index, 1);
+            }
+          } else {
+            $("#" + id).addClass("selected");
+            this.selectedEnvironments.push(id);
+          }
+          break;
+        case "datacenter":
+          if (this.selectedDatacenters.includes(id)) {
+            $("#" + id).removeClass("selected");
+            var index = this.selectedDatacenters.indexOf(id);
+            if (index > -1) {
+              this.selectedDatacenters.splice(index, 1);
+            }
+          } else {
+            $("#" + id).addClass("selected");
+            this.selectedDatacenters.push(id);
+          }
+          break;
+      }
+
+      console.log("Filter type " + filterType + " clicked with id " + id);
+    },
+    startup: function startup() {
+      var self = this;
+
+      $.ajax({
+        url: "/api/monitoringfilters",
+        cache: false,
+        dataType: "json",
+        success: function success(response) {
+          self.clusters = response.clusters;
+          self.environments = response.environments;
+          self.datacenters = response.datacenters;
+
+          self.statusPoller();
+        }
+      });
+    },
+    statusPoller: function statusPoller() {
+      var self = this;
     }
+  },
+  mounted: function mounted() {
+    console.log("Component mounted.");
+
+    this.startup();
+  }
 });
 
 /***/ }),
@@ -30524,38 +30630,101 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card card-default" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
-              )
-            ])
-          ])
-        ])
-      ])
+  return _c("div", [
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c(
+        "div",
+        { staticClass: "filterbar-div" },
+        [
+          _vm._l(_vm.clusters, function(cluster) {
+            return _c(
+              "div",
+              {
+                key: cluster.cluster_id,
+                staticClass: "filter-div",
+                attrs: { id: "cluster-filter-" + cluster.cluster_id },
+                on: {
+                  click: function($event) {
+                    _vm.filterClicked("cluster", $event)
+                  }
+                }
+              },
+              [_vm._v(_vm._s(cluster.name))]
+            )
+          }),
+          _vm._v(" "),
+          _c("div", { staticStyle: { clear: "both" } })
+        ],
+        2
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c(
+        "div",
+        { staticClass: "filterbar-div" },
+        [
+          _vm._l(_vm.environments, function(environment) {
+            return _c(
+              "div",
+              {
+                key: environment.environment_id,
+                staticClass: "filter-div",
+                attrs: {
+                  id: "environment-filter-" + environment.environment_id
+                },
+                on: {
+                  click: function($event) {
+                    _vm.filterClicked("environment", $event)
+                  }
+                }
+              },
+              [_vm._v(_vm._s(environment.name))]
+            )
+          }),
+          _vm._v(" "),
+          _c("div", { staticStyle: { clear: "both" } })
+        ],
+        2
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c(
+        "div",
+        { staticClass: "filterbar-div" },
+        [
+          _vm._l(_vm.datacenters, function(datacenter) {
+            return _c(
+              "div",
+              {
+                key: datacenter.datacenter_id,
+                staticClass: "filter-div",
+                attrs: { id: "datacenter-filter-" + datacenter.datacenter_id },
+                on: {
+                  click: function($event) {
+                    _vm.filterClicked("datacenter", $event)
+                  }
+                }
+              },
+              [_vm._v(_vm._s(datacenter.name))]
+            )
+          }),
+          _vm._v(" "),
+          _c("div", { staticStyle: { clear: "both" } })
+        ],
+        2
+      )
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-0cc513d8", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-7ee69fb8", module.exports)
   }
 }
 

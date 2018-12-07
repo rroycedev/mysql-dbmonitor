@@ -16,12 +16,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cluster;
+use App\Models\Datacenter;
+use App\Models\Environment;
 use Illuminate\Support\Facades\DB;
 
-class MonitorController extends Controller
+class RestAPIController extends Controller
 {
-    public function index()
+    public function getMonitoringFilters()
     {
-        return view('monitor');
+        $envs = Environment::orderBy('view_order')->get();
+        $dcs = Datacenter::orderBy('view_order')->get();
+        $clusters = Cluster::orderBy('view_order')->get();
+
+        echo json_encode(array("environments" => $envs, "datacenters" => $dcs, "clusters" => $clusters));
     }
 }
