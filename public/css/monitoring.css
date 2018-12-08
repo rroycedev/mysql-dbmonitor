@@ -1,125 +1,123 @@
-.monitor-hostname-header-div {
+.monitor-th {
      float: left;
-     border: 1px solid gray;
+     border-right: 1px solid #ffffff;
+     border-bottom: 1px solid #ffffff;
      padding: 5px;
-     min-width: 300px;
-     max-width: 300px;
      color: #ffffff;
      background-color: #0665d0;
+     text-align: center;
 }
 
-.monitor-port-name-header-div {
-     float: left;
-     border: 1px solid gray;
-     padding: 5px;
-     min-width: 200px;
-     max-width: 200px;
-     min-height: 100%;
-     color: #ffffff;
-     background-color: #0665d0;
+.monitor-th:nth-last-child(2) {
+     border-right: 0px;
+     border-top-right-radius: 8px;
 }
 
-.monitor-ipaddress-header-div {
+.monitor-th:first-child {
+     border-top-left-radius: 8px;
+}
+
+.monitor-td,
+.monitor-slave-td {
      float: left;
-     border: 1px solid gray;
+     border-right: 1px solid gray;
+     border-bottom: 1px solid gray;
      padding: 5px;
-     min-width: 150px;
-     max-width: 150px;
-     color: #ffffff;
-     background-color: #0665d0;
+     color: #000000;
+     background-color: #ffffff;
+}
+
+.monitor-td:nth-last-child(2) {
+     border-right: 1px solid gray;
+}
+
+.monitor-td:first-child {
+     border-left: 1px solid gray;
+     border-bottom: 1px solid #ffffff;
 }
 
 .monitor-hostname-div {
-     float: left;
-     border: 1px solid gray;
-     padding: 5px;
      min-width: 300px;
      max-width: 300px;
 }
 
 .monitor-port-name-div {
-     float: left;
-     border: 1px solid gray;
-     padding: 5px;
      min-width: 200px;
      max-width: 200px;
-     min-height: 100%;
 }
 
 .monitor-ipaddress-div {
-     float: left;
-     border: 1px solid gray;
-     padding: 5px;
      min-width: 150px;
      max-width: 150px;
-
 }
-
-.monitor-connection-name-header-div {
-     float: left;
-     min-width: 200px;
-     max-width: 200px;
-     padding: 5px;
-     border: 1px solid gray;
-     color: #ffffff;
-     background-color: #0665d0;
-}
-
-.monitor-master-binlog-filename-header-div {
-     float: left;
-     min-width: 300px;
-     max-width: 300px;
-     padding: 5px;
-     border: 1px solid gray;
-     color: #ffffff;
-     background-color: #0665d0;
-}
-
-.monitor-master-binlog-pos-header-div {
-     float: left;
-     min-width: 178px;
-     max-width: 178px;
-     padding: 5px;
-     border: 1px solid gray;
-     color: #ffffff;
-     background-color: #0665d0;
-}
-
 
 .monitor-connection-name-div {
-     float: left;
      min-width: 200px;
      max-width: 200px;
-     padding: 5px;
-     border: 1px solid gray;
 }
 
 .monitor-master-binlog-filename-div {
-     float: left;
      min-width: 300px;
      max-width: 300px;
-     padding: 5px;
-     border: 1px solid gray;
 }
 
 .monitor-master-binlog-pos-div {
-     float: left;
      min-width: 178px;
      max-width: 178px;
-     padding: 5px;
-     border: 1px solid gray;
      text-align: right;
 }
 
-.monitor-server-header-div {
-     min-width: 1130px;
-     max-width: 1130px;
+.monitor-lag-time-div {
+     min-width: 100px;
+     max-width: 100px;
+     text-align: right;
+}
+
+.monitor-last-checked-div {
+     min-width: 177px;
+     max-width: 177px;
+}
+
+.monitor-expand-collapse-div {
+     min-width: 20px;
+     max-width: 20px;
+     cursor: pointer;
+     background-color: #0064d8 !important;
+     color: white !important;
+}
+
+.monitor-connections-div {
+     min-width: 120px;
+     max-width: 120px;
+}
+
+.monitor-disk-usage-div {
+     min-width: 177px;
+     max-width: 177px;
+}
+
+.monitor-cpu-load-div {
+     min-width: 177px;
+     max-width: 177px;
+}
+
+.monitor-main-div {
+     width: 1144px;
      margin: auto;
+     background-color: #bdbdbd;
+}
+
+.monitor-main-div:first-child {
+     background-color: transparent;
+}
+
+.monitor-slave-entry:last-child {
+     margin-bottom: 0.25em;
 }
 
 .monitor-server-div {
-     min-width: 1130px;
-     max-width: 1130px;
+     min-width: 1144px;
+     max-width: 1144px;
      margin: auto;
 }
 
@@ -127,79 +125,50 @@
      min-width: 1108px;
      max-width: 1108px;
      margin: auto;
-     padding-left: 9px;
+     padding-left: 2px;
 }
 
 .monitor-server-slave-div {
      min-width: 1108px;
      max-width: 1108px;
      margin: auto;
-     padding-left: 9px;
+     padding-left: 2px;
 
 }
 
-.monitor-lag-time-header-div {
+.filter-div {
      float: left;
-     min-width: 100px;
-     max-width: 100px;
-     padding: 5px;
-     border: 1px solid gray;
-     color: #ffffff;
-     background-color: #0665d0;
-}
-
-.monitor-lag-time-div {
-     float: left;
-     min-width: 100px;
-     max-width: 100px;
-     padding: 5px;
-     border: 1px solid gray;
-     text-align: right;
-}
-
-.monitor-last-checked-header-div {
-     float: left;
-     min-width: 177px;
-     max-width: 177px;
-     padding: 5px;
-     border: 1px solid gray;
-     color: #ffffff;
-     background-color: #0665d0;
-}
-
-.monitor-last-checked-div {
-     float: left;
-     min-width: 177px;
-     max-width: 177px;
-     padding: 5px;
-     border: 1px solid gray;
-}
-
-.monitor-expand-collapse-header-div {
-     float: left;
-     min-width: 20px;
-     max-width: 20px;
-     padding: 5px;
-}
-
-.monitor-expand-collapse-div {
-     float: left;
-     min-width: 20px;
-     max-width: 20px;
-     padding: 5px;
-     border: 1px solid gray;
+     margin-right: 10px;
+     background-color: #ffffff;
+     color: #000000;
+     border-radius: 6px;
+     padding: 7px;
+     font-weight: bold;
      cursor: pointer;
-     background-color: #0064d8;
+}
+
+.filter-div:nth-last-child(2) {
+     margin-right: 0px;
+}
+
+.filter-div:hover {
+     background-color: #0665d0;
+     color: #e7e96e
+}
+
+.filter-div.selected {
+     background-color: #0665d0;
      color: white;
 }
 
-.monitor-main-div {
-     border: 1px solid gray;
-     width: 1132px;
-     margin: auto;
-     background-color: lightgray;
+.filter-div.selected:hover {
+     color: #e7e96e
 }
 
-.monitor-td {
-     background-color: #ffffff;
+.filterbar-div {
+     background-color: #bec7d0;
+     padding: 10px;
+     border-radius: 6px;
+     margin-bottom: 5px;
+     border: 1px solid gray;
 }

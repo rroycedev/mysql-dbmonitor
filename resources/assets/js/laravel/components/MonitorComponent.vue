@@ -39,11 +39,14 @@
       </div>
     </div>
     <div>
-      <div class="monitor-server-header-div">
-        <div class="monitor-expand-collapse-header-div">&nbsp;</div>
-        <div class="monitor-hostname-header-div">Hostname</div>
-        <div class="monitor-port-name-header-div">Port Name</div>
-        <div class="monitor-ipaddress-header-div">IP Address</div>
+      <div class="monitor-main-div">
+        <div class="monitor-expand-collapse-div monitor-th">&nbsp;</div>
+        <div class="monitor-hostname-div monitor-th">Hostname</div>
+        <div class="monitor-port-name-div monitor-th">Port Name</div>
+        <div class="monitor-ipaddress-div monitor-th">IP Address</div>
+        <div class="monitor-connections-div monitor-th">Connections</div>
+        <div class="monitor-disk-usage-div monitor-th">Disk Usage</div>
+        <div class="monitor-cpu-load-div monitor-th">CPU Load</div>
         <div style="clear: both;"></div>
       </div>
     </div>
@@ -54,10 +57,19 @@
         >
           <div class="monitor-server-div">
             <div
-              class="monitor-expand-collapse-div"
+              class="monitor-expand-collapse-div monitor-td"
               v-on:click="expandCollapseServer(server.server_id, $event)"
             >
-              <i class="fa fa-caret-down" v-if="server.slaves.length > 0" aria-hidden="true"></i>
+              <i
+                class="fa fa-caret-down"
+                v-if="server.slaves.length > 0 && !server.expanded"
+                aria-hidden="true"
+              ></i>
+              <i
+                class="fa fa-caret-up"
+                v-if="server.slaves.length > 0 && server.expanded"
+                aria-hidden="true"
+              ></i>
               <div v-show="server.slaves.length == 0">&nbsp;</div>
             </div>
             <div class="monitor-hostname-div monitor-td">{{server.hostname}}</div>
@@ -65,11 +77,15 @@
               class="monitor-port-name-div monitor-td"
             >{{(server.port_name == "" ? "&nbsp;" : server.port_name) }}</div>
             <div class="monitor-ipaddress-div monitor-td">{{server.ipaddress}}</div>
+            <div class="monitor-connections-div monitor-td">&nbsp;</div>
+            <div class="monitor-disk-usage-div monitor-td">&nbsp;</div>
+            <div class="monitor-cpu-load-div monitor-td">&nbsp;</div>
             <div style="clear: both;"></div>
           </div>
         </div>
 
         <div
+          class="mt-1"
           v-if="server.slaves.length > 0 && selectedEnvironments.includes(server.environment_id) && selectedClusters.includes(server.cluster_id) && 
                               selectedDatacenters.includes(server.datacenter_id) && server.expanded"
         >
@@ -77,29 +93,33 @@
             v-bind:id="'slave-header-' + server.server_id"
             class="monitor-server-slave-header-div"
           >
-            <div class="monitor-connection-name-header-div">Connection Name</div>
-            <div class="monitor-master-binlog-filename-header-div">Master Binlog Filename</div>
-            <div class="monitor-master-binlog-pos-header-div">Master Binlog Position</div>
-            <div class="monitor-lag-time-header-div">Lag Time</div>
-            <div class="monitor-last-checked-header-div">Last Checked</div>
+            <div class="monitor-connection-name-div monitor-th">Connection Name</div>
+            <div class="monitor-master-binlog-filename-div monitor-th">Master Binlog Filename</div>
+            <div class="monitor-master-binlog-pos-div monitor-th">Master Binlog Position</div>
+            <div class="monitor-lag-time-div monitor-th">Lag Time</div>
+            <div class="monitor-last-checked-div monitor-th">Last Checked</div>
             <div style="clear: both;"></div>
           </div>
         </div>
-        <div v-for="slave in server.slaves" v-bind:key="slave.server_slave_status_id">
+        <div
+          class="monitor-slave-entry"
+          v-for="slave in server.slaves"
+          v-bind:key="slave.server_slave_status_id"
+        >
           <div
             v-show="selectedEnvironments.includes(server.environment_id) && selectedClusters.includes(server.cluster_id) && 
             selectedDatacenters.includes(server.datacenter_id) && server.expanded"
           >
             <div class="monitor-server-slave-div">
-              <div class="monitor-connection-name-div monitor-td">{{ slave.connection_name }}</div>
+              <div class="monitor-connection-name-div monitor-slave-td">{{ slave.connection_name }}</div>
               <div
-                class="monitor-master-binlog-filename-div monitor-td"
+                class="monitor-master-binlog-filename-div monitor-slave-td"
               >{{ slave.master_binlog_filename }}</div>
               <div
-                class="monitor-master-binlog-pos-div monitor-td"
+                class="monitor-master-binlog-pos-div monitor-slave-td"
               >{{ slave.master_binlog_position }}</div>
-              <div class="monitor-lag-time-div monitor-td">{{ slave.lag_time_secs }}</div>
-              <div class="monitor-last-checked-div monitor-td">{{ slave.check_datetime }}</div>
+              <div class="monitor-lag-time-div monitor-slave-td">{{ slave.lag_time_secs }}</div>
+              <div class="monitor-last-checked-div monitor-slave-td">{{ slave.check_datetime }}</div>
               <div style="clear: both;"></div>
             </div>
           </div>
