@@ -6,5 +6,6 @@
     "/css/themes/xmodern.css": "/css/themes/xmodern.css",
     "/css/themes/xsmooth.css": "/css/themes/xsmooth.css",
     "/css/themes/xwork.css": "/css/themes/xwork.css",
-    "/js/dashmix.app.js": "/js/dashmix.app.js"
+    "/js/dashmix.app.js": "/js/dashmix.app.js",
+    "/css/bootstrap-vue.css": "/css/bootstrap-vue.css"
 }

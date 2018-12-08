@@ -21,6 +21,7 @@ use App\Models\Datacenter;
 use App\Models\Environment;
 use App\Models\Server;
 use App\Models\ServerSlavesStatus;
+use App\Models\ServerStatus;
 use Illuminate\Support\Facades\DB;
 
 class RestAPIController extends Controller
@@ -39,9 +40,39 @@ class RestAPIController extends Controller
         $servers = Server::with('cluster')->with('datacenter')->with('environment')->orderBy('hostname')->get();
 
         for ($i = 0; $i < count($servers); $i++) {
+            $serverStatus = ServerStatus::where("server_id", $servers[$i]->server_id)->get();
+
             $slaves = ServerSlavesStatus::where("server_id", $servers[$i]->server_id)->orderBy("connection_name")->get();
 
             $servers[$i]->expanded = false;
+            if (count($serverStatus) > 0) {
+                $diskInfo = json_decode($serverStatus[0]->disk_info, true);
+                $diskUsed = "";
+                $diskUsedTitle = '<table class="table table-bordered"><thead><th>Volume</th><th>Used Percent</th></thead><tbody>';
+
+                foreach ($diskInfo as $info) {
+                    if ($diskUsed != "") {
+                        $diskUsed .= ",";
+                    }
+                    $diskUsed .= $info["percent_used"] . "%";
+
+                    $diskUsedTitle .= "<tr><td>" . $info["volume"] . "</td><td>" . $info["percent_used"] . "</td></tr>";
+                }
+
+                $diskUsedTitle .= "</tbody></table>";
+
+                $servers[$i]->disk_info = $diskInfo;
+                $servers[$i]->disk_used = $diskUsed;
+                $servers[$i]->disk_used_title = $diskUsedTitle;
+                $servers[$i]->connection_count = $serverStatus[0]->connection_count;
+                $servers[$i]->cpu_load = $serverStatus[0]->cpu_load;
+            } else {
+                $servers[$i]->disk_info = array();
+                $servers[$i]->disk_used = "";
+                $servers[$i]->connection_count = -1;
+                $servers[$i]->cpu_load = -1;
+            }
+
             $servers[$i]->slaves = $slaves;
         }
 

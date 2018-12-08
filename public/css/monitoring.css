@@ -22,7 +22,7 @@
      float: left;
      border-right: 1px solid gray;
      border-bottom: 1px solid gray;
-     padding: 5px;
+     padding: 8px;
      color: #000000;
      background-color: #ffffff;
 }
@@ -33,7 +33,7 @@
 
 .monitor-td:first-child {
      border-left: 1px solid gray;
-     border-bottom: 1px solid #ffffff;
+     border-bottom: 1px solid gray;
 }
 
 .monitor-hostname-div {
@@ -81,6 +81,9 @@
 .monitor-expand-collapse-div {
      min-width: 20px;
      max-width: 20px;
+     padding-left: 0px;
+     padding-right: 0px;
+     text-align: center;
      cursor: pointer;
      background-color: #0064d8 !important;
      color: white !important;
@@ -122,18 +125,15 @@
 }
 
 .monitor-server-slave-header-div {
-     min-width: 1108px;
-     max-width: 1108px;
+     min-width: 957px;
+     max-width: 957px;
      margin: auto;
-     padding-left: 2px;
 }
 
 .monitor-server-slave-div {
-     min-width: 1108px;
-     max-width: 1108px;
+     min-width: 957px;
+     max-width: 957px;
      margin: auto;
-     padding-left: 2px;
-
 }
 
 .filter-div {

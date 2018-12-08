@@ -51,6 +51,19 @@
      font-weight: bold;
 }
 
+.ta-r {
+     text-align: right;
+}
+
+.ta-c {
+     text-align: center;
+}
+
+.ta-l {
+     text-align: left;
+}
+
+
 .fl {
      float: left;
 }

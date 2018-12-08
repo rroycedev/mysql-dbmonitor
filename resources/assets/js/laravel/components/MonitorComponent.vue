@@ -77,9 +77,15 @@
               class="monitor-port-name-div monitor-td"
             >{{(server.port_name == "" ? "&nbsp;" : server.port_name) }}</div>
             <div class="monitor-ipaddress-div monitor-td">{{server.ipaddress}}</div>
-            <div class="monitor-connections-div monitor-td">&nbsp;</div>
-            <div class="monitor-disk-usage-div monitor-td">&nbsp;</div>
-            <div class="monitor-cpu-load-div monitor-td">&nbsp;</div>
+            <div class="monitor-connections-div monitor-td ta-r">{{server.connection_count}}</div>
+            <div
+              class="monitor-disk-usage-div monitor-td ta-c"
+              v-b-tooltip.html.hover
+              data-toggle="tooltip"
+              data-html="true"
+              v-bind:title="server.disk_used_title"
+            >{{(server.disk_used != "" ? server.disk_used : "&nbsp;")}}</div>
+            <div class="monitor-cpu-load-div monitor-td ta-r">{{server.cpu_load}}</div>
             <div style="clear: both;"></div>
           </div>
         </div>
@@ -235,6 +241,16 @@ export default {
   },
   mounted() {
     this.startup();
+  },
+  computed: {
+    // a computed getter
+    diskUsageTitle: function() {
+      // `this` points to the vm instance
+      return this.message
+        .split("")
+        .reverse()
+        .join("");
+    }
   }
 };
 </script>

@@ -13,6 +13,8 @@
 
 $app-title-color: #ffffff;
 
+$block-bg: transparent;
+$block-content-bg: #ffffff;
 
 $color-light: #ffffff;
 $side-header-bg: transparent;
@@ -20,6 +22,9 @@ $side-header-bg: transparent;
 $font-size-base: 1rem;
 $font-size-lg: ($font-size-base * 1.25);
 $font-size-sm: ($font-size-base * .875);
+
+$body-bg: #000000;
+$body-bg-light: #232323;
 
 $header-dark-bg: rgb(2, 149, 190);
 $body-color-light: rgba(252, 216, 0, 1);
@@ -45,5 +50,5 @@ $table-accent-bg: #d9dce2;
 $table-hover-bg: $sidebar-dark-bg;
 $table-hover-color: #ffffff;
 
-$h3-font-size:                $font-size-base * 1.25 !default;
-$h4-font-size:                $font-size-base * 1.125 !default;
+$h3-font-size: $font-size-base * 1.25 !default;
+$h4-font-size: $font-size-base * 1.125 !default;

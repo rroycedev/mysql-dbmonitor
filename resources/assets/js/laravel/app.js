@@ -17,6 +17,10 @@ window.Vue = require('vue');
 Vue.component('monitor-component', require('./components/MonitorComponent.vue'));
 Vue.component('monitor-filterbar-component', require('./components/MonitorFilterbarComponent.vue'));
 
+import Vue from 'vue'
+import BootstrapVue from 'bootstrap-vue'
+
+Vue.use(BootstrapVue);
 
 const app = new Vue({
      el: '#app'
