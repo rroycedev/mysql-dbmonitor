@@ -10868,7 +10868,7 @@ small,
 }
 
 .nav-tabs-block {
-  background-color: #040404;
+  background-color: #1a1919;
   border-bottom: none;
 }
 
@@ -10939,7 +10939,7 @@ small,
 }
 
 .nav-items a:hover {
-  background-color: #040404;
+  background-color: #1a1919;
 }
 
 .nav-items a:active {
@@ -11854,7 +11854,7 @@ small,
 }
 
 .block-header-default {
-  background-color: #040404;
+  background-color: #1a1919;
 }
 
 .block-title {
@@ -13785,7 +13785,7 @@ button.bg-body:focus {
 }
 
 .bg-body-light {
-  background-color: #040404 !important;
+  background-color: #1a1919 !important;
 }
 
 a.bg-body-light:hover, a.bg-body-light:focus,
@@ -14825,11 +14825,11 @@ a.text-body-bg-dark:hover, a.text-body-bg-dark:focus {
 }
 
 .text-body-bg-light {
-  color: #040404 !important;
+  color: #1a1919 !important;
 }
 
 a.text-body-bg-light.link-fx::before {
-  background-color: #040404;
+  background-color: #1a1919;
 }
 
 a.text-body-bg-light:hover, a.text-body-bg-light:focus {
@@ -24165,17 +24165,17 @@ readers do not read off random characters that represent icons */
 
 .cke_top {
   border-bottom-color: black !important;
-  background: #040404 !important;
+  background: #1a1919 !important;
 }
 
 .cke_bottom {
   border-top-color: black !important;
-  background: #040404 !important;
+  background: #1a1919 !important;
 }
 
 .dropzone {
   min-height: 200px;
-  background-color: #040404;
+  background-color: #1a1919;
   border: 0.125rem dashed black;
   border-radius: 0.3rem;
 }
@@ -24312,7 +24312,7 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
   font-size: 1rem;
   font-weight: 600;
   text-transform: uppercase;
-  background-color: #040404;
+  background-color: #1a1919;
 }
 
 .fc-bootstrap4 th,
@@ -24336,7 +24336,7 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
 }
 
 .fc-bootstrap4 .fc-today {
-  background: #040404;
+  background: #1a1919;
 }
 
 @media (max-width: 767.98px) {
@@ -24602,7 +24602,7 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
 
 .editor-toolbar {
   border-color: black;
-  background-color: #040404;
+  background-color: #1a1919;
 }
 
 .CodeMirror {
@@ -24618,13 +24618,13 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
 }
 
 .note-editor.note-frame .note-toolbar {
-  background-color: #040404;
+  background-color: #1a1919;
   border-bottom-color: black;
 }
 
 .note-editor.note-frame .note-statusbar {
   border-top-color: black;
-  background-color: #040404;
+  background-color: #1a1919;
 }
 
 .note-editor.note-frame .note-popover .popover-content .note-color .dropdown-menu,

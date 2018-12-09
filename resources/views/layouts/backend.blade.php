@@ -33,8 +33,22 @@
 
         <!-- Scripts -->
         <script>window.Laravel = {!! json_encode(['csrfToken' => csrf_token(),]) !!};</script>
+
+          <script>
+               function resizeBody() {
+                    var height = window.innerHeight;
+
+                    $('#main-container').css('max-height', (height - 140) + 'px');
+//                    var m = document.getElementById("main-container");
+
+//                    m.style.max-height = (height - 140) + "px";
+               }
+               window.onload = window.onresize = function () {
+                    resizeBody();
+               }
+          </script>
     </head>
-    <body>
+    <body  onresize="resizeBody()">
         <div id="page-container" class="sidebar-o sidebar-dark enable-page-overlay side-scroll page-header page-header-dark main-content-narrow">
             <!-- Side Overlay-->
             <aside id="side-overlay">

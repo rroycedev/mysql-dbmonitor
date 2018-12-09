@@ -39412,6 +39412,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 var monitoringItems = [];
 
@@ -39634,29 +39639,25 @@ var render = function() {
       "div",
       { staticClass: "monitor-main-div" },
       _vm._l(_vm.status, function(server) {
-        return _c(
-          "div",
-          { key: server.server_id },
-          [
-            _c(
-              "div",
-              {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value:
-                      _vm.selectedEnvironments.includes(
-                        server.environment_id
-                      ) &&
-                      _vm.selectedClusters.includes(server.cluster_id) &&
-                      _vm.selectedDatacenters.includes(server.datacenter_id),
-                    expression:
-                      "selectedEnvironments.includes(server.environment_id) && selectedClusters.includes(server.cluster_id) && selectedDatacenters.includes(server.datacenter_id)"
-                  }
-                ]
-              },
-              [
+        return _c("div", { key: server.server_id }, [
+          _c(
+            "div",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value:
+                    _vm.selectedEnvironments.includes(server.environment_id) &&
+                    _vm.selectedClusters.includes(server.cluster_id) &&
+                    _vm.selectedDatacenters.includes(server.datacenter_id),
+                  expression:
+                    "selectedEnvironments.includes(server.environment_id) && selectedClusters.includes(server.cluster_id) && selectedDatacenters.includes(server.datacenter_id)"
+                }
+              ]
+            },
+            [
+              _c("div", [
                 _c("div", { staticClass: "monitor-server-div" }, [
                   _c(
                     "div",
@@ -39758,20 +39759,35 @@ var render = function() {
                     [_vm._v(_vm._s(server.cpu_load))]
                   ),
                   _vm._v(" "),
-                  _c("div", { staticStyle: { clear: "both" } })
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            server.slaves.length > 0 &&
-            _vm.selectedEnvironments.includes(server.environment_id) &&
-            _vm.selectedClusters.includes(server.cluster_id) &&
-            _vm.selectedDatacenters.includes(server.datacenter_id) &&
-            server.expanded
-              ? _c("div", { staticClass: "mt-1" }, [
                   _c(
                     "div",
                     {
+                      class:
+                        "monitor-status-indicator-div monitor-td " +
+                        server.status_class
+                    },
+                    [_vm._v(" ")]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticStyle: { clear: "both" } })
+                ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "mt-1" },
+                [
+                  _c(
+                    "div",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: server.expanded,
+                          expression: "server.expanded"
+                        }
+                      ],
                       staticClass: "monitor-server-slave-header-div",
                       attrs: { id: "slave-header-" + server.server_id }
                     },
@@ -39816,95 +39832,87 @@ var render = function() {
                       _vm._v(" "),
                       _c("div", { staticStyle: { clear: "both" } })
                     ]
-                  )
-                ])
-              : _vm._e(),
-            _vm._v(" "),
-            _vm._l(server.slaves, function(slave) {
-              return _c(
-                "div",
-                {
-                  key: slave.server_slave_status_id,
-                  staticClass: "monitor-slave-entry"
-                },
-                [
-                  _c(
-                    "div",
-                    {
-                      directives: [
-                        {
-                          name: "show",
-                          rawName: "v-show",
-                          value:
-                            _vm.selectedEnvironments.includes(
-                              server.environment_id
-                            ) &&
-                            _vm.selectedClusters.includes(server.cluster_id) &&
-                            _vm.selectedDatacenters.includes(
-                              server.datacenter_id
-                            ) &&
-                            server.expanded,
-                          expression:
-                            "selectedEnvironments.includes(server.environment_id) && selectedClusters.includes(server.cluster_id) && \n          selectedDatacenters.includes(server.datacenter_id) && server.expanded"
-                        }
+                  ),
+                  _vm._v(" "),
+                  _vm._l(server.slaves, function(slave) {
+                    return _c(
+                      "div",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: server.expanded,
+                            expression: "server.expanded"
+                          }
+                        ],
+                        key: slave.server_slave_status_id,
+                        staticClass: "monitor-slave-entry"
+                      },
+                      [
+                        _c("div", [
+                          _c(
+                            "div",
+                            { staticClass: "monitor-server-slave-div" },
+                            [
+                              _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "monitor-connection-name-div monitor-slave-td"
+                                },
+                                [_vm._v(_vm._s(slave.connection_name))]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "monitor-master-binlog-filename-div monitor-slave-td"
+                                },
+                                [_vm._v(_vm._s(slave.master_binlog_filename))]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "monitor-master-binlog-pos-div monitor-slave-td"
+                                },
+                                [_vm._v(_vm._s(slave.master_binlog_position))]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "monitor-lag-time-div monitor-slave-td"
+                                },
+                                [_vm._v(_vm._s(slave.lag_time_secs))]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "monitor-last-checked-div monitor-slave-td"
+                                },
+                                [_vm._v(_vm._s(slave.check_datetime))]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticStyle: { clear: "both" } })
+                            ]
+                          )
+                        ])
                       ]
-                    },
-                    [
-                      _c("div", { staticClass: "monitor-server-slave-div" }, [
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "monitor-connection-name-div monitor-slave-td"
-                          },
-                          [_vm._v(_vm._s(slave.connection_name))]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "monitor-master-binlog-filename-div monitor-slave-td"
-                          },
-                          [_vm._v(_vm._s(slave.master_binlog_filename))]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "monitor-master-binlog-pos-div monitor-slave-td"
-                          },
-                          [_vm._v(_vm._s(slave.master_binlog_position))]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass: "monitor-lag-time-div monitor-slave-td"
-                          },
-                          [_vm._v(_vm._s(slave.lag_time_secs))]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "monitor-last-checked-div monitor-slave-td"
-                          },
-                          [_vm._v(_vm._s(slave.check_datetime))]
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticStyle: { clear: "both" } })
-                      ])
-                    ]
-                  )
-                ]
+                    )
+                  })
+                ],
+                2
               )
-            })
-          ],
-          2
-        )
+            ]
+          )
+        ])
       })
     )
   ])
@@ -39942,6 +39950,10 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("div", { staticClass: "monitor-cpu-load-div monitor-th" }, [
           _vm._v("CPU Load")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "monitor-status-indicator-div monitor-th" }, [
+          _vm._v(" ")
         ]),
         _vm._v(" "),
         _c("div", { staticStyle: { clear: "both" } })

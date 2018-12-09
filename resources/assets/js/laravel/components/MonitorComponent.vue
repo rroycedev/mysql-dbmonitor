@@ -47,6 +47,7 @@
         <div class="monitor-connections-div monitor-th">Connections</div>
         <div class="monitor-disk-usage-div monitor-th">Disk Usage</div>
         <div class="monitor-cpu-load-div monitor-th">CPU Load</div>
+        <div class="monitor-status-indicator-div monitor-th">&nbsp;</div>
         <div style="clear: both;"></div>
       </div>
     </div>
@@ -55,78 +56,82 @@
         <div
           v-show="selectedEnvironments.includes(server.environment_id) && selectedClusters.includes(server.cluster_id) && selectedDatacenters.includes(server.datacenter_id)"
         >
-          <div class="monitor-server-div">
-            <div
-              class="monitor-expand-collapse-div monitor-td"
-              v-on:click="expandCollapseServer(server.server_id, $event)"
-            >
-              <i
-                class="fa fa-caret-down"
-                v-if="server.slaves.length > 0 && !server.expanded"
-                aria-hidden="true"
-              ></i>
-              <i
-                class="fa fa-caret-up"
-                v-if="server.slaves.length > 0 && server.expanded"
-                aria-hidden="true"
-              ></i>
-              <div v-show="server.slaves.length == 0">&nbsp;</div>
-            </div>
-            <div class="monitor-hostname-div monitor-td">{{server.hostname}}</div>
-            <div
-              class="monitor-port-name-div monitor-td"
-            >{{(server.port_name == "" ? "&nbsp;" : server.port_name) }}</div>
-            <div class="monitor-ipaddress-div monitor-td">{{server.ipaddress}}</div>
-            <div class="monitor-connections-div monitor-td ta-r">{{server.connection_count}}</div>
-            <div
-              class="monitor-disk-usage-div monitor-td ta-c"
-              v-b-tooltip.html.hover
-              data-toggle="tooltip"
-              data-html="true"
-              v-bind:title="server.disk_used_title"
-            >{{(server.disk_used != "" ? server.disk_used : "&nbsp;")}}</div>
-            <div class="monitor-cpu-load-div monitor-td ta-r">{{server.cpu_load}}</div>
-            <div style="clear: both;"></div>
-          </div>
-        </div>
-
-        <div
-          class="mt-1"
-          v-if="server.slaves.length > 0 && selectedEnvironments.includes(server.environment_id) && selectedClusters.includes(server.cluster_id) && 
-                              selectedDatacenters.includes(server.datacenter_id) && server.expanded"
-        >
-          <div
-            v-bind:id="'slave-header-' + server.server_id"
-            class="monitor-server-slave-header-div"
-          >
-            <div class="monitor-connection-name-div monitor-th">Connection Name</div>
-            <div class="monitor-master-binlog-filename-div monitor-th">Master Binlog Filename</div>
-            <div class="monitor-master-binlog-pos-div monitor-th">Master Binlog Position</div>
-            <div class="monitor-lag-time-div monitor-th">Lag Time</div>
-            <div class="monitor-last-checked-div monitor-th">Last Checked</div>
-            <div style="clear: both;"></div>
-          </div>
-        </div>
-        <div
-          class="monitor-slave-entry"
-          v-for="slave in server.slaves"
-          v-bind:key="slave.server_slave_status_id"
-        >
-          <div
-            v-show="selectedEnvironments.includes(server.environment_id) && selectedClusters.includes(server.cluster_id) && 
-            selectedDatacenters.includes(server.datacenter_id) && server.expanded"
-          >
-            <div class="monitor-server-slave-div">
-              <div class="monitor-connection-name-div monitor-slave-td">{{ slave.connection_name }}</div>
+          <div>
+            <div class="monitor-server-div">
               <div
-                class="monitor-master-binlog-filename-div monitor-slave-td"
-              >{{ slave.master_binlog_filename }}</div>
+                class="monitor-expand-collapse-div monitor-td"
+                v-on:click="expandCollapseServer(server.server_id, $event)"
+              >
+                <i
+                  class="fa fa-caret-down"
+                  v-if="server.slaves.length > 0 && !server.expanded"
+                  aria-hidden="true"
+                ></i>
+                <i
+                  class="fa fa-caret-up"
+                  v-if="server.slaves.length > 0 && server.expanded"
+                  aria-hidden="true"
+                ></i>
+                <div v-show="server.slaves.length == 0">&nbsp;</div>
+              </div>
+              <div class="monitor-hostname-div monitor-td">{{server.hostname}}</div>
               <div
-                class="monitor-master-binlog-pos-div monitor-slave-td"
-              >{{ slave.master_binlog_position }}</div>
-              <div class="monitor-lag-time-div monitor-slave-td">{{ slave.lag_time_secs }}</div>
-              <div class="monitor-last-checked-div monitor-slave-td">{{ slave.check_datetime }}</div>
+                class="monitor-port-name-div monitor-td"
+              >{{(server.port_name == "" ? "&nbsp;" : server.port_name) }}</div>
+              <div class="monitor-ipaddress-div monitor-td">{{server.ipaddress}}</div>
+              <div class="monitor-connections-div monitor-td ta-r">{{server.connection_count}}</div>
+              <div
+                class="monitor-disk-usage-div monitor-td ta-c"
+                v-b-tooltip.html.hover
+                data-toggle="tooltip"
+                data-html="true"
+                v-bind:title="server.disk_used_title"
+              >{{(server.disk_used != "" ? server.disk_used : "&nbsp;")}}</div>
+              <div class="monitor-cpu-load-div monitor-td ta-r">{{server.cpu_load}}</div>
+              <div
+                v-bind:class="'monitor-status-indicator-div monitor-td ' + server.status_class"
+              >&nbsp;</div>
               <div style="clear: both;"></div>
+            </div>
+          </div>
+
+          <div class="mt-1">
+            <div
+              v-show="server.expanded"
+              v-bind:id="'slave-header-' + server.server_id"
+              class="monitor-server-slave-header-div"
+            >
+              <div class="monitor-connection-name-div monitor-th">Connection Name</div>
+              <div class="monitor-master-binlog-filename-div monitor-th">Master Binlog Filename</div>
+              <div class="monitor-master-binlog-pos-div monitor-th">Master Binlog Position</div>
+              <div class="monitor-lag-time-div monitor-th">Lag Time</div>
+              <div class="monitor-last-checked-div monitor-th">Last Checked</div>
+              <div style="clear: both;"></div>
+            </div>
+
+            <div
+              v-show="server.expanded"
+              class="monitor-slave-entry"
+              v-for="slave in server.slaves"
+              v-bind:key="slave.server_slave_status_id"
+            >
+              <div>
+                <!--  Slaves -->
+                <div class="monitor-server-slave-div">
+                  <div
+                    class="monitor-connection-name-div monitor-slave-td"
+                  >{{ slave.connection_name }}</div>
+                  <div
+                    class="monitor-master-binlog-filename-div monitor-slave-td"
+                  >{{ slave.master_binlog_filename }}</div>
+                  <div
+                    class="monitor-master-binlog-pos-div monitor-slave-td"
+                  >{{ slave.master_binlog_position }}</div>
+                  <div class="monitor-lag-time-div monitor-slave-td">{{ slave.lag_time_secs }}</div>
+                  <div class="monitor-last-checked-div monitor-slave-td">{{ slave.check_datetime }}</div>
+                  <div style="clear: both;"></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

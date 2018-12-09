@@ -45,7 +45,10 @@ class RestAPIController extends Controller
             $slaves = ServerSlavesStatus::where("server_id", $servers[$i]->server_id)->orderBy("connection_name")->get();
 
             $servers[$i]->expanded = false;
+
             if (count($serverStatus) > 0) {
+                $servers[$i]->status_class = 'status-green';
+
                 $diskInfo = json_decode($serverStatus[0]->disk_info, true);
                 $diskUsed = "";
                 $diskUsedTitle = '<table class="table table-bordered"><thead><th>Volume</th><th>Used Percent</th></thead><tbody>';
@@ -67,6 +70,8 @@ class RestAPIController extends Controller
                 $servers[$i]->connection_count = $serverStatus[0]->connection_count;
                 $servers[$i]->cpu_load = $serverStatus[0]->cpu_load;
             } else {
+                $servers[$i]->status_class = 'status-red';
+
                 $servers[$i]->disk_info = array();
                 $servers[$i]->disk_used = "";
                 $servers[$i]->connection_count = -1;
