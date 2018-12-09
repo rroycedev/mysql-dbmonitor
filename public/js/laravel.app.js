@@ -39417,6 +39417,54 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var monitoringItems = [];
 
@@ -39431,7 +39479,8 @@ function statusPoller(c) {}
       selectedClusters: [],
       selectedEnvironments: [],
       selectedDatacenters: [],
-      status: []
+      status: [],
+      showHealthy: false
     };
   },
   methods: {
@@ -39444,46 +39493,41 @@ function statusPoller(c) {}
         }
       }
     },
-    filterClicked: function filterClicked(filterType, event) {
-      var id = event.target.id;
-      var key = parseInt(id.substring(filterType.length + 8), 10);
-
+    hideShowHealthy: function hideShowHealthy($event) {
+      this.showHealthy = !this.showHealthy;
+      this.$forceUpdate();
+    },
+    filterOptionClicked: function filterOptionClicked(filterType, key, $event) {
       switch (filterType) {
         case "cluster":
           if (this.selectedClusters.includes(key)) {
-            $("#" + id).removeClass("selected");
             var index = this.selectedClusters.indexOf(key);
             if (index > -1) {
               this.selectedClusters.splice(index, 1);
             }
           } else {
-            $("#" + id).addClass("selected");
             this.selectedClusters.push(key);
           }
           this.$forceUpdate();
           break;
         case "environment":
           if (this.selectedEnvironments.includes(key)) {
-            $("#" + id).removeClass("selected");
             var index = this.selectedEnvironments.indexOf(key);
             if (index > -1) {
               this.selectedEnvironments.splice(index, 1);
             }
           } else {
-            $("#" + id).addClass("selected");
             this.selectedEnvironments.push(key);
           }
           this.$forceUpdate();
           break;
         case "datacenter":
           if (this.selectedDatacenters.includes(key)) {
-            $("#" + id).removeClass("selected");
             var index = this.selectedDatacenters.indexOf(key);
             if (index > -1) {
               this.selectedDatacenters.splice(index, 1);
             }
           } else {
-            $("#" + id).addClass("selected");
             this.selectedDatacenters.push(key);
           }
           this.$forceUpdate();
@@ -39543,97 +39587,150 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", [
+    _c("div", { staticClass: "filter-bar-div" }, [
       _c("div", { staticClass: "row justify-content-center" }, [
-        _c(
-          "div",
-          { staticClass: "filterbar-div" },
-          [
-            _vm._l(_vm.clusters, function(cluster) {
-              return _c(
-                "div",
-                {
-                  key: cluster.cluster_id,
-                  staticClass: "filter-div",
-                  attrs: { id: "cluster-filter-" + cluster.cluster_id },
-                  on: {
-                    click: function($event) {
-                      _vm.filterClicked("cluster", $event)
-                    }
-                  }
-                },
-                [_vm._v(_vm._s(cluster.name))]
+        _c("div", [
+          _c("div", { staticClass: "fl" }, [
+            _c("div", { staticClass: "button-group filter-bar-button-div" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "ul",
+                { staticClass: "dropdown-menu" },
+                _vm._l(_vm.clusters, function(cluster) {
+                  return _c(
+                    "li",
+                    {
+                      key: cluster.cluster_id,
+                      staticClass: "filter-select-li"
+                    },
+                    [
+                      _c("input", {
+                        attrs: { type: "checkbox" },
+                        on: {
+                          click: function($event) {
+                            _vm.filterOptionClicked(
+                              "cluster",
+                              cluster.cluster_id,
+                              $event
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(
+                        "\n                 " +
+                          _vm._s(cluster.name) +
+                          "\n              "
+                      )
+                    ]
+                  )
+                })
               )
-            }),
-            _vm._v(" "),
-            _c("div", { staticStyle: { clear: "both" } })
-          ],
-          2
-        )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "fl ml-5" }, [
+            _c("div", { staticClass: "button-group filter-bar-button-div" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c(
+                "ul",
+                { staticClass: "dropdown-menu" },
+                _vm._l(_vm.environments, function(environment) {
+                  return _c(
+                    "li",
+                    {
+                      key: environment.environment_id,
+                      staticClass: "filter-select-li"
+                    },
+                    [
+                      _c("input", {
+                        attrs: { type: "checkbox" },
+                        on: {
+                          click: function($event) {
+                            _vm.filterOptionClicked(
+                              "environment",
+                              environment.environment_id,
+                              $event
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(
+                        "\n                 " +
+                          _vm._s(environment.name) +
+                          "\n              "
+                      )
+                    ]
+                  )
+                })
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "fl ml-5" }, [
+            _c("div", { staticClass: "button-group filter-bar-button-div" }, [
+              _vm._m(2),
+              _vm._v(" "),
+              _c(
+                "ul",
+                { staticClass: "dropdown-menu" },
+                _vm._l(_vm.datacenters, function(datacenter) {
+                  return _c(
+                    "li",
+                    {
+                      key: datacenter.datacenter_id,
+                      staticClass: "filter-select-li"
+                    },
+                    [
+                      _c("input", {
+                        attrs: { type: "checkbox" },
+                        on: {
+                          click: function($event) {
+                            _vm.filterOptionClicked(
+                              "datacenter",
+                              datacenter.datacenter_id,
+                              $event
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(
+                        "\n                 " +
+                          _vm._s(datacenter.name) +
+                          "\n              "
+                      )
+                    ]
+                  )
+                })
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticStyle: { clear: "both" } })
+        ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c(
-          "div",
-          { staticClass: "filterbar-div" },
-          [
-            _vm._l(_vm.environments, function(environment) {
-              return _c(
-                "div",
-                {
-                  key: environment.environment_id,
-                  staticClass: "filter-div",
-                  attrs: {
-                    id: "environment-filter-" + environment.environment_id
-                  },
-                  on: {
-                    click: function($event) {
-                      _vm.filterClicked("environment", $event)
-                    }
-                  }
-                },
-                [_vm._v(_vm._s(environment.name))]
-              )
-            }),
-            _vm._v(" "),
-            _c("div", { staticStyle: { clear: "both" } })
-          ],
-          2
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c(
-          "div",
-          { staticClass: "filterbar-div" },
-          [
-            _vm._l(_vm.datacenters, function(datacenter) {
-              return _c(
-                "div",
-                {
-                  key: datacenter.datacenter_id,
-                  staticClass: "filter-div",
-                  attrs: {
-                    id: "datacenter-filter-" + datacenter.datacenter_id
-                  },
-                  on: {
-                    click: function($event) {
-                      _vm.filterClicked("datacenter", $event)
-                    }
-                  }
-                },
-                [_vm._v(_vm._s(datacenter.name))]
-              )
-            }),
-            _vm._v(" "),
-            _c("div", { staticStyle: { clear: "both" } })
-          ],
-          2
-        )
-      ])
+      _c(
+        "div",
+        { staticClass: "row justify-content-center border-outset-top-gray" },
+        [
+          _c("input", {
+            staticClass: "filter-checkbox",
+            attrs: { type: "checkbox" },
+            on: {
+              click: function($event) {
+                _vm.hideShowHealthy()
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("span", [_vm._v(" Show Healthy")])
+        ]
+      )
     ]),
     _vm._v(" "),
-    _vm._m(0),
+    _vm._m(3),
     _vm._v(" "),
     _c(
       "div",
@@ -39650,9 +39747,11 @@ var render = function() {
                   value:
                     _vm.selectedEnvironments.includes(server.environment_id) &&
                     _vm.selectedClusters.includes(server.cluster_id) &&
-                    _vm.selectedDatacenters.includes(server.datacenter_id),
+                    _vm.selectedDatacenters.includes(server.datacenter_id) &&
+                    (!server.is_healthy ||
+                      (server.is_healthy && _vm.showHealthy)),
                   expression:
-                    "selectedEnvironments.includes(server.environment_id) && selectedClusters.includes(server.cluster_id) && selectedDatacenters.includes(server.datacenter_id)"
+                    "selectedEnvironments.includes(server.environment_id) && selectedClusters.includes(server.cluster_id) && selectedDatacenters.includes(server.datacenter_id) && (!server.is_healthy || server.is_healthy && showHealthy)"
                 }
               ]
             },
@@ -39918,6 +40017,54 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "btn btn-default btn-lg dropdown-toggle",
+        attrs: { type: "button", "data-toggle": "dropdown" }
+      },
+      [
+        _vm._v("\n              Clusters\n              "),
+        _c("span", { staticClass: "caret" })
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "btn btn-default btn-lg dropdown-toggle",
+        attrs: { type: "button", "data-toggle": "dropdown" }
+      },
+      [
+        _vm._v("\n              Environments\n              "),
+        _c("span", { staticClass: "caret" })
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "btn btn-default btn-lg dropdown-toggle",
+        attrs: { type: "button", "data-toggle": "dropdown" }
+      },
+      [
+        _vm._v("\n              Datacenters\n              "),
+        _c("span", { staticClass: "caret" })
+      ]
+    )
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

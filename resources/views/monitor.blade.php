@@ -24,7 +24,7 @@
 
         @yield('scripts')
 
-    <div id="app" class="content">
+    <div id="app">
         <monitor-component></monitor-component>
     </div>
     <!-- END Page Content -->

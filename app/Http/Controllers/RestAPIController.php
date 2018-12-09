@@ -48,6 +48,7 @@ class RestAPIController extends Controller
 
             if (count($serverStatus) > 0) {
                 $servers[$i]->status_class = 'status-green';
+                $servers[$i]->is_healthy = true;
 
                 $diskInfo = json_decode($serverStatus[0]->disk_info, true);
                 $diskUsed = "";
@@ -70,6 +71,7 @@ class RestAPIController extends Controller
                 $servers[$i]->connection_count = $serverStatus[0]->connection_count;
                 $servers[$i]->cpu_load = $serverStatus[0]->cpu_load;
             } else {
+                $servers[$i]->is_healthy = false;
                 $servers[$i]->status_class = 'status-red';
 
                 $servers[$i]->disk_info = array();

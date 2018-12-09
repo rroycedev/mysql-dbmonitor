@@ -1,41 +1,89 @@
 <template>
   <div>
-    <div>
+    <div class="filter-bar-div">
       <div class="row justify-content-center">
-        <div class="filterbar-div">
-          <div
-            v-bind:id="'cluster-filter-' + cluster.cluster_id"
-            class="filter-div"
-            v-for="cluster in clusters"
-            v-bind:key="cluster.cluster_id"
-            v-on:click="filterClicked('cluster', $event)"
-          >{{ cluster.name }}</div>
+        <div>
+          <div class="fl">
+            <div class="button-group filter-bar-button-div">
+              <button
+                type="button"
+                class="btn btn-default btn-lg dropdown-toggle"
+                data-toggle="dropdown"
+              >
+                Clusters
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li
+                  class="filter-select-li"
+                  v-for="cluster in clusters"
+                  v-bind:key="cluster.cluster_id"
+                >
+                  <input
+                    type="checkbox"
+                    v-on:click="filterOptionClicked('cluster', cluster.cluster_id, $event)"
+                  >
+                  &nbsp;{{cluster.name}}
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="fl ml-5">
+            <div class="button-group filter-bar-button-div">
+              <button
+                type="button"
+                class="btn btn-default btn-lg dropdown-toggle"
+                data-toggle="dropdown"
+              >
+                Environments
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li
+                  class="filter-select-li"
+                  v-for="environment in environments"
+                  v-bind:key="environment.environment_id"
+                >
+                  <input
+                    type="checkbox"
+                    v-on:click="filterOptionClicked('environment', environment.environment_id, $event)"
+                  >
+                  &nbsp;{{environment.name}}
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="fl ml-5">
+            <div class="button-group filter-bar-button-div">
+              <button
+                type="button"
+                class="btn btn-default btn-lg dropdown-toggle"
+                data-toggle="dropdown"
+              >
+                Datacenters
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li
+                  class="filter-select-li"
+                  v-for="datacenter in datacenters"
+                  v-bind:key="datacenter.datacenter_id"
+                >
+                  <input
+                    type="checkbox"
+                    v-on:click="filterOptionClicked('datacenter', datacenter.datacenter_id, $event)"
+                  >
+                  &nbsp;{{datacenter.name}}
+                </li>
+              </ul>
+            </div>
+          </div>
           <div style="clear: both;"></div>
         </div>
       </div>
-      <div class="row justify-content-center">
-        <div class="filterbar-div">
-          <div
-            v-bind:id="'environment-filter-' + environment.environment_id"
-            class="filter-div"
-            v-for="environment in environments"
-            v-bind:key="environment.environment_id"
-            v-on:click="filterClicked('environment', $event)"
-          >{{ environment.name }}</div>
-          <div style="clear: both;"></div>
-        </div>
-      </div>
-      <div class="row justify-content-center">
-        <div class="filterbar-div">
-          <div
-            v-bind:id="'datacenter-filter-' + datacenter.datacenter_id"
-            class="filter-div"
-            v-for="datacenter in datacenters"
-            v-bind:key="datacenter.datacenter_id"
-            v-on:click="filterClicked('datacenter', $event)"
-          >{{ datacenter.name }}</div>
-          <div style="clear: both;"></div>
-        </div>
+      <div class="row justify-content-center border-outset-top-gray">
+        <input class="filter-checkbox" type="checkbox" v-on:click="hideShowHealthy()">
+        <span>&nbsp;Show Healthy</span>
       </div>
     </div>
     <div>
@@ -54,7 +102,7 @@
     <div class="monitor-main-div">
       <div v-for="server in status" v-bind:key="server.server_id">
         <div
-          v-show="selectedEnvironments.includes(server.environment_id) && selectedClusters.includes(server.cluster_id) && selectedDatacenters.includes(server.datacenter_id)"
+          v-show="selectedEnvironments.includes(server.environment_id) && selectedClusters.includes(server.cluster_id) && selectedDatacenters.includes(server.datacenter_id) && (!server.is_healthy || server.is_healthy && showHealthy)"
         >
           <div>
             <div class="monitor-server-div">
@@ -154,7 +202,8 @@ export default {
       selectedClusters: [],
       selectedEnvironments: [],
       selectedDatacenters: [],
-      status: []
+      status: [],
+      showHealthy: false
     };
   },
   methods: {
@@ -167,46 +216,41 @@ export default {
         }
       }
     },
-    filterClicked(filterType, event) {
-      var id = event.target.id;
-      var key = parseInt(id.substring(filterType.length + 8), 10);
-
+    hideShowHealthy($event) {
+      this.showHealthy = !this.showHealthy;
+      this.$forceUpdate();
+    },
+    filterOptionClicked(filterType, key, $event) {
       switch (filterType) {
         case "cluster":
           if (this.selectedClusters.includes(key)) {
-            $("#" + id).removeClass("selected");
             var index = this.selectedClusters.indexOf(key);
             if (index > -1) {
               this.selectedClusters.splice(index, 1);
             }
           } else {
-            $("#" + id).addClass("selected");
             this.selectedClusters.push(key);
           }
           this.$forceUpdate();
           break;
         case "environment":
           if (this.selectedEnvironments.includes(key)) {
-            $("#" + id).removeClass("selected");
             var index = this.selectedEnvironments.indexOf(key);
             if (index > -1) {
               this.selectedEnvironments.splice(index, 1);
             }
           } else {
-            $("#" + id).addClass("selected");
             this.selectedEnvironments.push(key);
           }
           this.$forceUpdate();
           break;
         case "datacenter":
           if (this.selectedDatacenters.includes(key)) {
-            $("#" + id).removeClass("selected");
             var index = this.selectedDatacenters.indexOf(key);
             if (index > -1) {
               this.selectedDatacenters.splice(index, 1);
             }
           } else {
-            $("#" + id).addClass("selected");
             this.selectedDatacenters.push(key);
           }
           this.$forceUpdate();
