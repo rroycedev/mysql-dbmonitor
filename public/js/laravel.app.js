@@ -39646,6 +39646,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var monitoringItems = [];
 
@@ -39661,7 +39687,8 @@ function statusPoller(c) {}
       selectedEnvironments: [],
       selectedDatacenters: [],
       status: [],
-      showHealthy: false
+      showHealthy: false,
+      showMaintenance: false
     };
   },
   methods: {
@@ -39936,22 +39963,42 @@ var render = function() {
         "div",
         { staticClass: "row justify-content-center border-outset-top-gray" },
         [
-          _c("input", {
-            staticClass: "filter-checkbox",
-            attrs: { type: "checkbox" },
-            on: {
-              click: function($event) {
-                _vm.hideShowHealthy()
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c("span", [_vm._v(" Show Healthy")])
+          _c("div", [
+            _c("div", { staticClass: "fl" }, [
+              _c("input", {
+                staticClass: "filter-checkbox",
+                attrs: { type: "checkbox" },
+                on: {
+                  click: function($event) {
+                    _vm.hideShowHealthy()
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _vm._m(3),
+            _vm._v(" "),
+            _c("div", { staticClass: "fl ml-5" }, [
+              _c("input", {
+                staticClass: "filter-checkbox",
+                attrs: { type: "checkbox" },
+                on: {
+                  click: function($event) {
+                    _vm.hideShowMaintenance()
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _vm._m(4),
+            _vm._v(" "),
+            _c("div", { staticStyle: { clear: "both" } })
+          ])
         ]
       )
     ]),
     _vm._v(" "),
-    _vm._m(3),
+    _vm._m(5),
     _vm._v(" "),
     _c(
       "div",
@@ -39970,9 +40017,13 @@ var render = function() {
                     _vm.selectedClusters.includes(server.cluster_id) &&
                     _vm.selectedDatacenters.includes(server.datacenter_id) &&
                     (!server.is_healthy ||
-                      (server.is_healthy && _vm.showHealthy)),
+                      (server.is_healthy && _vm.showHealthy)) &&
+                    (!server.is_healthy ||
+                      (server.is_healthy && _vm.showHealthy)) &&
+                    (server.status == 1 ||
+                      (server.status == 2 && _vm.showMaintenance)),
                   expression:
-                    "selectedEnvironments.includes(server.environment_id) && selectedClusters.includes(server.cluster_id) && selectedDatacenters.includes(server.datacenter_id) && (!server.is_healthy || server.is_healthy && showHealthy)"
+                    "selectedEnvironments.includes(server.environment_id) && selectedClusters.includes(server.cluster_id) && selectedDatacenters.includes(server.datacenter_id) && (!server.is_healthy || server.is_healthy && showHealthy) && \n        (!server.is_healthy || server.is_healthy && showHealthy) && (server.status == 1 || server.status == 2 && showMaintenance)"
                 }
               ]
             },
@@ -40348,6 +40399,22 @@ var staticRenderFns = [
         _c("span", { staticClass: "caret" })
       ]
     )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "fl" }, [
+      _c("span", [_vm._v(" Show Healthy")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "fl" }, [
+      _c("span", [_vm._v(" Show Maintenance")])
+    ])
   },
   function() {
     var _vm = this

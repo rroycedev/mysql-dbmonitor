@@ -81,10 +81,35 @@
           <div style="clear: both;"></div>
         </div>
       </div>
+
+
+
+
       <div class="row justify-content-center border-outset-top-gray">
-        <input class="filter-checkbox" type="checkbox" v-on:click="hideShowHealthy()">
-        <span>&nbsp;Show Healthy</span>
+        <div>
+          <div class="fl">
+          <input class="filter-checkbox" type="checkbox" v-on:click="hideShowHealthy()">
+          </div>
+          <div class="fl">
+          <span>&nbsp;Show Healthy</span>
+          </div>
+
+          <div class="fl ml-5">
+          <input class="filter-checkbox" type="checkbox" v-on:click="hideShowMaintenance()">
+          </div>
+          <div class="fl">
+          <span>&nbsp;Show Maintenance</span>
+          </div>
+
+          <div style="clear: both;"></div>
+
+
+        </div>
       </div>
+
+
+
+
     </div>
     <div>
       <div class="monitor-main-div">
@@ -103,7 +128,8 @@
     <div class="monitor-main-div">
       <div v-for="server in status" v-bind:key="server.server_id">
         <div
-          v-show="selectedEnvironments.includes(server.environment_id) && selectedClusters.includes(server.cluster_id) && selectedDatacenters.includes(server.datacenter_id) && (!server.is_healthy || server.is_healthy && showHealthy)"
+          v-show="selectedEnvironments.includes(server.environment_id) && selectedClusters.includes(server.cluster_id) && selectedDatacenters.includes(server.datacenter_id) && (!server.is_healthy || server.is_healthy && showHealthy) && 
+          (!server.is_healthy || server.is_healthy && showHealthy) && (server.status == 1 || server.status == 2 && showMaintenance)"
         >
           <div>
             <div class="monitor-server-div">
@@ -214,7 +240,8 @@ export default {
       selectedEnvironments: [],
       selectedDatacenters: [],
       status: [],
-      showHealthy: false
+      showHealthy: false,
+      showMaintenance: false
     };
   },
   methods: {
