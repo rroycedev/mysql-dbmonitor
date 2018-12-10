@@ -19,11 +19,12 @@ $block-content-bg: #ffffff;
 $color-light: #ffffff;
 $side-header-bg: transparent;
 
+
 $font-size-base: 1rem;
 $font-size-lg: ($font-size-base * 1.25);
 $font-size-sm: ($font-size-base * .875);
 
-$body-bg: #000000;
+$body-bg: #6f6d6d;
 $body-bg-light: #232323;
 
 $header-dark-bg: rgb(2, 149, 190);
@@ -54,3 +55,11 @@ $h3-font-size: $font-size-base * 1.25 !default;
 $h4-font-size: $font-size-base * 1.125 !default;
 
 $monitoring-table-width: 1280px;
+$filter-bar-height: 103px;
+
+$sidebar-light-bg: #ababab;
+$nav-main-link-color: #000000;
+$main-nav-link-icon-dark-color: #ff0000;
+$main-nav-link-icon-dark-color-hover: #ffffff;
+
+$btn-padding-y-lg: 0.25rem;

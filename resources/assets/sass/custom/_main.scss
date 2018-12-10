@@ -89,3 +89,8 @@ th {
     background-color: #ff0000;
     color: rgba(255, 255, 255, .85);
 }
+
+.footer-bg {
+    background-color: $sidebar-light-bg;
+    border-top: 2px outset #d0d0d0;
+}

@@ -172,14 +172,6 @@
      color: #e7e96e
 }
 
-.filterbar-div {
-     background-color: #bec7d0;
-     padding: 10px;
-     border-radius: 6px;
-     margin-bottom: 5px;
-     border: 1px solid gray;
-}
-
 .monitor-status-indicator-div {
      min-width: 20px;
      max-width: 20px;
@@ -198,11 +190,11 @@
 }
 
 .filter-bar-div {
-     background-color: #626569;
+     background-color: $sidebar-light-bg;
      width: 100%;
-     height: 116px;
-     border: 1px outset #969494;
-     color: white;
+     height: $filter-bar-height;
+     border: 2px outset #d0d0d0;
+     color: $nav-main-link-color;
      margin-bottom: 2em;
 }
 

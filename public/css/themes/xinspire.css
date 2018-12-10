@@ -1052,8 +1052,8 @@ select.form-control:focus::-ms-value {
 }
 
 .was-validated .custom-control-input:valid:focus ~ .custom-control-label::before, .custom-control-input.is-valid:focus ~ .custom-control-label::before {
-  -webkit-box-shadow: 0 0 0 1px #000000, 0 0 0 0.2rem rgba(130, 181, 75, 0.25);
-          box-shadow: 0 0 0 1px #000000, 0 0 0 0.2rem rgba(130, 181, 75, 0.25);
+  -webkit-box-shadow: 0 0 0 1px #6f6d6d, 0 0 0 0.2rem rgba(130, 181, 75, 0.25);
+          box-shadow: 0 0 0 1px #6f6d6d, 0 0 0 0.2rem rgba(130, 181, 75, 0.25);
 }
 
 .was-validated .custom-file-input:valid ~ .custom-file-label, .custom-file-input.is-valid ~ .custom-file-label {
@@ -1158,8 +1158,8 @@ select.form-control:focus::-ms-value {
 }
 
 .was-validated .custom-control-input:invalid:focus ~ .custom-control-label::before, .custom-control-input.is-invalid:focus ~ .custom-control-label::before {
-  -webkit-box-shadow: 0 0 0 1px #000000, 0 0 0 0.2rem rgba(224, 79, 26, 0.25);
-          box-shadow: 0 0 0 1px #000000, 0 0 0 0.2rem rgba(224, 79, 26, 0.25);
+  -webkit-box-shadow: 0 0 0 1px #6f6d6d, 0 0 0 0.2rem rgba(224, 79, 26, 0.25);
+          box-shadow: 0 0 0 1px #6f6d6d, 0 0 0 0.2rem rgba(224, 79, 26, 0.25);
 }
 
 .was-validated .custom-file-input:invalid ~ .custom-file-label, .custom-file-input.is-invalid ~ .custom-file-label {

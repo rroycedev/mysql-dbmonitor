@@ -133,3 +133,8 @@
 .color-green {
      color: #00ff00;
 }
+
+.tm-outset {
+     border-top: 1px outset #969494;
+}
+

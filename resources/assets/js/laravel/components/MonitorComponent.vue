@@ -21,6 +21,7 @@
                 >
                   <input
                     type="checkbox"
+                    v-bind:checked="selectedClusters.includes(cluster.cluster_id)"
                     v-on:click="filterOptionClicked('cluster', cluster.cluster_id, $event)"
                   >
                   &nbsp;{{cluster.name}}
@@ -46,6 +47,7 @@
                 >
                   <input
                     type="checkbox"
+                    v-bind:checked="selectedEnvironments.includes(environment.environment_id)"
                     v-on:click="filterOptionClicked('environment', environment.environment_id, $event)"
                   >
                   &nbsp;{{environment.name}}
@@ -71,6 +73,7 @@
                 >
                   <input
                     type="checkbox"
+                    v-bind:checked="selectedDatacenters.includes(datacenter.datacenter_id)"
                     v-on:click="filterOptionClicked('datacenter', datacenter.datacenter_id, $event)"
                   >
                   &nbsp;{{datacenter.name}}
@@ -85,17 +88,17 @@
 
 
 
-      <div class="row justify-content-center border-outset-top-gray">
+      <div class="row justify-content-center">
         <div>
           <div class="fl">
-          <input class="filter-checkbox" type="checkbox" v-on:click="hideShowHealthy()">
+          <input class="filter-checkbox" type="checkbox"  v-bind:checked="this.showHealthy" v-on:click="hideShowHealthy()">
           </div>
           <div class="fl">
           <span>&nbsp;Show Healthy</span>
           </div>
 
           <div class="fl ml-5">
-          <input class="filter-checkbox" type="checkbox" v-on:click="hideShowMaintenance()">
+          <input class="filter-checkbox" type="checkbox" v-bind:checked="this.showMaintenance" v-on:click="hideShowMaintenance()">
           </div>
           <div class="fl">
           <span>&nbsp;Show Maintenance</span>
@@ -292,10 +295,12 @@ export default {
     },
     hideShowHealthy($event) {
       this.showHealthy = !this.showHealthy;
+      $cookies.set('showHealthy', this.showHealthy ? "1" : "0");
       this.$forceUpdate();
     },
     hideShowMaintenance($event) {
       this.showMaintenance = !this.showMaintenance;
+      $cookies.set('showMaintenance', this.showMaintenance ? "1" : "0");
       this.$forceUpdate();
     },
     filterOptionClicked(filterType, key, $event) {
@@ -309,6 +314,7 @@ export default {
           } else {
             this.selectedClusters.push(key);
           }
+          $cookies.set('selectedClusters', JSON.stringify(this.selectedClusters));
           this.$forceUpdate();
           break;
         case "environment":
@@ -320,6 +326,7 @@ export default {
           } else {
             this.selectedEnvironments.push(key);
           }
+          $cookies.set('selectedEnvironments', JSON.stringify(this.selectedEnvironments));
           this.$forceUpdate();
           break;
         case "datacenter":
@@ -331,6 +338,7 @@ export default {
           } else {
             this.selectedDatacenters.push(key);
           }
+          $cookies.set('selectedDatacenters', JSON.stringify(this.selectedDatacenters));
           this.$forceUpdate();
           break;
       }
@@ -367,6 +375,36 @@ export default {
     }
   },
   mounted() {
+    var selClusters = JSON.parse($cookies.get('selectedClusters'));
+
+    if (selClusters != null) {
+      this.selectedClusters = selClusters;
+    }
+
+    var selEnvironments = JSON.parse($cookies.get('selectedEnvironments'));
+
+    if (selEnvironments != null) {
+      this.selectedEnvironments = selEnvironments;
+    }
+
+    var selDatacenters = JSON.parse($cookies.get('selectedDatacenters'));
+
+    if (selDatacenters != null) {
+      this.selectedDatacenters = selDatacenters;
+    }
+
+    var showHealthy = $cookies.get('showHealthy');
+
+    if (showHealthy != null) {
+        this.showHealthy = (showHealthy == "1") ? true : false;
+    }
+
+    var showMaintenance = $cookies.get('showMaintenance');
+
+    if (showMaintenance != null) {
+        this.showMaintenance = (showMaintenance == "1") ? true : false;
+    }
+
     this.startup();
   },
   computed: {

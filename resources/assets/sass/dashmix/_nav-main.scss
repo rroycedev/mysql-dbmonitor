@@ -181,10 +181,11 @@
 
     // Default links
     .nav-main-link {
-        color: $body-color-light;
+        color: $nav-main-link-color;
 
         > .nav-main-link-icon {
             color: $main-nav-link-icon-dark-color;
+            font-weight: bold;
         }
 
         &:hover,
