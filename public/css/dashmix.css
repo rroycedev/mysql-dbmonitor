@@ -24812,3 +24812,228 @@ th {
   background-color: #ff0000;
   color: rgba(255, 255, 255, 0.85);
 }
+
+.monitor-th {
+  float: left;
+  border-right: 1px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
+  padding: 5px;
+  color: #ffffff;
+  background-color: #0665d0;
+  text-align: center;
+}
+
+.monitor-th:nth-last-child(2) {
+  border-right: 0px;
+  border-top-right-radius: 8px;
+}
+
+.monitor-th:first-child {
+  border-top-left-radius: 8px;
+}
+
+.monitor-td,
+.monitor-slave-td {
+  float: left;
+  border-right: 1px solid gray;
+  border-bottom: 1px solid gray;
+  padding: 8px;
+  color: #000000;
+  background-color: #ffffff;
+}
+
+.monitor-td:nth-last-child(2) {
+  border-right: 1px solid gray;
+}
+
+.monitor-td:first-child {
+  border-left: 1px solid gray;
+  border-bottom: 1px solid gray;
+}
+
+.monitor-hostname-div {
+  min-width: 300px;
+  max-width: 300px;
+}
+
+.monitor-port-name-div {
+  min-width: 200px;
+  max-width: 200px;
+}
+
+.monitor-ipaddress-div {
+  min-width: 150px;
+  max-width: 150px;
+}
+
+.monitor-connection-name-div {
+  min-width: 200px;
+  max-width: 200px;
+}
+
+.monitor-master-binlog-filename-div {
+  min-width: 300px;
+  max-width: 300px;
+}
+
+.monitor-master-binlog-pos-div {
+  min-width: 178px;
+  max-width: 178px;
+  text-align: right;
+}
+
+.monitor-lag-time-div {
+  min-width: 100px;
+  max-width: 100px;
+  text-align: right;
+}
+
+.monitor-status-div {
+  min-width: 116px;
+  max-width: 116px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.monitor-last-checked-div {
+  min-width: 177px;
+  max-width: 177px;
+}
+
+.monitor-expand-collapse-div {
+  min-width: 20px;
+  max-width: 20px;
+  padding-left: 0px;
+  padding-right: 0px;
+  text-align: center;
+  cursor: pointer;
+  background-color: #0064d8 !important;
+  color: white !important;
+}
+
+.monitor-connections-div {
+  min-width: 120px;
+  max-width: 120px;
+}
+
+.monitor-disk-usage-div {
+  min-width: 177px;
+  max-width: 177px;
+}
+
+.monitor-cpu-load-div {
+  min-width: 177px;
+  max-width: 177px;
+}
+
+.monitor-main-div {
+  width: 1280px;
+  margin: auto;
+  background-color: #bdbdbd;
+}
+
+.monitor-main-div:first-child {
+  background-color: transparent;
+}
+
+.monitor-slave-entry:last-child {
+  margin-bottom: 0.25em;
+}
+
+.monitor-server-div {
+  min-width: 1280px;
+  max-width: 1280px;
+  margin: auto;
+}
+
+.monitor-server-slave-header-div {
+  min-width: 957px;
+  max-width: 957px;
+  margin: auto;
+}
+
+.monitor-server-slave-div {
+  min-width: 957px;
+  max-width: 957px;
+  margin: auto;
+}
+
+.filter-div {
+  float: left;
+  margin-right: 10px;
+  background-color: #ffffff;
+  color: #000000;
+  border-radius: 6px;
+  padding: 7px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.filter-div:nth-last-child(2) {
+  margin-right: 0px;
+}
+
+.filter-div:hover {
+  background-color: #0665d0;
+  color: #e7e96e;
+}
+
+.filter-div.selected {
+  background-color: #0665d0;
+  color: white;
+}
+
+.filter-div.selected:hover {
+  color: #e7e96e;
+}
+
+.filterbar-div {
+  background-color: #bec7d0;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 5px;
+  border: 1px solid gray;
+}
+
+.monitor-status-indicator-div {
+  min-width: 20px;
+  max-width: 20px;
+}
+
+.status-red {
+  background-color: #ff0000;
+}
+
+.status-green {
+  background-color: #00ff00;
+}
+
+.no-slaves {
+  margin-bottom: 0.25em;
+}
+
+.filter-bar-div {
+  background-color: #626569;
+  width: 100%;
+  height: 116px;
+  border: 1px outset #969494;
+  color: white;
+  margin-bottom: 2em;
+}
+
+.filter-bar-button-div {
+  line-height: 70px;
+}
+
+.filter-select-li {
+  line-height: 1.5;
+}
+
+.border-outset-top-gray {
+  border-top: 1px outset gray;
+  padding: 10px;
+}
+
+.filter-checkbox {
+  height: 24px;
+}

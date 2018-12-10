@@ -342,3 +342,13 @@ Route::get(
     '/api/serverstatus',
     'RestAPIController@getServerStatus'
 );
+
+Route::get(
+    '/api/turnoffmaintenance/{server_id}',
+    'RestAPIController@turnOffMaintenance'
+);
+
+Route::get(
+    '/api/turnonmaintenance/{server_id}',
+    'RestAPIController@turnOnMaintenance'
+);

@@ -277,7 +277,7 @@ CREATE TABLE `servers` (
   `datacenter_id` bigint(20) unsigned NOT NULL,
   `cluster_id` bigint(20) unsigned NOT NULL,
   `view_order` int(11) NOT NULL DEFAULT 1 COMMENT 'Order to display in front-end.  Values start at 1',
-  `active` tinyint(3) unsigned NOT NULL DEFAULT 0 COMMENT 'Values are 0 or 1',
+  `status` tinyint(3) unsigned NOT NULL DEFAULT 1 COMMENT 'Values are 0 (inactive), 1 (active), 2 (maintenance)',
   `exclude_noc` tinyint(4) unsigned NOT NULL DEFAULT 0 COMMENT 'Values are 0 or 1',
   `exclude_disk_check` tinyint(4) NOT NULL DEFAULT 0,
   `maint_mode` tinyint(4) unsigned NOT NULL DEFAULT 0 COMMENT 'Values are 0 or 1',

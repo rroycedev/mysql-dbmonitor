@@ -30,7 +30,7 @@ class Server extends Model
     protected $attributes = [
     ];
 
-    protected $fillable = ['hostname', 'ipaddress', 'port_name', 'environment_id', 'datacenter_id', 'cluster_id', 'active', 'exclude_noc', 'exclude_disk_check',
+    protected $fillable = ['hostname', 'ipaddress', 'port_name', 'environment_id', 'datacenter_id', 'cluster_id', 'status', 'exclude_noc', 'exclude_disk_check',
         'maint_mode', 'maint_mode_start_date'];
 
     public function cluster()

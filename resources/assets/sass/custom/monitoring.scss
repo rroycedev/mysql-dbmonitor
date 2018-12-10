@@ -112,7 +112,7 @@
 }
 
 .monitor-main-div {
-     width: 1224px;
+     width: $monitoring-table-width;
      margin: auto;
      background-color: #bdbdbd;
 }
@@ -126,8 +126,8 @@
 }
 
 .monitor-server-div {
-     min-width: 1224px;
-     max-width: 1224px;
+     min-width: $monitoring-table-width;
+     max-width: $monitoring-table-width;
      margin: auto;
 }
 

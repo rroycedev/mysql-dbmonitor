@@ -82,9 +82,8 @@
         </div>
       </div>
       <div class="row justify-content-center border-outset-top-gray">
-        <input class="filter-checkbox" type="checkbox" v-on:click="hideShowHealthy()">
-        <span>&nbsp;Show Healthy</span>
-      </div>
+          <input class="filter-checkbox" type="checkbox" v-on:click="hideShowHealthy()">
+          <span>&nbsp;Show Healthy</span>
     </div>
     <div>
       <div class="monitor-main-div">
@@ -103,8 +102,8 @@
     <div class="monitor-main-div">
       <div v-for="server in status" v-bind:key="server.server_id">
         <div
-          v-show="selectedEnvironments.includes(server.environment_id) && selectedClusters.includes(server.cluster_id) && selectedDatacenters.includes(server.datacenter_id) && (!server.is_healthy || server.is_healthy && showHealthy)"
-        >
+          v-show="selectedEnvironments.includes(server.environment_id) && selectedClusters.includes(server.cluster_id) && selectedDatacenters.includes(server.datacenter_id) && 
+          (!server.is_healthy || server.is_healthy && showHealthy) && (server.status == 1 || server.status == 2 && showMaintenance)">
           <div>
             <div class="monitor-server-div">
               <div
@@ -128,7 +127,6 @@
                 class="monitor-port-name-div monitor-td"
               >{{(server.port_name == "" ? "&nbsp;" : server.port_name) }}</div>
               <div class="monitor-ipaddress-div monitor-td">{{server.ipaddress}}</div>
-
               <div v-if="server.status == 1" class="monitor-status-div monitor-td color-red"><i class="fa fa-wrench" title="Turn on maintenance" v-b-tooltip.html.hover
                 data-toggle="tooltip"
                 data-html="true"
@@ -137,7 +135,6 @@
                 data-toggle="tooltip"
                 data-html="true"
                 v-on:click="turnOffMaintenance(server.server_id, $event)"></i></div>
-
               <div class="monitor-connections-div monitor-td ta-r">{{server.connection_count}}</div>
               <div
                 class="monitor-disk-usage-div monitor-td ta-c"
@@ -214,7 +211,8 @@ export default {
       selectedEnvironments: [],
       selectedDatacenters: [],
       status: [],
-      showHealthy: false
+      showHealthy: false,
+      showMaintenance: false
     };
   },
   methods: {
