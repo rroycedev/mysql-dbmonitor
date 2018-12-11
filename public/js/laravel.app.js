@@ -39824,7 +39824,8 @@ function statusPoller(c) {}
       status: [],
       showHealthy: false,
       showMaintenance: false,
-      lastUpdated: ""
+      lastUpdated: "",
+      expandedServers: []
     };
   },
   methods: {
@@ -39832,6 +39833,20 @@ function statusPoller(c) {}
       for (var i = 0; i < this.status.length; i++) {
         if (this.status[i].server_id == server_id) {
           this.status[i].expanded = !this.status[i].expanded;
+          if (!this.status[i].expanded) {
+            if (this.expandedServers.includes(this.status[i].server_id)) {
+              for (var j = 0; j < this.expandedServers.length; j++) {
+                if (this.expandedServers[j] == this.status[i].server_id) {
+                  this.expandedServers.splice(j, 1);
+                }
+              }
+            }
+          } else {
+            if (!this.expandedServers.includes(this.status[i].server_id)) {
+              this.expandedServers.push(this.status[i].server_id);
+            }
+          }
+          $cookies.set('expandedServers', JSON.stringify(this.expandedServers));
           this.$forceUpdate();
           return;
         }
@@ -39949,6 +39964,13 @@ function statusPoller(c) {}
         success: function success(response) {
           self.status = response.status;
           self.lastUpdated = response.last_updated;
+          for (var i = 0; i < self.status.length; i++) {
+            if (self.expandedServers.includes(self.status[i].server_id)) {
+              self.status[i].expanded = true;
+            } else {
+              self.status[i].expanded = false;
+            }
+          }
           setTimeout(self.statusPoller, 10000);
         }
       });
@@ -39983,6 +40005,12 @@ function statusPoller(c) {}
 
     if (showMaintenance != null) {
       this.showMaintenance = showMaintenance == "1" ? true : false;
+    }
+
+    var expandedServers = JSON.parse($cookies.get('expandedServers'));
+
+    if (expandedServers != null) {
+      this.expandedServers = expandedServers;
     }
 
     this.startup();
@@ -40182,7 +40210,12 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "row justify-content-center mt-2" }, [
-        _c("span", [_vm._v("Last Updated: " + _vm._s(_vm.lastUpdated))])
+        _c("span", [
+          _vm._v("Last Updated: "),
+          _c("span", { staticClass: "monitoring-last-updated" }, [
+            _vm._v(_vm._s(_vm.lastUpdated))
+          ])
+        ])
       ])
     ]),
     _vm._v(" "),

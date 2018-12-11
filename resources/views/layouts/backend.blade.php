@@ -96,7 +96,7 @@
                     <div class="content-header ">
                         <!-- Logo -->
                         <a class="link-fx font-w600 font-size-lg text-white" href="/">
-                            <span class="text-white-75">Your Logo</span>
+                            <span class="text-white-75">Royce Consulting</span>
                         </a>
                         <!-- END Logo -->
 
