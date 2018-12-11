@@ -83,7 +83,7 @@ class RestAPIController extends Controller
             $servers[$i]->slaves = $slaves;
         }
 
-        echo json_encode(array("status" => $servers));
+        echo json_encode(array("last_updated" => date("Y-m-d H:i:s"), "status" => $servers));
     }
 
     public function turnOffMaintenance($server_id) {

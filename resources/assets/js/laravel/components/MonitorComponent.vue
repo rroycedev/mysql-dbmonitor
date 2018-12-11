@@ -2,7 +2,7 @@
   <div>
     <div class="filter-bar-div">
       <div class="row justify-content-center">
-        <div>
+        <div class="mt-1 mb-2">
           <div class="fl">
             <div class="button-group filter-bar-button-div">
               <button
@@ -110,7 +110,9 @@
         </div>
       </div>
 
-
+      <div class="row justify-content-center mt-2">
+            <span>Last Updated: {{lastUpdated}}</span>
+</div>
 
 
     </div>
@@ -244,7 +246,8 @@ export default {
       selectedDatacenters: [],
       status: [],
       showHealthy: false,
-      showMaintenance: false
+      showMaintenance: false,
+      lastUpdated: ""
     };
   },
   methods: {
@@ -368,8 +371,8 @@ export default {
         dataType: "json",
         success: function(response) {
           self.status = response.status;
-
-          // setTimeout(self.statusPoller(), 10000);
+          self.lastUpdated = response.last_updated;
+          setTimeout(self.statusPoller, 10000);
         }
       });
     }

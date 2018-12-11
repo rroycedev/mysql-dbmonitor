@@ -39805,6 +39805,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 var monitoringItems = [];
 
@@ -39821,7 +39823,8 @@ function statusPoller(c) {}
       selectedDatacenters: [],
       status: [],
       showHealthy: false,
-      showMaintenance: false
+      showMaintenance: false,
+      lastUpdated: ""
     };
   },
   methods: {
@@ -39945,8 +39948,8 @@ function statusPoller(c) {}
         dataType: "json",
         success: function success(response) {
           self.status = response.status;
-
-          // setTimeout(self.statusPoller(), 10000);
+          self.lastUpdated = response.last_updated;
+          setTimeout(self.statusPoller, 10000);
         }
       });
     }
@@ -40005,7 +40008,7 @@ var render = function() {
   return _c("div", [
     _c("div", { staticClass: "filter-bar-div" }, [
       _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", [
+        _c("div", { staticClass: "mt-1 mb-2" }, [
           _c("div", { staticClass: "fl" }, [
             _c("div", { staticClass: "button-group filter-bar-button-div" }, [
               _vm._m(0),
@@ -40039,9 +40042,9 @@ var render = function() {
                         }
                       }),
                       _vm._v(
-                        "\n                 " +
+                        "\n                   " +
                           _vm._s(cluster.name) +
-                          "\n              "
+                          "\n                "
                       )
                     ]
                   )
@@ -40083,9 +40086,9 @@ var render = function() {
                         }
                       }),
                       _vm._v(
-                        "\n                 " +
+                        "\n                   " +
                           _vm._s(environment.name) +
-                          "\n              "
+                          "\n                "
                       )
                     ]
                   )
@@ -40127,9 +40130,9 @@ var render = function() {
                         }
                       }),
                       _vm._v(
-                        "\n                 " +
+                        "\n                   " +
                           _vm._s(datacenter.name) +
-                          "\n              "
+                          "\n                "
                       )
                     ]
                   )
@@ -40176,6 +40179,10 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticStyle: { clear: "both" } })
         ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row justify-content-center mt-2" }, [
+        _c("span", [_vm._v("Last Updated: " + _vm._s(_vm.lastUpdated))])
       ])
     ]),
     _vm._v(" "),
@@ -40204,7 +40211,7 @@ var render = function() {
                     (server.status == 1 ||
                       (server.status == 2 && _vm.showMaintenance)),
                   expression:
-                    "selectedEnvironments.includes(server.environment_id) && selectedClusters.includes(server.cluster_id) && selectedDatacenters.includes(server.datacenter_id) && (!server.is_healthy || server.is_healthy && showHealthy) && \n        (!server.is_healthy || server.is_healthy && showHealthy) && (server.status == 1 || server.status == 2 && showMaintenance)"
+                    "selectedEnvironments.includes(server.environment_id) && selectedClusters.includes(server.cluster_id) && selectedDatacenters.includes(server.datacenter_id) && (!server.is_healthy || server.is_healthy && showHealthy) && \n          (!server.is_healthy || server.is_healthy && showHealthy) && (server.status == 1 || server.status == 2 && showMaintenance)"
                 }
               ]
             },
@@ -40544,7 +40551,7 @@ var staticRenderFns = [
         attrs: { type: "button", "data-toggle": "dropdown" }
       },
       [
-        _vm._v("\n              Clusters\n              "),
+        _vm._v("\n                Clusters\n                "),
         _c("span", { staticClass: "caret" })
       ]
     )
@@ -40560,7 +40567,7 @@ var staticRenderFns = [
         attrs: { type: "button", "data-toggle": "dropdown" }
       },
       [
-        _vm._v("\n              Environments\n              "),
+        _vm._v("\n                Environments\n                "),
         _c("span", { staticClass: "caret" })
       ]
     )
@@ -40576,7 +40583,7 @@ var staticRenderFns = [
         attrs: { type: "button", "data-toggle": "dropdown" }
       },
       [
-        _vm._v("\n              Datacenters\n              "),
+        _vm._v("\n                Datacenters\n                "),
         _c("span", { staticClass: "caret" })
       ]
     )

@@ -194,12 +194,13 @@
      width: 100%;
      height: $filter-bar-height;
      border: 2px outset #d0d0d0;
+     border-left: 1px solid #000000;
      color: $nav-main-link-color;
      margin-bottom: 2em;
 }
 
 .filter-bar-button-div {
-     line-height: 70px;
+
 }
 
 .filter-select-li {
@@ -212,5 +213,6 @@
 }
 
 .filter-checkbox {
-     height: 24px;
+     line-height: $line-height-base;
+     vertical-align: middle;
 }

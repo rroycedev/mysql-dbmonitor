@@ -93,4 +93,13 @@ th {
 .footer-bg {
     background-color: $sidebar-light-bg;
     border-top: 2px outset #d0d0d0;
+    border-left: 2px inset #d0d0d0;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+.content-side {
+    border-top: 2px outset #d0d0d0;
 }
