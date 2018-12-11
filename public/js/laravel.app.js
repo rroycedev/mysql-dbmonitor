@@ -39807,6 +39807,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 var monitoringItems = [];
 
@@ -39832,6 +39835,9 @@ function statusPoller(c) {}
     expandCollapseServer: function expandCollapseServer(server_id, $event) {
       for (var i = 0; i < this.status.length; i++) {
         if (this.status[i].server_id == server_id) {
+          if (this.status[i].slaves.length == 0) {
+            return;
+          }
           this.status[i].expanded = !this.status[i].expanded;
           if (!this.status[i].expanded) {
             if (this.expandedServers.includes(this.status[i].server_id)) {
@@ -40254,7 +40260,9 @@ var render = function() {
                   _c(
                     "div",
                     {
-                      staticClass: "monitor-expand-collapse-div monitor-td",
+                      class:
+                        "monitor-expand-collapse-div monitor-td monitor-td " +
+                        (server.slaves.length > 0 ? "cursor-pointer" : ""),
                       on: {
                         click: function($event) {
                           _vm.expandCollapseServer(server.server_id, $event)
@@ -40395,11 +40403,7 @@ var render = function() {
                         }
                       ],
                       staticClass: "monitor-disk-usage-div monitor-td ta-c",
-                      attrs: {
-                        "data-toggle": "tooltip",
-                        "data-html": "true",
-                        title: server.disk_used_title
-                      }
+                      attrs: { tabindex: "0", title: server.disk_used_title }
                     },
                     [
                       _vm._v(
@@ -40481,6 +40485,14 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "div",
+                        {
+                          staticClass: "monitor-slave-error-msg-div monitor-th"
+                        },
+                        [_vm._v("Last Error")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
                         { staticClass: "monitor-last-checked-div monitor-th" },
                         [_vm._v("Last Checked")]
                       ),
@@ -40544,6 +40556,27 @@ var render = function() {
                                     "monitor-lag-time-div monitor-slave-td"
                                 },
                                 [_vm._v(_vm._s(slave.lag_time_secs))]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                {
+                                  directives: [
+                                    {
+                                      name: "b-tooltip",
+                                      rawName: "v-b-tooltip.html.hover",
+                                      modifiers: { html: true, hover: true }
+                                    }
+                                  ],
+                                  staticClass:
+                                    "monitor-slave-error-msg-div monitor-td color-red-bold ",
+                                  attrs: {
+                                    title: slave.last_error_msg,
+                                    "data-toggle": "tooltip",
+                                    "data-html": "true"
+                                  }
+                                },
+                                [_vm._v(_vm._s(slave.last_error_msg))]
                               ),
                               _vm._v(" "),
                               _c(

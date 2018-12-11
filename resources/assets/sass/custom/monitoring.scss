@@ -25,6 +25,9 @@
      padding: 8px;
      color: #000000;
      background-color: #ffffff;
+     white-space: nowrap;
+     overflow: hidden;
+     text-overflow: ellipsis;     
 }
 
 .monitor-td:nth-last-child(2) {
@@ -91,9 +94,12 @@
      padding-left: 0px;
      padding-right: 0px;
      text-align: center;
-     cursor: pointer;
      background-color: #0064d8 !important;
      color: white !important;
+}
+
+.cursor-pointer {
+     cursor: pointer;
 }
 
 .monitor-connections-div {
@@ -125,6 +131,10 @@
      margin-bottom: 0.25em;
 }
 
+.monitor-slave-error-msg-div {
+     min-width: 300px;
+     max-width: 300px;
+}
 .monitor-server-div {
      min-width: $monitoring-table-width;
      max-width: $monitoring-table-width;
@@ -132,14 +142,14 @@
 }
 
 .monitor-server-slave-header-div {
-     min-width: 957px;
-     max-width: 957px;
+     min-width: $slave-row-length;
+     max-width: $slave-row-length;
      margin: auto;
 }
 
 .monitor-server-slave-div {
-     min-width: 957px;
-     max-width: 957px;
+     min-width: $slave-row-length;
+     max-width: $slave-row-length;
      margin: auto;
 }
 

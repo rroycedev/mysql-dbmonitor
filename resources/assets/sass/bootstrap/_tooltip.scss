@@ -37,7 +37,7 @@
 
     &::before {
       top: 0;
-      border-width: $tooltip-arrow-height ($tooltip-arrow-width / 2) 0;
+      border-width: $tooltip-arrow-height $tooltip-arrow-width 0;
       border-top-color: $tooltip-arrow-color;
     }
   }

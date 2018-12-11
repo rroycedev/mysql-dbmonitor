@@ -44,6 +44,10 @@ class RestAPIController extends Controller
 
             $slaves = ServerSlavesStatus::where("server_id", $servers[$i]->server_id)->orderBy("connection_name")->get();
 
+            for ($slaveNum = 0; $slaveNum < count($slaves); $slaveNum++) {
+                $slaves[$slaveNum]->last_error_msg = "This is error message. If this were an actual emergency";
+            }
+
             $servers[$i]->expanded = false;
 
             if (count($serverStatus) > 0) {

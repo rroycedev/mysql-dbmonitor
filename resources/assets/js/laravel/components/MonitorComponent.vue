@@ -139,7 +139,7 @@
           <div>
             <div class="monitor-server-div">
               <div
-                class="monitor-expand-collapse-div monitor-td"
+                v-bind:class="'monitor-expand-collapse-div monitor-td monitor-td ' + (server.slaves.length > 0 ? 'cursor-pointer' : '')"
                 v-on:click="expandCollapseServer(server.server_id, $event)"
               >
                 <i
@@ -173,8 +173,7 @@
               <div
                 class="monitor-disk-usage-div monitor-td ta-c"
                 v-b-tooltip.html.hover
-                data-toggle="tooltip"
-                data-html="true"
+                tabindex="0"
                 v-bind:title="server.disk_used_title"
               >{{(server.disk_used != "" ? server.disk_used : "&nbsp;")}}</div>
               <div class="monitor-cpu-load-div monitor-td ta-r">{{server.cpu_load}}</div>
@@ -195,6 +194,7 @@
               <div class="monitor-master-binlog-filename-div monitor-th">Master Binlog Filename</div>
               <div class="monitor-master-binlog-pos-div monitor-th">Master Binlog Position</div>
               <div class="monitor-lag-time-div monitor-th">Lag Time</div>
+              <div class="monitor-slave-error-msg-div monitor-th">Last Error</div>
               <div class="monitor-last-checked-div monitor-th">Last Checked</div>
               <div style="clear: both;"></div>
             </div>
@@ -218,6 +218,9 @@
                     class="monitor-master-binlog-pos-div monitor-slave-td"
                   >{{ slave.master_binlog_position }}</div>
                   <div class="monitor-lag-time-div monitor-slave-td">{{ slave.lag_time_secs }}</div>
+                  <div class="monitor-slave-error-msg-div monitor-td color-red-bold " v-bind:title="slave.last_error_msg" v-b-tooltip.html.hover
+                data-toggle="tooltip"
+                data-html="true">{{ slave.last_error_msg}}</div>
                   <div class="monitor-last-checked-div monitor-slave-td">{{ slave.check_datetime }}</div>
                   <div style="clear: both;"></div>
                 </div>
@@ -255,6 +258,9 @@ export default {
     expandCollapseServer(server_id, $event) {
       for (var i = 0; i < this.status.length; i++) {
         if (this.status[i].server_id == server_id) {
+          if (this.status[i].slaves.length == 0) {
+            return;
+          }
           this.status[i].expanded = !this.status[i].expanded;
           if (!this.status[i].expanded) {
             if (this.expandedServers.includes(this.status[i].server_id)) {
