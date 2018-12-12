@@ -3,8 +3,8 @@
      border-right: 1px solid #ffffff;
      border-bottom: 1px solid #ffffff;
      padding: 5px;
-     color: #ffffff;
-     background-color: #0665d0;
+     color: $app-title-color;
+     background-color: $title-header-bg;
      text-align: center;
 }
 
@@ -54,6 +54,11 @@
      max-width: 150px;
 }
 
+.monitor-active-div {
+     min-width: 116px;
+     max-width: 116px;
+}
+
 .monitor-connection-name-div {
      min-width: 200px;
      max-width: 200px;
@@ -76,7 +81,7 @@
      text-align: right;
 }
 
-.monitor-status-div {
+.monitor-maintenance-div {
      min-width: 116px;
      max-width: 116px;
      text-align: center;
@@ -169,12 +174,12 @@
 }
 
 .filter-div:hover {
-     background-color: #0665d0;
+     background-color: $title-header-bg;
      color: #e7e96e
 }
 
 .filter-div.selected {
-     background-color: #0665d0;
+     background-color: $title-header-bg;
      color: white;
 }
 
@@ -230,4 +235,9 @@
 .filter-checkbox {
      line-height: $line-height-base;
      vertical-align: middle;
+}
+
+.monitoring-filter-btn {
+     background-color: $title-header-bg;
+     color: $app-title-color;
 }

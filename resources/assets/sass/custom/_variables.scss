@@ -11,7 +11,6 @@
 // $primary: #3b5998;
 
 
-$app-title-color: #ffffff;
 
 $block-bg: transparent;
 $block-content-bg: #ffffff;
@@ -20,7 +19,7 @@ $color-light: #ffffff;
 $side-header-bg: transparent;
 
 
-$font-size-base: 1rem;
+$font-size-base: .8rem;
 $font-size-lg: ($font-size-base * 1.25);
 $font-size-sm: ($font-size-base * .875);
 
@@ -33,6 +32,7 @@ $headings-color: #FCD800;
 $sidebar-dark-bg: #626569;
 
 $title-header-bg: #0665d0;
+$app-title-color: #ffffff;
 
 $title-header-color: rgba(252, 216, 0, .75);
 
@@ -54,7 +54,7 @@ $table-hover-color: #ffffff;
 $h3-font-size: $font-size-base * 1.25 !default;
 $h4-font-size: $font-size-base * 1.125 !default;
 
-$monitoring-table-width: 1280px;
+$monitoring-table-width: 1396px;
 $slave-row-length: 1257px;
 
 $filter-bar-height: 116px;
@@ -65,7 +65,7 @@ $main-nav-link-icon-dark-color: #ff0000;
 $main-nav-link-icon-dark-color-hover: #ffffff;
 
 $btn-padding-y-lg: 0.25rem;
-$font-size-lg: 1rem;
+$font-size-lg: .8rem;
 
 $tooltip-arrow-width: .5rem;
 $tooltip-arrow-height: .5rem;

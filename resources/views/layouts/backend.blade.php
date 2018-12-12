@@ -374,7 +374,10 @@
         <!-- Laravel Scaffolding JS -->
         <script src="{{ mix('js/laravel.app.js') }}"></script>
 
-        <script src="/js/filtertoolbar.js"></script>
+        <!-- Semaphore -->
+        <script src="{{ mix('js/semaphore.js') }}"></script>
+
+       <script src="/js/filtertoolbar.js"></script>
 
         @yield('js_after')
     </body>

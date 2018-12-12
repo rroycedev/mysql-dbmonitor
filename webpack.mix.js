@@ -23,6 +23,7 @@ mix
      /* JS */
      .js('resources/assets/js/laravel/app.js', 'public/js/laravel.app.js')
      .js('resources/assets/js/dashmix/app.js', 'public/js/dashmix.app.js')
+     .js('resources/assets/js/semaphore.js', 'public/js/semaphore.js')
 
 
      .copy('resources/assets/images', 'public/images')

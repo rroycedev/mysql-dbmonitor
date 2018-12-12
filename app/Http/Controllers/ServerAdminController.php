@@ -118,7 +118,7 @@ class ServerAdminController extends Controller
         $server->environment_id = $environmentId;
         $server->datacenter_id = $datacenterId;
         $server->cluster_id = $clusterId;
-        $server->active = $active;
+        $server->status = $active;
         $server->exclude_noc = $excludeNoc;
         $server->exclude_disk_check = $excludeDiskCheck;
 
@@ -156,7 +156,7 @@ class ServerAdminController extends Controller
         $server->environment_id = $environmentId;
         $server->datacenter_id = $datacenterId;
         $server->cluster_id = $clusterId;
-        $server->active = $active;
+        $server->status = $active;
         $server->exclude_noc = $excludeNoc;
         $server->exclude_disk_check = $excludeDiskCheck;
 

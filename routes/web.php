@@ -352,3 +352,13 @@ Route::get(
     '/api/turnonmaintenance/{server_id}',
     'RestAPIController@turnOnMaintenance'
 );
+
+Route::get(
+    '/api/makeserveractive/{server_id}',
+    'RestAPIController@makeServerActive'
+);
+
+Route::get(
+    '/api/makeserverinactive/{server_id}',
+    'RestAPIController@makeServerInactive'
+);

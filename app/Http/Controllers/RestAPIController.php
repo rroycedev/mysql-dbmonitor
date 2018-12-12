@@ -107,7 +107,8 @@ class RestAPIController extends Controller
 
     }
 
-    public function turnOnMaintenance($server_id) {
+    public function turnOnMaintenance($server_id)
+    {
         $server = Server::find($server_id);
 
         $server->status = 2;
@@ -123,4 +124,40 @@ class RestAPIController extends Controller
         }
 
     }
+
+    public function makeServerActive($server_id)
+    {
+        $server = Server::find($server_id);
+
+        $server->status = 1;
+
+        try {
+            $server->save();
+
+            echo json_encode(array("success" => true, "msg" => ""));
+        } catch (Illuminate\Database\QueryException $ex) {
+            echo json_encode(array("success" => false, "msg" => $ex->getMessage()));
+        } catch (\PDOException $pdoEx) {
+            echo json_encode(array("success" => false, "msg" => $pdoEx->getMessage()));
+        }
+
+    }
+    public function makeServerInactive($server_id)
+    {
+        $server = Server::find($server_id);
+
+        $server->status = 0;
+
+        try {
+            $server->save();
+
+            echo json_encode(array("success" => true, "msg" => ""));
+        } catch (Illuminate\Database\QueryException $ex) {
+            echo json_encode(array("success" => false, "msg" => $ex->getMessage()));
+        } catch (\PDOException $pdoEx) {
+            echo json_encode(array("success" => false, "msg" => $pdoEx->getMessage()));
+        }
+
+    }
+
 }

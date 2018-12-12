@@ -7,7 +7,7 @@
             <div class="button-group filter-bar-button-div">
               <button
                 type="button"
-                class="btn btn-default btn-lg dropdown-toggle"
+                class="btn btn-default btn-lg dropdown-toggle monitoring-filter-btn"
                 data-toggle="dropdown"
               >
                 Clusters
@@ -33,7 +33,7 @@
             <div class="button-group filter-bar-button-div">
               <button
                 type="button"
-                class="btn btn-default btn-lg dropdown-toggle"
+                class="btn btn-default btn-lg dropdown-toggle monitoring-filter-btn"
                 data-toggle="dropdown"
               >
                 Environments
@@ -59,7 +59,7 @@
             <div class="button-group filter-bar-button-div">
               <button
                 type="button"
-                class="btn btn-default btn-lg dropdown-toggle"
+                class="btn btn-default btn-lg dropdown-toggle monitoring-filter-btn"
                 data-toggle="dropdown"
               >
                 Datacenters
@@ -103,6 +103,12 @@
           <div class="fl">
           <span>&nbsp;Show Maintenance</span>
           </div>
+          <div class="fl ml-5">
+          <input class="filter-checkbox" type="checkbox" v-bind:checked="this.showInactive" v-on:click="hideShowInactive()">
+          </div>
+          <div class="fl">
+          <span>&nbsp;Show Inactive</span>
+          </div>
 
           <div style="clear: both;"></div>
 
@@ -122,7 +128,8 @@
         <div class="monitor-hostname-div monitor-th">Hostname</div>
         <div class="monitor-port-name-div monitor-th">Port Name</div>
         <div class="monitor-ipaddress-div monitor-th">IP Address</div>
-        <div class="monitor-status-div monitor-th">Maintenance</div>
+        <div class="monitor-active-div monitor-th">Active</div>
+        <div class="monitor-maintenance-div monitor-th">Maintenance</div>
         <div class="monitor-connections-div monitor-th">Connections</div>
         <div class="monitor-disk-usage-div monitor-th">Disk Usage</div>
         <div class="monitor-cpu-load-div monitor-th">CPU Load</div>
@@ -133,8 +140,9 @@
     <div class="monitor-main-div">
       <div v-for="server in status" v-bind:key="server.server_id">
         <div
-          v-show="selectedEnvironments.includes(server.environment_id) && selectedClusters.includes(server.cluster_id) && selectedDatacenters.includes(server.datacenter_id) && (!server.is_healthy || server.is_healthy && showHealthy) && 
-          (!server.is_healthy || server.is_healthy && showHealthy) && (server.status == 1 || server.status == 2 && showMaintenance)"
+          v-show="selectedEnvironments.includes(server.environment_id) && selectedClusters.includes(server.cluster_id) && selectedDatacenters.includes(server.datacenter_id) && 
+          (!server.is_healthy || server.is_healthy && showHealthy) && 
+          (server.status == 1 || server.status == 2 && showMaintenance || server.status == 0 && showInactive)" 
         >
           <div>
             <div class="monitor-server-div">
@@ -159,12 +167,15 @@
                 class="monitor-port-name-div monitor-td"
               >{{(server.port_name == "" ? "&nbsp;" : server.port_name) }}</div>
               <div class="monitor-ipaddress-div monitor-td">{{server.ipaddress}}</div>
+              <div v-if="server.status == 0" class="monitor-active-div monitor-td ta-c cursor-pointer" v-b-tooltip.html.hover tabindex="0" title="Click to make active" v-on:click="makeServerActive(server.server_id, $event)">No</div>
+              <div v-if="server.status != 0" class="monitor-active-div monitor-td ta-c cursor-pointer" v-b-tooltip.html.hover tabindex="0" title="Click to make in-active"  v-on:click="makeServerInactive(server.server_id, $event)">Yes</div>
 
-              <div v-if="server.status == 1" class="monitor-status-div monitor-td color-red"><i class="fa fa-wrench" title="Turn on maintenance" v-b-tooltip.html.hover
+              <div v-if="server.status == 0" class="monitor-maintenance-div monitor-td">&nbsp;</div>
+              <div v-if="server.status == 1" class="monitor-maintenance-div monitor-td color-red"><i class="fa fa-wrench" title="Turn on maintenance" v-b-tooltip.html.hover
                 data-toggle="tooltip"
                 data-html="true"
                 v-on:click="turnOnMaintenance(server.server_id, $event)"></i></div>
-              <div v-if="server.status == 2" class="monitor-status-div monitor-td color-green"><i class="fa fa-wrench" title="Turn off maintenance" v-b-tooltip.html.hover
+              <div v-if="server.status == 2" class="monitor-maintenance-div monitor-td color-green"><i class="fa fa-wrench" title="Turn off maintenance" v-b-tooltip.html.hover
                 data-toggle="tooltip"
                 data-html="true"
                 v-on:click="turnOffMaintenance(server.server_id, $event)"></i></div>
@@ -250,11 +261,49 @@ export default {
       status: [],
       showHealthy: false,
       showMaintenance: false,
+      showInactive: false,
       lastUpdated: "",
       expandedServers: []
     };
   },
   methods: {
+     makeServerActive(server_id, $event) {
+      var self = this;
+
+      $.ajax({
+        url: "/api/makeserveractive/" + server_id,
+        cache: false,
+        dataType: "json",
+        success: function(response) {
+          for (var i = 0; i < self.status.length; i++) {
+               if (self.status[i].server_id == server_id) {
+                    self.status[i].status = 1;
+                    self.$forceUpdate();   
+                    return;
+               }
+          }
+        }
+      });
+
+     },
+     makeServerInactive(server_id, $event) {
+      var self = this;
+
+      $.ajax({
+        url: "/api/makeserverinactive/" + server_id,
+        cache: false,
+        dataType: "json",
+        success: function(response) {
+          for (var i = 0; i < self.status.length; i++) {
+               if (self.status[i].server_id == server_id) {
+                    self.status[i].status = 0;
+                    self.$forceUpdate();   
+                    return;
+               }
+          }
+        }
+      });
+     },
     expandCollapseServer(server_id, $event) {
       for (var i = 0; i < this.status.length; i++) {
         if (this.status[i].server_id == server_id) {
@@ -328,6 +377,11 @@ export default {
       $cookies.set('showMaintenance', this.showMaintenance ? "1" : "0");
       this.$forceUpdate();
     },
+    hideShowInactive($event) {
+      this.showInactive = !this.showInactive;
+      $cookies.set('showInactive', this.showInactive ? "1" : "0");
+      this.$forceUpdate();
+    },
     filterOptionClicked(filterType, key, $event) {
       switch (filterType) {
         case "cluster":
@@ -387,6 +441,7 @@ export default {
     statusPoller() {
       var self = this;
 
+
       $.ajax({
         url: "/api/serverstatus",
         cache: false,
@@ -438,7 +493,13 @@ export default {
         this.showMaintenance = (showMaintenance == "1") ? true : false;
     }
 
-    var expandedServers = JSON.parse($cookies.get('expandedServers'));
+    var showInactive = $cookies.get('showInactive');
+
+    if (showInactive != null) {
+        this.showInactive = (showInactive == "1") ? true : false;
+    }
+
+     var expandedServers = JSON.parse($cookies.get('expandedServers'));
 
 
     if (expandedServers != null) {
