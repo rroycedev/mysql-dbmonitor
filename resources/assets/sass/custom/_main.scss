@@ -104,3 +104,10 @@ body {
     border-top: 2px outset #d0d0d0;
 }
 
+
+
+.app-title {
+     width: calc(100% - 180px);
+     text-align: center;
+     color: $app-title-color;
+}

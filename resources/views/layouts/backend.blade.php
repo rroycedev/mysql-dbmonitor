@@ -49,7 +49,44 @@
     </head>
     <body  onresize="resizeBody()">
         <div id="page-container" class="sidebar-o sidebar-dark enable-page-overlay side-scroll page-header page-header-dark main-content-narrow">
+            <!-- Side Overlay-->
+            <aside id="side-overlay">
+                <!-- Side Header -->
+                <div class="bg-image" style="background-image: url('{{ asset('media/various/bg_side_overlay_header.jpg') }}');">
+                    <div class="bg-primary-op">
+                        <div class="content-header">
+                            <!-- User Avatar -->
+                            <a class="img-link mr-1" href="javascript:void(0)">
+                                <img class="img-avatar img-avatar48" src="{{ asset('media/avatars/avatar10.jpg') }}" alt="">
+                            </a>
+                            <!-- END User Avatar -->
 
+                            <!-- User Info -->
+                            <div class="ml-2">
+                                <a class="text-white font-w600" href="javascript:void(0)">George Taylor</a>
+                                <div class="text-white-75 font-size-sm font-italic">Full Stack Developer</div>
+                            </div>
+                            <!-- END User Info -->
+
+                            <!-- Close Side Overlay -->
+                            <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                            <a class="ml-auto text-white" href="javascript:void(0)" data-toggle="layout" data-action="side_overlay_close">
+                                <i class="fa fa-times-circle"></i>
+                            </a>
+                            <!-- END Close Side Overlay -->
+                        </div>
+                    </div>
+                </div>
+                <!-- END Side Header -->
+
+                <!-- Side Content -->
+                <div class="content-side">
+                    <p>
+                        Content..
+                    </p>
+                </div>
+                <!-- END Side Content -->
+            </aside>
             <!-- END Side Overlay -->
 
             <!-- Sidebar -->
@@ -86,45 +123,6 @@
                 <!-- Side Navigation -->
                 <div class="content-side content-side-full">
                     <!-- Right Side Of Navbar -->
-                    @guest
-                    <div class="row justify-content-center mt-4"><span class="color-black bold">Menu</span></div>
-                    <ul class="nav-main">
-                        <!-- Authentication Links -->
-                         <li class="nav-main-item nav-item-bordered">
-                              <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                         </li>
-                         <li class="nav-main-item nav-item-bordered">
-                              @if (Route::has('register'))
-                                   <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                              @endif
-                         </li>
-                    </ul>
-                    @else
-                    <div class="row justify-content-center"><span class="color-black bold">Logged in as</span></div>
-                    <ul class="nav-main">
-                         <li class="nav-main-item nav-item-bordered user-nav-item">
-                         <a class="nav-main-link nav-main-link-submenu user-nav-item" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
-                              <span class="nav-main-link-name">{{ Auth::user()->name }}</span>
-                         </a>
-                         <ul class="nav-main-submenu">
-                              <li class="nav-main-item">
-
-                                   <a class="nav-main-link" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
-                                                  document.getElementById('logout-form').submit();">
-                                   {{ __('Logout') }}
-                                   </a>
-
-                                   <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                   @csrf
-                                   </form>
-                              </li>
-                         </ul>
-                         </li>
-                    </ul>
-                    <div class="row justify-content-center mt-4"><span class="color-black bold">Menu</span></div>
-                    @endguest
-
                     @if (!Auth::guest())
                     <ul class="nav-main">
                         <li class="nav-main-item nav-item-bordered">
@@ -220,33 +218,63 @@
             <!-- END Sidebar -->
 
             <!-- Header -->
-            <header id="title-header">
+            <header id="page-header">
                 <!-- Header Content -->
                 <div class="content-header">
                     <!-- Left Section -->
-                    <div class="full-width">
-                    <h2 class="app-title">Database Monitor</h2>
-
-                    </div>
+                    <h1 class="app-title">Database Monitor</h1>
                     <!-- END Left Section -->
 
                     <!-- Right Section -->
-                    <div id="notifications-div">
-
-
+                    <div>
                         <!-- User Dropdown -->
-                        <div class="dropdown d-inline-block mr-5">
+                        @guest
+                        <div class="dropdown d-inline-block">
+                            <button type="button" class="btn btn-dual" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-fw fa-user d-sm-none"></i>
+                                <span class="d-none d-sm-inline-block">Guest</span>
+                                <i class="fa fa-fw fa-angle-down ml-1 d-none d-sm-inline-block"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right p-0" aria-labelledby="page-header-user-dropdown">
+                                <div class="p-2">
+                                <a class="nav-main-link" href="{{ route('login') }}">
+                                        <i class="far fa-fw fa-arrow-alt-circle-left mr-1"></i> Login
+                                   </a>
+                                </div>
+                            </div>
                         </div>
+                        @else
+                        <div class="dropdown d-inline-block">
+                            <button type="button" class="btn btn-dual" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-fw fa-user d-sm-none"></i>
+                                <span class="d-none d-sm-inline-block">{{ Auth::user()->name }}</span>
+                                <i class="fa fa-fw fa-angle-down ml-1 d-none d-sm-inline-block"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right p-0" aria-labelledby="page-header-user-dropdown">
+                                <div class="p-2">
+                                <a class="nav-main-link" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                  document.getElementById('logout-form').submit();">
+                                        <i class="far fa-fw fa-arrow-alt-circle-left mr-1"></i> Log Out
+                                   </a>
+
+                                   <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                   @csrf
+                                   </form>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
                         <!-- END User Dropdown -->
 
                         <!-- Notifications Dropdown -->
-                        <div class="dropdown d-inline-block mr-3">
-                            <button type="button" class="btn btn-dual-light" id="page-header-notifications-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div class="dropdown d-inline-block">
+                            <button type="button" class="btn btn-dual" id="page-header-notifications-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-fw fa-bell"></i>
-                                <span class="badge badge-red">5</span>
+                                <span class="badge badge-secondary badge-pill">5</span>
                             </button>
                             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0" aria-labelledby="page-header-notifications-dropdown">
-                                <div class="bg-primary-dark rounded-top font-w600 text-white text-center p-3">
+                                <div class="bg-primary-darker rounded-top font-w600 text-white text-center p-3">
                                    Notifications
                                 </div>
                                 <ul class="nav-items my-2">
@@ -315,29 +343,18 @@
                         </div>
                         <!-- END Notifications Dropdown -->
 
-
+                        <!-- Toggle Side Overlay -->
+                        <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                        <!--
+                        <button type="button" class="btn btn-dual" data-toggle="layout" data-action="side_overlay_toggle">
+                            <i class="far fa-fw fa-list-alt"></i>
+                        </button>
+                         -->
+                        <!-- END Toggle Side Overlay -->
                     </div>
                     <!-- END Right Section -->
                 </div>
                 <!-- END Header Content -->
-
-                <!-- Header Search -->
-                <div id="page-header-search" class="overlay-header bg-primary">
-                    <div class="content-header">
-                        <form class="w-100" action="/monitor" method="post">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-                                    <button type="button" class="btn btn-primary" data-toggle="layout" data-action="header_search_off">
-                                        <i class="fa fa-fw fa-times-circle"></i>
-                                    </button>
-                                </div>
-                                <input type="text" class="form-control border-0" placeholder="Search or hit ESC.." id="page-header-search-input" name="page-header-search-input">
-                            </div>
-                        </form>
-                   </div>
-                </div>
-                <!-- END Header Search -->
 
                 <!-- Header Loader -->
                 <!-- Please check out the Loaders page under Components category to see examples of showing/hiding it -->

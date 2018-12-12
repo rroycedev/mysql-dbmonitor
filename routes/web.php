@@ -15,12 +15,17 @@
  * @link      http://www.rroycedev.com/
  **/
 
-Route::view(
+Route::get(
     '/',
-    'home'
+    'HomeController@index'
 );
 
 Route::get(
+    '/home',
+    'HomeController@index'
+);
+ 
+ Route::get(
     '/monitor',
     'MonitorController@index'
 );

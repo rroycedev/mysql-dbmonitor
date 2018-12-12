@@ -11228,7 +11228,7 @@ small,
 
 @media (min-width: 1200px) {
   .content.content-narrow {
-    max-width: 96% !important;
+    max-width: 100% !important;
   }
 }
 
@@ -11587,7 +11587,7 @@ small,
   #page-container.main-content-narrow > #page-header .content,
   #page-container.main-content-narrow > #main-container .content,
   #page-container.main-content-narrow > #page-footer .content {
-    max-width: 96%;
+    max-width: 100%;
   }
 }
 
@@ -24828,13 +24828,10 @@ body {
   border-top: 2px outset #d0d0d0;
 }
 
-.user-nav-item {
-  background-color: #faebd7;
-  font-weight: bold;
-}
-
-.user-nav-item:hover {
-  background-color: #faebd7;
+.app-title {
+  width: calc(100% - 180px);
+  text-align: center;
+  color: #ffffff;
 }
 
 .monitor-th {
