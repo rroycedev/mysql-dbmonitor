@@ -40101,7 +40101,7 @@ var render = function() {
   return _c("div", [
     _c("div", { staticClass: "filter-bar-div" }, [
       _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "mt-1 mb-2" }, [
+        _c("div", { staticClass: "mt-2 mb-2" }, [
           _c("div", { staticClass: "fl" }, [
             _c("div", { staticClass: "button-group filter-bar-button-div" }, [
               _vm._m(0),
@@ -40754,7 +40754,8 @@ var staticRenderFns = [
         attrs: { type: "button", "data-toggle": "dropdown" }
       },
       [
-        _vm._v("\n                Clusters\n                "),
+        _c("span", [_vm._v("Clusters")]),
+        _vm._v(" "),
         _c("span", { staticClass: "caret" })
       ]
     )

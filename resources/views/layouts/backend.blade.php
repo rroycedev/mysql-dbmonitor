@@ -49,44 +49,7 @@
     </head>
     <body  onresize="resizeBody()">
         <div id="page-container" class="sidebar-o sidebar-dark enable-page-overlay side-scroll page-header page-header-dark main-content-narrow">
-            <!-- Side Overlay-->
-            <aside id="side-overlay">
-                <!-- Side Header -->
-                <div class="bg-image" style="background-image: url('{{ asset('media/various/bg_side_overlay_header.jpg') }}');">
-                    <div class="bg-primary-op">
-                        <div class="content-header">
-                            <!-- User Avatar -->
-                            <a class="img-link mr-1" href="javascript:void(0)">
-                                <img class="img-avatar img-avatar48" src="{{ asset('media/avatars/avatar10.jpg') }}" alt="">
-                            </a>
-                            <!-- END User Avatar -->
 
-                            <!-- User Info -->
-                            <div class="ml-2">
-                                <a class="text-white font-w600" href="javascript:void(0)">George Taylor</a>
-                                <div class="text-white-75 font-size-sm font-italic">Full Stack Developer</div>
-                            </div>
-                            <!-- END User Info -->
-
-                            <!-- Close Side Overlay -->
-                            <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-                            <a class="ml-auto text-white" href="javascript:void(0)" data-toggle="layout" data-action="side_overlay_close">
-                                <i class="fa fa-times-circle"></i>
-                            </a>
-                            <!-- END Close Side Overlay -->
-                        </div>
-                    </div>
-                </div>
-                <!-- END Side Header -->
-
-                <!-- Side Content -->
-                <div class="content-side">
-                    <p>
-                        Content..
-                    </p>
-                </div>
-                <!-- END Side Content -->
-            </aside>
             <!-- END Side Overlay -->
 
             <!-- Sidebar -->
@@ -96,7 +59,7 @@
                     <div class="content-header ">
                         <!-- Logo -->
                         <a class="link-fx font-w600 font-size-lg text-white" href="/">
-                            <span class="text-white-75">Royce Consulting</span>
+                            <h2 class="text-white-75 mb-0">Royce Consulting</h2>
                         </a>
                         <!-- END Logo -->
 
@@ -122,6 +85,47 @@
 
                 <!-- Side Navigation -->
                 <div class="content-side content-side-full">
+                    <!-- Right Side Of Navbar -->
+                    @guest
+                    <div class="row justify-content-center mt-4"><span class="color-black bold">Menu</span></div>
+                    <ul class="nav-main">
+                        <!-- Authentication Links -->
+                         <li class="nav-main-item nav-item-bordered">
+                              <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                         </li>
+                         <li class="nav-main-item nav-item-bordered">
+                              @if (Route::has('register'))
+                                   <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                              @endif
+                         </li>
+                    </ul>
+                    @else
+                    <div class="row justify-content-center"><span class="color-black bold">Logged in as</span></div>
+                    <ul class="nav-main">
+                         <li class="nav-main-item nav-item-bordered user-nav-item">
+                         <a class="nav-main-link nav-main-link-submenu user-nav-item" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
+                              <span class="nav-main-link-name">{{ Auth::user()->name }}</span>
+                         </a>
+                         <ul class="nav-main-submenu">
+                              <li class="nav-main-item">
+
+                                   <a class="nav-main-link" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                  document.getElementById('logout-form').submit();">
+                                   {{ __('Logout') }}
+                                   </a>
+
+                                   <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                   @csrf
+                                   </form>
+                              </li>
+                         </ul>
+                         </li>
+                    </ul>
+                    <div class="row justify-content-center mt-4"><span class="color-black bold">Menu</span></div>
+                    @endguest
+
+                    @if (!Auth::guest())
                     <ul class="nav-main">
                         <li class="nav-main-item nav-item-bordered">
                             <a class="nav-main-link{{ request()->is('monitor') ? ' active' : '' }}" href="/monitor">
@@ -209,6 +213,7 @@
                         </li>
 
                     </ul>
+          @endif                   
                 </div>
                 <!-- END Side Navigation -->
             </nav>
@@ -227,6 +232,8 @@
 
                     <!-- Right Section -->
                     <div id="notifications-div">
+
+
                         <!-- User Dropdown -->
                         <div class="dropdown d-inline-block mr-5">
                         </div>

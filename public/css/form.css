@@ -139,7 +139,32 @@
      color: #00ff00;
 }
 
+.color-white {
+     color: #ffffff;
+}
+
+.color-black {
+     color: #000000;
+}
+
+.bold {
+     font-weight: bold;
+}
+
 .tm-outset {
      border-top: 1px outset #969494;
 }
+
+.user-nav-item {
+     background-color: #faebd7 !important;
+     font-weight: bold !important;
+     color: #000000 !important;
+}
+
+.user-nav-item:hover {
+     background-color: #faebd7 !important;
+     color: #000000 !important;
+}
+
+
 

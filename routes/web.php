@@ -17,7 +17,7 @@
 
 Route::view(
     '/',
-    'monitor'
+    'home'
 );
 
 Route::get(
@@ -362,3 +362,7 @@ Route::get(
     '/api/makeserverinactive/{server_id}',
     'RestAPIController@makeServerInactive'
 );
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

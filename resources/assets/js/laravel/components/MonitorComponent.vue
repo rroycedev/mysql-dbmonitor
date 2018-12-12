@@ -2,7 +2,7 @@
   <div>
     <div class="filter-bar-div">
       <div class="row justify-content-center">
-        <div class="mt-1 mb-2">
+        <div class="mt-2 mb-2">
           <div class="fl">
             <div class="button-group filter-bar-button-div">
               <button
@@ -10,7 +10,7 @@
                 class="btn btn-default btn-lg dropdown-toggle monitoring-filter-btn"
                 data-toggle="dropdown"
               >
-                Clusters
+                <span>Clusters</span>
                 <span class="caret"></span>
               </button>
               <ul class="dropdown-menu">
