@@ -1,13 +1,13 @@
-@extends('layouts.app')
+@extends('layouts.backend')
 
 @section('content')
-<div class="container">
+<div class="container p-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+        <div class="block block-rounded">
+                <div class="panel-header"><h2 class="panel-title">{{ __('Reset Password') }}</h2></div>
 
-                <div class="card-body">
+                <div class="block-content p-5">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}

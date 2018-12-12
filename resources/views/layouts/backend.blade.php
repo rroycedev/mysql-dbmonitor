@@ -21,7 +21,7 @@
         <!-- Fonts and Styles -->
         @yield('css_before')
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,400i,600,700">
-        <link rel="stylesheet" href="{{ mix('css/dashmix.css') }}">
+        <link rel="stylesheet" href="{{ mix('/css/dashmix.css') }}">
 
         <link rel="stylesheet" href="/css/form.css">
         <link rel="stylesheet" href="/css/tooltip.css">
@@ -235,10 +235,15 @@
                                 <span class="d-none d-sm-inline-block">Guest</span>
                                 <i class="fa fa-fw fa-angle-down ml-1 d-none d-sm-inline-block"></i>
                             </button>
-                            <div class="dropdown-menu dropdown-menu-right p-0" aria-labelledby="page-header-user-dropdown">
-                                <div class="p-2">
+                            <div class="dropdown-menu dropdown-menu-right p-0 guest-dropdown" aria-labelledby="page-header-user-dropdown">
+                                <div class="p-2 dropdown-height">
                                 <a class="nav-main-link" href="{{ route('login') }}">
                                         <i class="far fa-fw fa-arrow-alt-circle-left mr-1"></i> Login
+                                   </a>
+                                </div>
+                                <div class="p-2 dropdown-height">
+                                <a class="nav-main-link" href="{{ route('register') }}">
+                                        <i class="far fa-fw fa-arrow-alt-circle-left mr-1"></i> Register
                                    </a>
                                 </div>
                             </div>
@@ -371,7 +376,7 @@
 
             <!-- Main Container -->
             <main id="main-container">
-                @yield('content')
+                     @yield('content')
             </main>
             <!-- END Main Container -->
 
@@ -393,13 +398,13 @@
         <!-- END Page Container -->
 
         <!-- Dashmix Core JS -->
-        <script src="{{ mix('js/dashmix.app.js') }}"></script>
+        <script src="{{ mix('/js/dashmix.app.js') }}"></script>
 
         <!-- Laravel Scaffolding JS -->
-        <script src="{{ mix('js/laravel.app.js') }}"></script>
+        <script src="{{ mix('/js/laravel.app.js') }}"></script>
 
         <!-- Semaphore -->
-        <script src="{{ mix('js/semaphore.js') }}"></script>
+        <script src="{{ mix('/js/semaphore.js') }}"></script>
 
        <script src="/js/filtertoolbar.js"></script>
 

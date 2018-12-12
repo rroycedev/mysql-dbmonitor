@@ -21059,10 +21059,13 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('monitor-filterbar-compone
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_bootstrap_vue__["a" /* default */]);
 
-var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
-  el: '#app'
+/*
+const app = new Vue({
+     el: '#app'
 
 });
+
+*/
 
 /***/ }),
 /* 81 */

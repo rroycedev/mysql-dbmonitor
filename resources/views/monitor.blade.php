@@ -14,7 +14,10 @@
             if (state == "complete") {
 
                // var filterbar = new FilterToolbarModel();
+               const app = new Vue({
+                      el: '#app'
 
+               });
             }
        }
 
