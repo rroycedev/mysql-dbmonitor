@@ -21,6 +21,11 @@ use Illuminate\Http\Request;
 
 class ClusterAdminController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function clusters()
     {
         $rows = Cluster::orderBy('view_order')->get();

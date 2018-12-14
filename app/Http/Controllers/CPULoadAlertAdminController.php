@@ -22,13 +22,19 @@ use Illuminate\Http\Request;
 
 class CPULoadAlertAdminController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function alerts()
     {
         $rows = CPULoadAlert::join(
             'servers',
             'cpu_load_alerts.server_id',
             '=',
-            'servers.server_id')->orderBy('servers.hostname')->get();
+            'servers.server_id'
+        )->orderBy('servers.hostname')->get();
 
         return view('admin.alert.cpuload', array("alerts" => $rows));
     }
@@ -56,7 +62,8 @@ class CPULoadAlertAdminController extends Controller
             'servers',
             'cpu_load_alerts.server_id',
             '=',
-            'servers.server_id')->where("cpu_load_alerts.server_id", "=", $server_id)->orderBy('servers.hostname')->get();
+            'servers.server_id'
+        )->where("cpu_load_alerts.server_id", "=", $server_id)->orderBy('servers.hostname')->get();
 
         return view('admin.alert.cpuload.edit', array("alert" => $rows[0]));
     }

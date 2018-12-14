@@ -21,6 +21,11 @@ use Illuminate\Http\Request;
 
 class DNSAliasAdminController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function dnsaliases()
     {
         $rows = DNSAlias::orderBy('name')->get();

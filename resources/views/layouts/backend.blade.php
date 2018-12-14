@@ -123,7 +123,7 @@
                 <!-- Side Navigation -->
                 <div class="content-side content-side-full">
                     <!-- Right Side Of Navbar -->
-                    @if (!Auth::guest())
+                    @if (Auth::user() && Auth::user()->email_verified_at != '')
                     <ul class="nav-main">
                         <li class="nav-main-item nav-item-bordered">
                             <a class="nav-main-link{{ request()->is('monitor') ? ' active' : '' }}" href="/monitor">
@@ -222,13 +222,13 @@
                 <!-- Header Content -->
                 <div class="content-header">
                     <!-- Left Section -->
-                    <h1 class="app-title">Database Monitor</h1>
+                    <h1 class="app-title justify-content-center">Database Monitor</h1>
                     <!-- END Left Section -->
 
                     <!-- Right Section -->
                     <div>
                         <!-- User Dropdown -->
-                        @guest
+                        @if (!Auth::user() || Auth::user()->email_verified_at == '')
                         <div class="dropdown d-inline-block">
                             <button type="button" class="btn btn-dual" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-fw fa-user d-sm-none"></i>

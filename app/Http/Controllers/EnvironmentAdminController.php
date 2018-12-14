@@ -21,6 +21,11 @@ use Illuminate\Http\Request;
 
 class EnvironmentAdminController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function environments()
     {
         $rows = Environment::orderBy('view_order')->get();

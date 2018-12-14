@@ -22,7 +22,12 @@ use Illuminate\Http\Request;
 
 class ReplicationLagAlertAdminController extends Controller
 {
-    public function alerts()
+     public function __construct()
+     {
+         $this->middleware('auth');
+     }
+
+     public function alerts()
     {
         $rows = ReplicationLagAlert::join(
             'servers',

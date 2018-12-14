@@ -21,6 +21,11 @@ use Illuminate\Http\Request;
 
 class DatacenterAdminController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function datacenters()
     {
         $rows = Datacenter::orderBy('view_order')->get();

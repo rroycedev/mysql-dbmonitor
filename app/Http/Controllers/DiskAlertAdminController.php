@@ -35,6 +35,11 @@ use Illuminate\Http\Request;
 
 class DiskAlertAdminController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Method: alerts
      *
