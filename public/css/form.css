@@ -173,3 +173,12 @@
 .guest-dropdown {
      height: 85px;
 }
+
+.home-main {
+     width: 90%;
+     margin: auto;
+}
+
+.home-font {
+     font-size: 1rem;
+}

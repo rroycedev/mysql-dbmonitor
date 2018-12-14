@@ -36,8 +36,18 @@
           <script>
                function resizeBody() {
                     var height = window.innerHeight;
+                    var width = window.innerWidth;
 
                     $('#main-container').css('max-height', (height - 140) + 'px');
+
+                    var homeContainer = $('#home-container');
+
+                    if (homeContainer) {
+                         var homeContainerHeight = homeContainer[0].clientHeight;
+                         var homeContainerWidth = homeContainer[0].clientWidth;
+
+                         homeContainer.height(height - 340);
+                    }
 //                    var m = document.getElementById("main-container");
 
 //                    m.style.max-height = (height - 140) + "px";
@@ -211,7 +221,7 @@
                         </li>
 
                     </ul>
-          @endif                   
+          @endif
                 </div>
                 <!-- END Side Navigation -->
             </nav>
@@ -235,18 +245,12 @@
                                 <span class="d-none d-sm-inline-block">Guest</span>
                                 <i class="fa fa-fw fa-angle-down ml-1 d-none d-sm-inline-block"></i>
                             </button>
-                            <div class="dropdown-menu dropdown-menu-right p-0 guest-dropdown" aria-labelledby="page-header-user-dropdown">
-                                <div class="p-2 dropdown-height">
-                                <a class="nav-main-link" href="{{ route('login') }}">
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="page-header-user-dropdown">
+                                <div class="p-2">
+                                   <a class="nav-main-link" href="{{ route('login') }}">
                                         <i class="far fa-fw fa-arrow-alt-circle-left mr-1"></i> Login
                                    </a>
                                 </div>
-                                <div class="p-2 dropdown-height">
-                                <a class="nav-main-link" href="{{ route('register') }}">
-                                        <i class="far fa-fw fa-arrow-alt-circle-left mr-1"></i> Register
-                                   </a>
-                                </div>
-                            </div>
                         </div>
                         @else
                         <div class="dropdown d-inline-block">
@@ -257,8 +261,8 @@
                             </button>
                             <div class="dropdown-menu dropdown-menu-right p-0" aria-labelledby="page-header-user-dropdown">
                                 <div class="p-2">
-                                <a class="nav-main-link" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
+                                   <a class="nav-main-link" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
                                                   document.getElementById('logout-form').submit();">
                                         <i class="far fa-fw fa-arrow-alt-circle-left mr-1"></i> Log Out
                                    </a>
@@ -266,6 +270,11 @@
                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                    @csrf
                                    </form>
+                                </div>
+                                <div class="p-2">
+                                   <a class="nav-main-link" href="{{ route('settings') }}">
+                                        <i class="far fa-fw fa-arrow-alt-circle-left mr-1"></i> Settings
+                                   </a>
                                 </div>
                             </div>
                         </div>

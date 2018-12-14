@@ -24,12 +24,12 @@ use Illuminate\Http\Request;
 
 class ServerAdminController extends Controller
 {
-     public function __construct()
-     {
-         $this->middleware('auth');
-     }
-     
-     public function servers()
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    public function servers()
     {
         $rows = Server::with('cluster')->with('datacenter')->with('environment')->orderBy('hostname')->get();
 

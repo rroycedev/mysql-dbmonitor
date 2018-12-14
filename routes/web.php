@@ -24,8 +24,8 @@ Route::get(
     '/home',
     'HomeController@index'
 );
- 
- Route::get(
+
+Route::get(
     '/monitor',
     'MonitorController@index'
 );
@@ -375,3 +375,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/settings', 'UserSettingsController@index')->name('settings');
+
+Route::post('/settings/save', 'UserSettingsController@settingsSave')->name('savesettings');
