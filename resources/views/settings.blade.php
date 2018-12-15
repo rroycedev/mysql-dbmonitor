@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="block block-rounded">
-                <div class="panel-header"><h2 class="panel-title">{{ __('Settings') }}</h2></div>
+                <div class="panel-header"><h3 class="panel-title">{{ __('Settings') }}</h3></div>
 
                 <div class="block-content p-5">
                     @if (session('error'))
@@ -54,9 +54,12 @@
                         </div>
 
                         <div class="form-group row mb-0 justify-content-center">
-                        <button type="submit" class="btn btn-primary">
+                             <button type="submit" class="btn btn-primary">
                                     {{ __('Save') }}
-                                </button>
+                              </button>
+                              <a href="{{ url()->previous() }}" class="btn btn-danger ml-2">
+                                   {{ __('Cancel') }}
+                              </a>
                         </div>
                     </form>
                 </div>

@@ -7104,7 +7104,7 @@ module.exports = Cancel;
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global, setImmediate) {/*!
- * Vue.js v2.5.20
+ * Vue.js v2.5.21
  * (c) 2014-2018 Evan You
  * Released under the MIT License.
  */
@@ -10006,7 +10006,7 @@ function mountComponent (
   // component's mounted hook), which relies on vm._watcher being already defined
   new Watcher(vm, updateComponent, noop, {
     before: function before () {
-      if (vm._isMounted) {
+      if (vm._isMounted && !vm._isDestroyed) {
         callHook(vm, 'beforeUpdate');
       }
     }
@@ -10947,9 +10947,10 @@ function renderList (
       ret[i] = render(val[key], key, i);
     }
   }
-  if (isDef(ret)) {
-    (ret)._isVList = true;
+  if (!isDef(ret)) {
+    ret = [];
   }
+  (ret)._isVList = true;
   return ret
 }
 
@@ -12291,7 +12292,7 @@ Object.defineProperty(Vue, 'FunctionalRenderContext', {
   value: FunctionalRenderContext
 });
 
-Vue.version = '2.5.20';
+Vue.version = '2.5.21';
 
 /*  */
 
@@ -13949,7 +13950,7 @@ function genComponentModel (
 
   el.model = {
     value: ("(" + value + ")"),
-    expression: ("\"" + value + "\""),
+    expression: JSON.stringify(value),
     callback: ("function (" + baseValueExpression + ") {" + assignment + "}")
   };
 }
@@ -16570,7 +16571,7 @@ function processKey (el) {
         var parent = el.parent;
         if (iterator && iterator === exp && parent && parent.tag === 'transition-group') {
           warn$2(
-            "Do not use v-for index as key on <transtion-group> children, " +
+            "Do not use v-for index as key on <transition-group> children, " +
             "this is the same as not using keys."
           );
         }
@@ -17687,7 +17688,9 @@ function genChildren (
       el$1.tag !== 'template' &&
       el$1.tag !== 'slot'
     ) {
-      var normalizationType = checkSkip && state.maybeComponent(el$1) ? ",1" : "";
+      var normalizationType = checkSkip
+        ? state.maybeComponent(el$1) ? ",1" : ",0"
+        : "";
       return ("" + ((altGenElement || genElement)(el$1, state)) + normalizationType)
     }
     var normalizationType$1 = checkSkip
@@ -39402,7 +39405,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /***/ (function(module, exports, __webpack_require__) {
 
     /**
- * Vue Cookies v1.5.11
+ * Vue Cookies v1.5.12
  * https://github.com/cmp-cc/vue-cookies
  *
  * Copyright 2016, cmp-cc
@@ -39426,9 +39429,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
             if(expireTimes) {
                 defaultConfig.expires = expireTimes;
             }
-            if(path === '') {
-                defaultConfig.path = '';
-            }else {
+            if(path) {
                 defaultConfig.path = '; path=' + path;
             }
         },
@@ -39824,6 +39825,53 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var monitoringItems = [];
 
@@ -39847,6 +39895,16 @@ function statusPoller(c) {}
     };
   },
   methods: {
+    convertUTCDateToLocalDate: function convertUTCDateToLocalDate(date) {
+      var newDate = new Date(date.getTime() + date.getTimezoneOffset() * 60 * 1000);
+
+      var offset = date.getTimezoneOffset() / 60;
+      var hours = date.getHours();
+
+      newDate.setHours(hours - offset);
+
+      return newDate;
+    },
     makeServerActive: function makeServerActive(server_id, $event) {
       var self = this;
 
@@ -39903,7 +39961,7 @@ function statusPoller(c) {}
               this.expandedServers.push(this.status[i].server_id);
             }
           }
-          $cookies.set('expandedServers', JSON.stringify(this.expandedServers));
+          $cookies.set("expandedServers", JSON.stringify(this.expandedServers));
           this.$forceUpdate();
           return;
         }
@@ -39947,17 +40005,17 @@ function statusPoller(c) {}
     },
     hideShowHealthy: function hideShowHealthy($event) {
       this.showHealthy = !this.showHealthy;
-      $cookies.set('showHealthy', this.showHealthy ? "1" : "0");
+      $cookies.set("showHealthy", this.showHealthy ? "1" : "0");
       this.$forceUpdate();
     },
     hideShowMaintenance: function hideShowMaintenance($event) {
       this.showMaintenance = !this.showMaintenance;
-      $cookies.set('showMaintenance', this.showMaintenance ? "1" : "0");
+      $cookies.set("showMaintenance", this.showMaintenance ? "1" : "0");
       this.$forceUpdate();
     },
     hideShowInactive: function hideShowInactive($event) {
       this.showInactive = !this.showInactive;
-      $cookies.set('showInactive', this.showInactive ? "1" : "0");
+      $cookies.set("showInactive", this.showInactive ? "1" : "0");
       this.$forceUpdate();
     },
     filterOptionClicked: function filterOptionClicked(filterType, key, $event) {
@@ -39971,7 +40029,7 @@ function statusPoller(c) {}
           } else {
             this.selectedClusters.push(key);
           }
-          $cookies.set('selectedClusters', JSON.stringify(this.selectedClusters));
+          $cookies.set("selectedClusters", JSON.stringify(this.selectedClusters));
           this.$forceUpdate();
           break;
         case "environment":
@@ -39983,7 +40041,7 @@ function statusPoller(c) {}
           } else {
             this.selectedEnvironments.push(key);
           }
-          $cookies.set('selectedEnvironments', JSON.stringify(this.selectedEnvironments));
+          $cookies.set("selectedEnvironments", JSON.stringify(this.selectedEnvironments));
           this.$forceUpdate();
           break;
         case "datacenter":
@@ -39995,7 +40053,7 @@ function statusPoller(c) {}
           } else {
             this.selectedDatacenters.push(key);
           }
-          $cookies.set('selectedDatacenters', JSON.stringify(this.selectedDatacenters));
+          $cookies.set("selectedDatacenters", JSON.stringify(this.selectedDatacenters));
           this.$forceUpdate();
           break;
       }
@@ -40012,6 +40070,63 @@ function statusPoller(c) {}
           self.environments = response.environments;
           self.datacenters = response.datacenters;
 
+          var selClusters = JSON.parse($cookies.get("selectedClusters"));
+
+          if (selClusters != null) {
+            self.selectedClusters = selClusters;
+          } else {
+            self.clusters.forEach(function (c) {
+              self.selectedClusters.push(c.cluster_id);
+            });
+          }
+
+          var selEnvironments = JSON.parse($cookies.get("selectedEnvironments"));
+
+          if (selEnvironments != null) {
+            self.selectedEnvironments = selEnvironments;
+          } else {
+            self.environments.forEach(function (e) {
+              self.selectedEnvironments.push(e.environment_id);
+            });
+          }
+
+          var selDatacenters = JSON.parse($cookies.get("selectedDatacenters"));
+
+          if (selDatacenters != null) {
+            self.selectedDatacenters = selDatacenters;
+          } else {
+            self.datacenters.forEach(function (d) {
+              self.selectedDatacenters.push(d.datacenter_id);
+            });
+          }
+
+          var showHealthy = $cookies.get("showHealthy");
+
+          if (showHealthy != null) {
+            self.showHealthy = showHealthy == "1" ? true : false;
+          } else {
+            self.showHealthy = 1;
+          }
+
+          var showMaintenance = $cookies.get("showMaintenance");
+
+          if (showMaintenance != null) {
+            self.showMaintenance = showMaintenance == "1" ? true : false;
+          } else {
+            self.showMaintenance = 1;
+          }
+
+          var showInactive = $cookies.get("showInactive");
+
+          if (showInactive != null) {
+            self.showInactive = showInactive == "1" ? true : false;
+          }
+
+          var expandedServers = JSON.parse($cookies.get("expandedServers"));
+
+          if (expandedServers != null) {
+            self.expandedServers = expandedServers;
+          }
           self.statusPoller();
         }
       });
@@ -40025,7 +40140,7 @@ function statusPoller(c) {}
         dataType: "json",
         success: function success(response) {
           self.status = response.status;
-          self.lastUpdated = response.last_updated;
+          self.lastUpdated = self.convertUTCDateToLocalDate(new Date(response.last_updated)).toLocaleString();
           for (var i = 0; i < self.status.length; i++) {
             if (self.expandedServers.includes(self.status[i].server_id)) {
               self.status[i].expanded = true;
@@ -40039,48 +40154,6 @@ function statusPoller(c) {}
     }
   },
   mounted: function mounted() {
-    var selClusters = JSON.parse($cookies.get('selectedClusters'));
-
-    if (selClusters != null) {
-      this.selectedClusters = selClusters;
-    }
-
-    var selEnvironments = JSON.parse($cookies.get('selectedEnvironments'));
-
-    if (selEnvironments != null) {
-      this.selectedEnvironments = selEnvironments;
-    }
-
-    var selDatacenters = JSON.parse($cookies.get('selectedDatacenters'));
-
-    if (selDatacenters != null) {
-      this.selectedDatacenters = selDatacenters;
-    }
-
-    var showHealthy = $cookies.get('showHealthy');
-
-    if (showHealthy != null) {
-      this.showHealthy = showHealthy == "1" ? true : false;
-    }
-
-    var showMaintenance = $cookies.get('showMaintenance');
-
-    if (showMaintenance != null) {
-      this.showMaintenance = showMaintenance == "1" ? true : false;
-    }
-
-    var showInactive = $cookies.get('showInactive');
-
-    if (showInactive != null) {
-      this.showInactive = showInactive == "1" ? true : false;
-    }
-
-    var expandedServers = JSON.parse($cookies.get('expandedServers'));
-
-    if (expandedServers != null) {
-      this.expandedServers = expandedServers;
-    }
-
     this.startup();
   },
 
@@ -40138,13 +40211,14 @@ var render = function() {
                         }
                       }),
                       _vm._v(
-                        "\n                   " +
+                        "\n                 " +
                           _vm._s(cluster.name) +
-                          "\n                "
+                          "\n              "
                       )
                     ]
                   )
-                })
+                }),
+                0
               )
             ])
           ]),
@@ -40182,13 +40256,14 @@ var render = function() {
                         }
                       }),
                       _vm._v(
-                        "\n                   " +
+                        "\n                 " +
                           _vm._s(environment.name) +
-                          "\n                "
+                          "\n              "
                       )
                     ]
                   )
-                })
+                }),
+                0
               )
             ])
           ]),
@@ -40226,13 +40301,14 @@ var render = function() {
                         }
                       }),
                       _vm._v(
-                        "\n                   " +
+                        "\n                 " +
                           _vm._s(datacenter.name) +
-                          "\n                "
+                          "\n              "
                       )
                     ]
                   )
-                })
+                }),
+                0
               )
             ])
           ]),
@@ -40242,7 +40318,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", [
+        _c("div", { staticClass: "checkbox-div" }, [
           _c("div", { staticClass: "fl" }, [
             _c("input", {
               staticClass: "filter-checkbox",
@@ -40292,9 +40368,9 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "row justify-content-center mt-2" }, [
+      _c("div", { staticClass: "row justify-content-center mt-3" }, [
         _c("span", [
-          _vm._v("Last Updated: "),
+          _vm._v("\n        Last Updated:\n        "),
           _c("span", { staticClass: "monitoring-last-updated" }, [
             _vm._v(_vm._s(_vm.lastUpdated))
           ])
@@ -40302,346 +40378,299 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(6),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "monitor-main-div" },
-      _vm._l(_vm.status, function(server) {
-        return _c("div", { key: server.server_id }, [
-          _c(
-            "div",
-            {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value:
-                    _vm.selectedEnvironments.includes(server.environment_id) &&
-                    _vm.selectedClusters.includes(server.cluster_id) &&
-                    _vm.selectedDatacenters.includes(server.datacenter_id) &&
-                    (!server.is_healthy ||
-                      (server.is_healthy && _vm.showHealthy)) &&
-                    (server.status == 1 ||
-                      (server.status == 2 && _vm.showMaintenance) ||
-                      (server.status == 0 && _vm.showInactive)),
-                  expression:
-                    "selectedEnvironments.includes(server.environment_id) && selectedClusters.includes(server.cluster_id) && selectedDatacenters.includes(server.datacenter_id) && \n          (!server.is_healthy || server.is_healthy && showHealthy) && \n          (server.status == 1 || server.status == 2 && showMaintenance || server.status == 0 && showInactive)"
+    _c("div", { staticClass: "of-auto" }, [
+      _vm._m(6),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "monitor-main-div" },
+        _vm._l(_vm.status, function(server) {
+          return _c("div", { key: server.server_id }, [
+            _c(
+              "div",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value:
+                      _vm.selectedEnvironments.includes(
+                        server.environment_id
+                      ) &&
+                      _vm.selectedClusters.includes(server.cluster_id) &&
+                      _vm.selectedDatacenters.includes(server.datacenter_id) &&
+                      (!server.is_healthy ||
+                        (server.is_healthy && _vm.showHealthy)) &&
+                      (server.status == 1 ||
+                        (server.status == 2 && _vm.showMaintenance) ||
+                        (server.status == 0 && _vm.showInactive)),
+                    expression:
+                      "selectedEnvironments.includes(server.environment_id) && selectedClusters.includes(server.cluster_id) && selectedDatacenters.includes(server.datacenter_id) && \n        (!server.is_healthy || server.is_healthy && showHealthy) && \n        (server.status == 1 || server.status == 2 && showMaintenance || server.status == 0 && showInactive)"
+                  }
+                ],
+                staticStyle: {
+                  "border-left": "1px solid white",
+                  "border-right": "1px solid white"
                 }
-              ]
-            },
-            [
-              _c("div", [
-                _c("div", { staticClass: "monitor-server-div" }, [
-                  _c(
-                    "div",
-                    {
-                      class:
-                        "monitor-expand-collapse-div monitor-td monitor-td " +
-                        (server.slaves.length > 0 ? "cursor-pointer" : ""),
-                      on: {
-                        click: function($event) {
-                          _vm.expandCollapseServer(server.server_id, $event)
+              },
+              [
+                _c("div", [
+                  _c("div", { staticClass: "monitor-server-div" }, [
+                    _c(
+                      "div",
+                      {
+                        class:
+                          "monitor-expand-collapse-div monitor-td monitor-td " +
+                          (server.slaves.length > 0 ? "cursor-pointer" : ""),
+                        on: {
+                          click: function($event) {
+                            _vm.expandCollapseServer(server.server_id, $event)
+                          }
                         }
-                      }
-                    },
-                    [
-                      server.slaves.length > 0 && !server.expanded
-                        ? _c("i", {
-                            staticClass: "fa fa-caret-down",
-                            attrs: { "aria-hidden": "true" }
-                          })
-                        : _vm._e(),
-                      _vm._v(" "),
-                      server.slaves.length > 0 && server.expanded
-                        ? _c("i", {
-                            staticClass: "fa fa-caret-up",
-                            attrs: { "aria-hidden": "true" }
-                          })
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          directives: [
-                            {
-                              name: "show",
-                              rawName: "v-show",
-                              value: server.slaves.length == 0,
-                              expression: "server.slaves.length == 0"
+                      },
+                      [
+                        server.slaves.length > 0 && !server.expanded
+                          ? _c("i", {
+                              staticClass: "fa fa-caret-down",
+                              attrs: { "aria-hidden": "true" }
+                            })
+                          : _vm._e(),
+                        _vm._v(" "),
+                        server.slaves.length > 0 && server.expanded
+                          ? _c("i", {
+                              staticClass: "fa fa-caret-up",
+                              attrs: { "aria-hidden": "true" }
+                            })
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: server.slaves.length == 0,
+                                expression: "server.slaves.length == 0"
+                              }
+                            ]
+                          },
+                          [_vm._v(" ")]
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "monitor-hostname-div monitor-td" },
+                      [_vm._v(_vm._s(server.hostname))]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "monitor-port-name-div monitor-td" },
+                      [
+                        _vm._v(
+                          _vm._s(
+                            server.port_name == "" ? " " : server.port_name
+                          )
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "monitor-ipaddress-div monitor-td" },
+                      [_vm._v(_vm._s(server.ipaddress))]
+                    ),
+                    _vm._v(" "),
+                    server.status == 0
+                      ? _c(
+                          "div",
+                          {
+                            directives: [
+                              {
+                                name: "b-tooltip",
+                                rawName: "v-b-tooltip.html.hover",
+                                modifiers: { html: true, hover: true }
+                              }
+                            ],
+                            staticClass:
+                              "monitor-active-div monitor-td ta-c cursor-pointer",
+                            attrs: {
+                              tabindex: "0",
+                              title: "Click to make active"
+                            },
+                            on: {
+                              click: function($event) {
+                                _vm.makeServerActive(server.server_id, $event)
+                              }
                             }
+                          },
+                          [_vm._v("No")]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    server.status != 0
+                      ? _c(
+                          "div",
+                          {
+                            directives: [
+                              {
+                                name: "b-tooltip",
+                                rawName: "v-b-tooltip.html.hover",
+                                modifiers: { html: true, hover: true }
+                              }
+                            ],
+                            staticClass:
+                              "monitor-active-div monitor-td ta-c cursor-pointer",
+                            attrs: {
+                              tabindex: "0",
+                              title: "Click to make in-active"
+                            },
+                            on: {
+                              click: function($event) {
+                                _vm.makeServerInactive(server.server_id, $event)
+                              }
+                            }
+                          },
+                          [_vm._v("Yes")]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    server.status == 0
+                      ? _c(
+                          "div",
+                          { staticClass: "monitor-maintenance-div monitor-td" },
+                          [_vm._v(" ")]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    server.status == 1
+                      ? _c(
+                          "div",
+                          {
+                            staticClass:
+                              "monitor-maintenance-div monitor-td color-red"
+                          },
+                          [
+                            _c("i", {
+                              directives: [
+                                {
+                                  name: "b-tooltip",
+                                  rawName: "v-b-tooltip.html.hover",
+                                  modifiers: { html: true, hover: true }
+                                }
+                              ],
+                              staticClass: "fa fa-wrench",
+                              attrs: {
+                                title: "Turn on maintenance",
+                                "data-toggle": "tooltip",
+                                "data-html": "true"
+                              },
+                              on: {
+                                click: function($event) {
+                                  _vm.turnOnMaintenance(
+                                    server.server_id,
+                                    $event
+                                  )
+                                }
+                              }
+                            })
                           ]
-                        },
-                        [_vm._v(" ")]
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "monitor-hostname-div monitor-td" },
-                    [_vm._v(_vm._s(server.hostname))]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "monitor-port-name-div monitor-td" },
-                    [
-                      _vm._v(
-                        _vm._s(server.port_name == "" ? " " : server.port_name)
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "monitor-ipaddress-div monitor-td" },
-                    [_vm._v(_vm._s(server.ipaddress))]
-                  ),
-                  _vm._v(" "),
-                  server.status == 0
-                    ? _c(
-                        "div",
-                        {
-                          directives: [
-                            {
-                              name: "b-tooltip",
-                              rawName: "v-b-tooltip.html.hover",
-                              modifiers: { html: true, hover: true }
-                            }
-                          ],
-                          staticClass:
-                            "monitor-active-div monitor-td ta-c cursor-pointer",
-                          attrs: {
-                            tabindex: "0",
-                            title: "Click to make active"
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    server.status == 2
+                      ? _c(
+                          "div",
+                          {
+                            staticClass:
+                              "monitor-maintenance-div monitor-td color-green"
                           },
-                          on: {
-                            click: function($event) {
-                              _vm.makeServerActive(server.server_id, $event)
-                            }
+                          [
+                            _c("i", {
+                              directives: [
+                                {
+                                  name: "b-tooltip",
+                                  rawName: "v-b-tooltip.html.hover",
+                                  modifiers: { html: true, hover: true }
+                                }
+                              ],
+                              staticClass: "fa fa-wrench",
+                              attrs: {
+                                title: "Turn off maintenance",
+                                "data-toggle": "tooltip",
+                                "data-html": "true"
+                              },
+                              on: {
+                                click: function($event) {
+                                  _vm.turnOffMaintenance(
+                                    server.server_id,
+                                    $event
+                                  )
+                                }
+                              }
+                            })
+                          ]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "monitor-connections-div monitor-td ta-r"
+                      },
+                      [_vm._v(_vm._s(server.connection_count))]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        directives: [
+                          {
+                            name: "b-tooltip",
+                            rawName: "v-b-tooltip.html.hover",
+                            modifiers: { html: true, hover: true }
                           }
-                        },
-                        [_vm._v("No")]
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  server.status != 0
-                    ? _c(
-                        "div",
-                        {
-                          directives: [
-                            {
-                              name: "b-tooltip",
-                              rawName: "v-b-tooltip.html.hover",
-                              modifiers: { html: true, hover: true }
-                            }
-                          ],
-                          staticClass:
-                            "monitor-active-div monitor-td ta-c cursor-pointer",
-                          attrs: {
-                            tabindex: "0",
-                            title: "Click to make in-active"
-                          },
-                          on: {
-                            click: function($event) {
-                              _vm.makeServerInactive(server.server_id, $event)
-                            }
-                          }
-                        },
-                        [_vm._v("Yes")]
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  server.status == 0
-                    ? _c(
-                        "div",
-                        { staticClass: "monitor-maintenance-div monitor-td" },
-                        [_vm._v(" ")]
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  server.status == 1
-                    ? _c(
-                        "div",
-                        {
-                          staticClass:
-                            "monitor-maintenance-div monitor-td color-red"
-                        },
-                        [
-                          _c("i", {
-                            directives: [
-                              {
-                                name: "b-tooltip",
-                                rawName: "v-b-tooltip.html.hover",
-                                modifiers: { html: true, hover: true }
-                              }
-                            ],
-                            staticClass: "fa fa-wrench",
-                            attrs: {
-                              title: "Turn on maintenance",
-                              "data-toggle": "tooltip",
-                              "data-html": "true"
-                            },
-                            on: {
-                              click: function($event) {
-                                _vm.turnOnMaintenance(server.server_id, $event)
-                              }
-                            }
-                          })
-                        ]
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  server.status == 2
-                    ? _c(
-                        "div",
-                        {
-                          staticClass:
-                            "monitor-maintenance-div monitor-td color-green"
-                        },
-                        [
-                          _c("i", {
-                            directives: [
-                              {
-                                name: "b-tooltip",
-                                rawName: "v-b-tooltip.html.hover",
-                                modifiers: { html: true, hover: true }
-                              }
-                            ],
-                            staticClass: "fa fa-wrench",
-                            attrs: {
-                              title: "Turn off maintenance",
-                              "data-toggle": "tooltip",
-                              "data-html": "true"
-                            },
-                            on: {
-                              click: function($event) {
-                                _vm.turnOffMaintenance(server.server_id, $event)
-                              }
-                            }
-                          })
-                        ]
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "monitor-connections-div monitor-td ta-r" },
-                    [_vm._v(_vm._s(server.connection_count))]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      directives: [
-                        {
-                          name: "b-tooltip",
-                          rawName: "v-b-tooltip.html.hover",
-                          modifiers: { html: true, hover: true }
-                        }
-                      ],
-                      staticClass: "monitor-disk-usage-div monitor-td ta-c",
-                      attrs: { tabindex: "0", title: server.disk_used_title }
-                    },
-                    [
-                      _vm._v(
-                        _vm._s(server.disk_used != "" ? server.disk_used : " ")
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "monitor-cpu-load-div monitor-td ta-r" },
-                    [_vm._v(_vm._s(server.cpu_load))]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      class:
-                        "monitor-status-indicator-div monitor-td " +
-                        server.status_class
-                    },
-                    [_vm._v(" ")]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticStyle: { clear: "both" } })
-                ])
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "mt-1" },
-                [
-                  _c(
-                    "div",
-                    {
-                      directives: [
-                        {
-                          name: "show",
-                          rawName: "v-show",
-                          value: server.expanded,
-                          expression: "server.expanded"
-                        }
-                      ],
-                      staticClass: "monitor-server-slave-header-div",
-                      attrs: { id: "slave-header-" + server.server_id }
-                    },
-                    [
-                      _c(
-                        "div",
-                        {
-                          staticClass: "monitor-connection-name-div monitor-th"
-                        },
-                        [_vm._v("Connection Name")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass:
-                            "monitor-master-binlog-filename-div monitor-th"
-                        },
-                        [_vm._v("Master Binlog Filename")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass:
-                            "monitor-master-binlog-pos-div monitor-th"
-                        },
-                        [_vm._v("Master Binlog Position")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "monitor-lag-time-div monitor-th" },
-                        [_vm._v("Lag Time")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "monitor-slave-error-msg-div monitor-th"
-                        },
-                        [_vm._v("Last Error")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "monitor-last-checked-div monitor-th" },
-                        [_vm._v("Last Checked")]
-                      ),
-                      _vm._v(" "),
-                      _c("div", { staticStyle: { clear: "both" } })
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _vm._l(server.slaves, function(slave) {
-                    return _c(
+                        ],
+                        staticClass: "monitor-disk-usage-div monitor-td ta-c",
+                        attrs: { tabindex: "0", title: server.disk_used_title }
+                      },
+                      [
+                        _vm._v(
+                          _vm._s(
+                            server.disk_used != "" ? server.disk_used : " "
+                          )
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "monitor-cpu-load-div monitor-td ta-r" },
+                      [_vm._v(_vm._s(server.cpu_load))]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        class:
+                          "monitor-status-indicator-div monitor-td " +
+                          server.status_class
+                      },
+                      [_vm._v(" ")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticStyle: { clear: "both" } })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "mt-1" },
+                  [
+                    _c(
                       "div",
                       {
                         directives: [
@@ -40652,96 +40681,168 @@ var render = function() {
                             expression: "server.expanded"
                           }
                         ],
-                        key: slave.server_slave_status_id,
-                        staticClass: "monitor-slave-entry"
+                        staticClass: "monitor-server-slave-header-div",
+                        attrs: { id: "slave-header-" + server.server_id }
                       },
                       [
-                        _c("div", [
-                          _c(
-                            "div",
-                            { staticClass: "monitor-server-slave-div" },
-                            [
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "monitor-connection-name-div monitor-slave-td"
-                                },
-                                [_vm._v(_vm._s(slave.connection_name))]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "monitor-master-binlog-filename-div monitor-slave-td"
-                                },
-                                [_vm._v(_vm._s(slave.master_binlog_filename))]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "monitor-master-binlog-pos-div monitor-slave-td"
-                                },
-                                [_vm._v(_vm._s(slave.master_binlog_position))]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "monitor-lag-time-div monitor-slave-td"
-                                },
-                                [_vm._v(_vm._s(slave.lag_time_secs))]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  directives: [
-                                    {
-                                      name: "b-tooltip",
-                                      rawName: "v-b-tooltip.html.hover",
-                                      modifiers: { html: true, hover: true }
-                                    }
-                                  ],
-                                  staticClass:
-                                    "monitor-slave-error-msg-div monitor-td color-red-bold ",
-                                  attrs: {
-                                    title: slave.last_error_msg,
-                                    "data-toggle": "tooltip",
-                                    "data-html": "true"
-                                  }
-                                },
-                                [_vm._v(_vm._s(slave.last_error_msg))]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "monitor-last-checked-div monitor-slave-td"
-                                },
-                                [_vm._v(_vm._s(slave.check_datetime))]
-                              ),
-                              _vm._v(" "),
-                              _c("div", { staticStyle: { clear: "both" } })
-                            ]
-                          )
-                        ])
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "monitor-connection-name-div monitor-th"
+                          },
+                          [_vm._v("Connection Name")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "monitor-master-binlog-filename-div monitor-th"
+                          },
+                          [_vm._v("Master Binlog Filename")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "monitor-master-binlog-pos-div monitor-th"
+                          },
+                          [_vm._v("Master Binlog Position")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "monitor-lag-time-div monitor-th" },
+                          [_vm._v("Lag Time")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "monitor-slave-error-msg-div monitor-th"
+                          },
+                          [_vm._v("Last Error")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "monitor-last-checked-div monitor-th"
+                          },
+                          [_vm._v("Last Checked")]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticStyle: { clear: "both" } })
                       ]
-                    )
-                  })
-                ],
-                2
-              )
-            ]
-          )
-        ])
-      })
-    )
+                    ),
+                    _vm._v(" "),
+                    _vm._l(server.slaves, function(slave) {
+                      return _c(
+                        "div",
+                        {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value: server.expanded,
+                              expression: "server.expanded"
+                            }
+                          ],
+                          key: slave.server_slave_status_id,
+                          staticClass: "monitor-slave-entry"
+                        },
+                        [
+                          _c("div", [
+                            _c(
+                              "div",
+                              { staticClass: "monitor-server-slave-div" },
+                              [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "monitor-connection-name-div monitor-slave-td"
+                                  },
+                                  [_vm._v(_vm._s(slave.connection_name))]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "monitor-master-binlog-filename-div monitor-slave-td"
+                                  },
+                                  [_vm._v(_vm._s(slave.master_binlog_filename))]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "monitor-master-binlog-pos-div monitor-slave-td"
+                                  },
+                                  [_vm._v(_vm._s(slave.master_binlog_position))]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "monitor-lag-time-div monitor-slave-td"
+                                  },
+                                  [_vm._v(_vm._s(slave.lag_time_secs))]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "b-tooltip",
+                                        rawName: "v-b-tooltip.html.hover",
+                                        modifiers: { html: true, hover: true }
+                                      }
+                                    ],
+                                    staticClass:
+                                      "monitor-slave-error-msg-div monitor-td color-red-bold",
+                                    attrs: {
+                                      title: slave.last_error_msg,
+                                      "data-toggle": "tooltip",
+                                      "data-html": "true"
+                                    }
+                                  },
+                                  [_vm._v(_vm._s(slave.last_error_msg))]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "monitor-last-checked-div monitor-slave-td"
+                                  },
+                                  [_vm._v(_vm._s(slave.check_datetime))]
+                                ),
+                                _vm._v(" "),
+                                _c("div", { staticStyle: { clear: "both" } })
+                              ]
+                            )
+                          ])
+                        ]
+                      )
+                    })
+                  ],
+                  2
+                )
+              ]
+            )
+          ])
+        }),
+        0
+      )
+    ])
   ])
 }
 var staticRenderFns = [
@@ -40775,7 +40876,7 @@ var staticRenderFns = [
         attrs: { type: "button", "data-toggle": "dropdown" }
       },
       [
-        _vm._v("\n                Environments\n                "),
+        _vm._v("\n              Environments\n              "),
         _c("span", { staticClass: "caret" })
       ]
     )
@@ -40792,7 +40893,7 @@ var staticRenderFns = [
         attrs: { type: "button", "data-toggle": "dropdown" }
       },
       [
-        _vm._v("\n                Datacenters\n                "),
+        _vm._v("\n              Datacenters\n              "),
         _c("span", { staticClass: "caret" })
       ]
     )
@@ -40825,50 +40926,48 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("div", { staticClass: "monitor-main-div" }, [
-        _c("div", { staticClass: "monitor-expand-collapse-div monitor-th" }, [
-          _vm._v(" ")
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "monitor-hostname-div monitor-th" }, [
-          _vm._v("Hostname")
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "monitor-port-name-div monitor-th" }, [
-          _vm._v("Port Name")
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "monitor-ipaddress-div monitor-th" }, [
-          _vm._v("IP Address")
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "monitor-active-div monitor-th" }, [
-          _vm._v("Active")
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "monitor-maintenance-div monitor-th" }, [
-          _vm._v("Maintenance")
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "monitor-connections-div monitor-th" }, [
-          _vm._v("Connections")
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "monitor-disk-usage-div monitor-th" }, [
-          _vm._v("Disk Usage")
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "monitor-cpu-load-div monitor-th" }, [
-          _vm._v("CPU Load")
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "monitor-status-indicator-div monitor-th" }, [
-          _vm._v(" ")
-        ]),
-        _vm._v(" "),
-        _c("div", { staticStyle: { clear: "both" } })
-      ])
+    return _c("div", { staticClass: "monitor-main-div bl-w" }, [
+      _c("div", { staticClass: "monitor-expand-collapse-div monitor-th" }, [
+        _vm._v(" ")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "monitor-hostname-div monitor-th" }, [
+        _vm._v("Hostname")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "monitor-port-name-div monitor-th" }, [
+        _vm._v("Port Name")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "monitor-ipaddress-div monitor-th" }, [
+        _vm._v("IP Address")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "monitor-active-div monitor-th" }, [
+        _vm._v("Active")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "monitor-maintenance-div monitor-th" }, [
+        _vm._v("Maintenance")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "monitor-connections-div monitor-th" }, [
+        _vm._v("Connections")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "monitor-disk-usage-div monitor-th" }, [
+        _vm._v("Disk Usage")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "monitor-cpu-load-div monitor-th" }, [
+        _vm._v("CPU Load")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "monitor-status-indicator-div monitor-th" }, [
+        _vm._v(" ")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticStyle: { clear: "both" } })
     ])
   }
 ]

@@ -37,6 +37,7 @@ class RestAPIController extends Controller
 
     public function getServerStatus()
     {
+
         $servers = Server::with('cluster')->with('datacenter')->with('environment')->orderBy('hostname')->get();
 
         for ($i = 0; $i < count($servers); $i++) {
@@ -90,7 +91,8 @@ class RestAPIController extends Controller
         echo json_encode(array("last_updated" => date("Y-m-d H:i:s"), "status" => $servers));
     }
 
-    public function turnOffMaintenance($server_id) {
+    public function turnOffMaintenance($server_id)
+    {
         $server = Server::find($server_id);
 
         $server->status = 1;

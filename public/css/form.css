@@ -63,6 +63,19 @@
      text-align: left;
 }
 
+a.text-dark:hover {
+     color: #ffffff;
+}
+
+.media-body:hover {
+     color: #ffffff;
+     font-weight: bold;
+}
+
+.text-muted:hover {
+     color: #ffffff;
+     font-weight: bold;
+}
 
 .fl {
      float: left;
@@ -181,4 +194,21 @@
 
 .home-font {
      font-size: 1rem;
+}
+
+.notifications-main-div {
+     width: 350px;
+}
+
+li.notification:hover {
+     color: #ffffff;
+     font-weight: bold;
+}
+
+.nav-items a:hover {
+     color: #ffffff;
+}
+
+.bl-w {
+     border-left: 1px solid white;
 }

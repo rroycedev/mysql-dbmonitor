@@ -42,7 +42,7 @@
 
                     var homeContainer = $('#home-container');
 
-                    if (homeContainer) {
+                    if (homeContainer[0] !== undefined) {
                          var homeContainerHeight = homeContainer[0].clientHeight;
                          var homeContainerWidth = homeContainer[0].clientWidth;
 
@@ -149,27 +149,27 @@
                             </a>
                             <ul class="nav-main-submenu">
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link{{ (substr(request()->path(), 0, 12) == 'admin/server') ? ' active' : '' }}" href="/admin/server">
+                                    <a class="nav-main-link nav-main-link-font {{ (substr(request()->path(), 0, 12) == 'admin/server') ? ' active' : '' }}" href="/admin/server">
                                         <span class="nav-main-link-name">Servers</span>
                                     </a>
                                 </li>
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link{{ (substr(request()->path(), 0, 17) == 'admin/environment') ? ' active' : '' }}" href="/admin/environment">
+                                    <a class="nav-main-link nav-main-link-font{{ (substr(request()->path(), 0, 17) == 'admin/environment') ? ' active' : '' }}" href="/admin/environment">
                                         <span class="nav-main-link-name">Environments</span>
                                     </a>
                                 </li>
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link{{ (substr(request()->path(), 0, 16) == 'admin/datacenter') ? ' active' : '' }}" href="/admin/datacenter">
+                                    <a class="nav-main-link nav-main-link-font{{ (substr(request()->path(), 0, 16) == 'admin/datacenter') ? ' active' : '' }}" href="/admin/datacenter">
                                         <span class="nav-main-link-name">Datacenters</span>
                                     </a>
                                 </li>
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link{{ (substr(request()->path(), 0, 13) == 'admin/cluster')  ? ' active' : '' }}" href="/admin/cluster">
+                                    <a class="nav-main-link nav-main-link-font{{ (substr(request()->path(), 0, 13) == 'admin/cluster')  ? ' active' : '' }}" href="/admin/cluster">
                                         <span class="nav-main-link-name">Clusters</span>
                                     </a>
                                 </li>
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link{{ (substr(request()->path(), 0, 14) == 'admin/dnsalias') ? ' active' : '' }}" href="/admin/dnsalias">
+                                    <a class="nav-main-link nav-main-link-font{{ (substr(request()->path(), 0, 14) == 'admin/dnsalias') ? ' active' : '' }}" href="/admin/dnsalias">
                                         <span class="nav-main-link-name">DNS Aliases</span>
                                     </a>
                                 </li>
@@ -178,22 +178,22 @@
 
 
                                 <li class="nav-main-item{{ request()->is('admin/alert/*') ? ' open' : '' }} ">
-                                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
+                                    <a class="nav-main-link nav-main-link-submenu nav-main-link-font" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
                                         <span class="nav-main-link-name">Alerts</span>
                                     </a>
                                     <ul class="nav-main-submenu">
                                         <li class="nav-main-item">
-                                            <a class="nav-main-link{{ (substr(request()->path(), 0, strlen('admin/alert/repllag')) == 'admin/alert/repllag') ? ' active' : '' }}" href="/admin/alert/repllag">
+                                            <a class="nav-main-link nav-main-link-font{{ (substr(request()->path(), 0, strlen('admin/alert/repllag')) == 'admin/alert/repllag') ? ' active' : '' }}" href="/admin/alert/repllag">
                                                 <span class="nav-main-link-name">Replication Lag</span>
                                             </a>
                                         </li>
                                         <li class="nav-main-item">
-                                            <a class="nav-main-link{{ (substr(request()->path(), 0, strlen('admin/alert/disk')) == 'admin/alert/disk') ? ' active' : '' }}" href="/admin/alert/disk">
+                                            <a class="nav-main-link nav-main-link-font{{ (substr(request()->path(), 0, strlen('admin/alert/disk')) == 'admin/alert/disk') ? ' active' : '' }}" href="/admin/alert/disk">
                                                 <span class="nav-main-link-name">Disk Space</span>
                                             </a>
                                         </li>
                                         <li class="nav-main-item">
-                                            <a class="nav-main-link{{ (substr(request()->path(), 0, strlen('admin/alert/cpuload')) == 'admin/alert/cpuload') ? ' active' : '' }}" href="/admin/alert/cpuload">
+                                            <a class="nav-main-link nav-main-link-font{{ (substr(request()->path(), 0, strlen('admin/alert/cpuload')) == 'admin/alert/cpuload') ? ' active' : '' }}" href="/admin/alert/cpuload">
                                                 <span class="nav-main-link-name">CPU Load</span>
                                             </a>
                                         </li>
@@ -201,19 +201,19 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-main-item{{ request()->is('reports/*') ? ' open' : '' }} nav-item-bordered">
+                        <li  style="display: none;" class="nav-main-item{{ request()->is('reports/*') ? ' open' : '' }} nav-item-bordered">
                             <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
                                 <i class="nav-main-link-icon si si-chart"></i>
                                 <span class="nav-main-link-name">Reports</span>
                             </a>
                             <ul class="nav-main-submenu">
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link{{ request()->is('reports/dataintegrity') ? ' active' : '' }}" href="/reports/dataintegrity">
+                                    <a class="nav-main-link nav-main-link-font{{ request()->is('reports/dataintegrity') ? ' active' : '' }}" href="/reports/dataintegrity">
                                         <span class="nav-main-link-name">Data Integrity</span>
                                     </a>
                                 </li>
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link{{ request()->is('reports/dbcompare') ? ' active' : '' }}" href="/reports/dbcompare">
+                                    <a class="nav-main-link nav-main-link-font{{ request()->is('reports/dbcompare') ? ' active' : '' }}" href="/reports/dbcompare">
                                         <span class="nav-main-link-name">Database Comparison</span>
                                     </a>
                                 </li>
@@ -246,7 +246,7 @@
                                 <i class="fa fa-fw fa-angle-down ml-1 d-none d-sm-inline-block"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="page-header-user-dropdown">
-                                <div class="p-2">
+                                <div class="">
                                    <a class="nav-main-link" href="{{ route('login') }}">
                                         <i class="far fa-fw fa-arrow-alt-circle-left mr-1"></i> Login
                                    </a>
@@ -260,7 +260,7 @@
                                 <i class="fa fa-fw fa-angle-down ml-1 d-none d-sm-inline-block"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-right p-0" aria-labelledby="page-header-user-dropdown">
-                                <div class="p-2">
+                                <div class="">
                                    <a class="nav-main-link" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                   document.getElementById('logout-form').submit();">
@@ -271,7 +271,7 @@
                                    @csrf
                                    </form>
                                 </div>
-                                <div class="p-2">
+                                <div class="">
                                    <a class="nav-main-link" href="{{ route('settings') }}">
                                         <i class="far fa-fw fa-arrow-alt-circle-left mr-1"></i> Settings
                                    </a>
@@ -287,41 +287,41 @@
                                 <i class="fa fa-fw fa-bell"></i>
                                 <span class="badge badge-secondary badge-pill">5</span>
                             </button>
-                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0" aria-labelledby="page-header-notifications-dropdown">
+                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0 notifications-main-div" aria-labelledby="page-header-notifications-dropdown ">
                                 <div class="bg-primary-darker rounded-top font-w600 text-white text-center p-3">
-                                   Notifications
+                                   <h2 class="color-white mt-0 mb-0">Notifications</h2>
                                 </div>
-                                <ul class="nav-items my-2">
-                                    <li>
+                                <ul class="nav-items">
+                                    <li class="notification">
                                         <a class="text-dark media py-2" href="javascript:void(0)">
                                             <div class="mx-3">
                                                 <i class="fa fa-fw fa-check-circle text-success"></i>
                                             </div>
                                             <div class="media-body font-size-sm pr-2">
-                                                <div class="font-w600">App was updated to v5.6!</div>
-                                                <div class="text-muted font-italic">3 min ago</div>
+                                                <div>App was updated to v5.6!</div>
+                                                <div class="font-italic">3 min ago</div>
                                             </div>
                                         </a>
                                     </li>
-                                    <li>
+                                    <li class="notification">
                                         <a class="text-dark media py-2" href="javascript:void(0)">
                                             <div class="mx-3">
                                                 <i class="fa fa-fw fa-user-plus text-info"></i>
                                             </div>
                                             <div class="media-body font-size-sm pr-2">
-                                                <div class="font-w600">New Subscriber was added! You now have 2580!</div>
-                                                <div class="text-muted font-italic">10 min ago</div>
+                                                <div>New Subscriber was added! You now have 2580!</div>
+                                                <div class="font-italic">10 min ago</div>
                                             </div>
                                         </a>
                                     </li>
-                                    <li>
+                                    <li class="notification">
                                         <a class="text-dark media py-2" href="javascript:void(0)">
                                             <div class="mx-3">
                                                 <i class="fa fa-fw fa-times-circle text-danger"></i>
                                             </div>
                                             <div class="media-body font-size-sm pr-2">
-                                                <div class="font-w600">Server backup failed to complete!</div>
-                                                <div class="text-muted font-italic">30 min ago</div>
+                                                <div>Server backup failed to complete!</div>
+                                                <div class="font-italic">30 min ago</div>
                                             </div>
                                         </a>
                                     </li>
@@ -331,19 +331,8 @@
                                                 <i class="fa fa-fw fa-exclamation-circle text-warning"></i>
                                             </div>
                                             <div class="media-body font-size-sm pr-2">
-                                                <div class="font-w600">You are running out of space. Please consider upgrading your plan.</div>
-                                                <div class="text-muted font-italic">1 hour ago</div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="text-dark media py-2" href="javascript:void(0)">
-                                            <div class="mx-3">
-                                                <i class="fa fa-fw fa-plus-circle text-primary"></i>
-                                            </div>
-                                            <div class="media-body font-size-sm pr-2">
-                                                <div class="font-w600">New Sale! + $30</div>
-                                                <div class="text-muted font-italic">2 hours ago</div>
+                                                <div>You are running out of space. Please consider upgrading your plan.</div>
+                                                <div class="font-italic">1 hour ago</div>
                                             </div>
                                         </a>
                                     </li>

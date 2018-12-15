@@ -36,9 +36,11 @@
                <div class="home-font mt-3">
                The site will display the monitoring status of multiple cluster MySQL databases in multiple databases for multiple environments".
                </div>
+               @if (!Auth::user() || Auth::user()->email_verified_at == '')
                <div class="home-font mt-3">
                If you wish to have access to this site, please <a href="/register">sign-up</a>
                </div>
+               @endif
             </div>
         </div>
     </div>

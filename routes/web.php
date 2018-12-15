@@ -371,10 +371,6 @@ Route::get(
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/settings', 'UserSettingsController@index')->name('settings');
 
 Route::post('/settings/save', 'UserSettingsController@settingsSave')->name('savesettings');
