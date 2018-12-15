@@ -228,7 +228,7 @@
             <!-- END Sidebar -->
 
             <!-- Header -->
-            <header id="page-header">
+            <header id="page-header" class="bb-2-white">
                 <!-- Header Content -->
                 <div class="content-header">
                     <!-- Left Section -->

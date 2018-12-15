@@ -15,8 +15,18 @@ a:hover {
   color: #442a5e;
 }
 
-h1, h2, h3, h4, h5, h6,
-.h1, .h2, .h3, .h4, .h5, .h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
   color: #212529;
 }
 
@@ -1343,6 +1353,7 @@ select.form-control:focus::-ms-value {
 
 #page-container.page-header-glass #page-header {
   background-color: transparent;
+  border-bottom: 2px outset #ffffff;
 }
 
 #page-container.page-header-glass.page-header-fixed.page-header-scroll #page-header {
