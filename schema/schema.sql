@@ -29,7 +29,7 @@ CREATE TABLE `clusters` (
   `view_order` bigint(20) unsigned DEFAULT NULL,
   PRIMARY KEY (`cluster_id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=1420 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPRESSED;
+) ENGINE=InnoDB AUTO_INCREMENT=911 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPRESSED;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -221,7 +221,7 @@ CREATE TABLE `password_resets` (
 
 LOCK TABLES `password_resets` WRITE;
 /*!40000 ALTER TABLE `password_resets` DISABLE KEYS */;
-INSERT INTO `password_resets` VALUES ('ruhruhroy@gmail.com','$2y$10$QbrXACAFDk9YbU4d6gTe6OGI.9WXcPYC3EIWCxL7Ik8oRzyUfHlqu','2018-12-13 02:28:42');
+INSERT INTO `password_resets` VALUES ('334556a1eb-62358a@inbox.mailtrap.io','$2y$10$L3NYlH3qtdrCuWd/ue16oewKdcJ1F13modcOOgSiQoz16SzHzL/Mi','2018-12-13 19:30:24');
 /*!40000 ALTER TABLE `password_resets` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -369,9 +369,10 @@ CREATE TABLE `users` (
   `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
+  `email_verified_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -380,7 +381,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Ron Royce','ruhruhroy@gmail.com','$2y$10$yCofxQ2Lh6z8mF.RIpkzMe2qpEwnX0okNJJw7sQW0okIwSTHf4zoa','NBvTgYVfv6FH1MS4WvlxswSc9oKzjzmgY9Sk7Wg6AHtKLtc9mAuXstYybtC4','2018-12-13 00:12:04','2018-12-13 00:12:04');
+INSERT INTO `users` VALUES (1,'Ron Royce','ruhruhroy@gmail.com','$2y$10$NevNWeWbFwo6t17D7doIFOy4UeDByyT2t8EOhWsVkF7hrwjaB5/PW','3OsC8MLsR6rIFUGGMpTdMfjyTKfqutoNOSdapYnLwJfBEoVksDvf4kYX2Xh5','2018-12-14 02:50:42','2018-12-14 02:52:38','2018-12-13 21:52:38'),(2,'Ronald Leon Royce','test@gmail.com','$2y$10$NmFaF9pgwv8bjAqKNRLT3.NuYykQcNcjGygQXlSJH5cZJA3O8BAoO','o7iVxsApByc9hrU1efT4wRD9iYEOFCCYMa5Vl535d3ox7NMgK7y9K1lpQRsn','2018-12-14 18:33:14','2018-12-14 21:42:44','2018-12-14 13:50:03');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -393,4 +394,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-12 16:50:38
+-- Dump completed on 2018-12-15  6:59:12
