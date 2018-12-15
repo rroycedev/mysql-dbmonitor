@@ -132,13 +132,6 @@ a.text-dark:hover {
      overflow-y: auto;
 }
 
-.checkbox-form-col {
-     line-height: $line-height-sm;
-     vertical-align: middle;
-     display: inline-block;
-     margin-bottom: $label-margin-bottom;
-}
-
 .color-red {
      color: #ff0000;
 }
