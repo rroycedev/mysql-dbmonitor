@@ -73,8 +73,8 @@
 
                             <!-- User Info -->
                             <div class="ml-2">
-                                <a class="text-white font-w600" href="javascript:void(0)">George Taylor</a>
-                                <div class="text-white-75 font-size-sm font-italic">Full Stack Developer</div>
+                                <a class="text-white font-w600" href="javascript:void(0)"></a>
+                                <div class="text-white-75 font-size-sm font-italic"></div>
                             </div>
                             <!-- END User Info -->
 

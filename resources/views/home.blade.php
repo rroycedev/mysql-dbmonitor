@@ -33,6 +33,12 @@
                <li class="home-font">Ajax</li>
                <li class="home-font">SASS</li>
                </ul>
+               <div class="home-font mt-3">
+               The site will display the monitoring status of multiple cluster MySQL databases in multiple databases for multiple environments".
+               </div>
+               <div class="home-font mt-3">
+               If you wish to have access to this site, please <a href="/register">sign-up</a>
+               </div>
             </div>
         </div>
     </div>
