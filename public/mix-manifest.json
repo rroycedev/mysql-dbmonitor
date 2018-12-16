@@ -8,5 +8,6 @@
     "/css/themes/xwork.css": "/css/themes/xwork.css",
     "/js/dashmix.app.js": "/js/dashmix.app.js",
     "/js/semaphore.js": "/js/semaphore.js",
-    "/css/bootstrap-vue.css": "/css/bootstrap-vue.css"
+    "/css/bootstrap-vue.css": "/css/bootstrap-vue.css",
+    "/js/Chart.bundle.min.js": "/js/Chart.bundle.min.js"
 }

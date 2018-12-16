@@ -405,7 +405,7 @@
         <script src="{{ mix('/js/semaphore.js') }}"></script>
 
        <script src="/js/filtertoolbar.js"></script>
-
+       <script src="/js/Chart.bundle.min.js"></script>
         @yield('js_after')
     </body>
 </html>

@@ -28,6 +28,7 @@ mix
 
      .copy('resources/assets/images', 'public/images')
      .copy('node_modules/bootstrap-vue/dist/bootstrap-vue.css', 'public/css')
+     .copy('node_modules/chart.js/dist/Chart.bundle.min.js', 'public/js')
 
      /* Tools */
      .browserSync('localhost:8000')

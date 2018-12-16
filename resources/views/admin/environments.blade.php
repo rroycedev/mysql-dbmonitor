@@ -2,11 +2,6 @@
 
 @section('content')
 <div class="content">
-    @if (session('msg'))
-        <div class="alert alert-success">
-            {{ session('msg') }}
-        </div>
-    @endif
     <div class="row justify-content-center">
         <div>
             <div class="block block-rounded">
@@ -14,6 +9,11 @@
                     <h3 class="panel-title">Environments</h3>
                 </div>
                 <div class="block-content">
+                    @if (session('msg'))
+                         <div class="alert alert-success">
+                              {{ session('msg') }}
+                         </div>
+                    @endif
                     <table class="table table-striped table-hover">
                         <thead class="table-thead">
                             <tr>

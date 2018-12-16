@@ -374,3 +374,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/settings', 'UserSettingsController@index')->name('settings');
 
 Route::post('/settings/save', 'UserSettingsController@settingsSave')->name('savesettings');
+
+Route::get(
+    '/testemail',
+    'Email\ServersEmailController@ship'
+)->name('testemail');

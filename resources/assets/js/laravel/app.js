@@ -22,8 +22,8 @@ Vue.component('monitor-filterbar-component', require('./components/MonitorFilter
 import Vue from 'vue'
 import BootstrapVue from 'bootstrap-vue'
 
-Vue.use(BootstrapVue);
 
+Vue.use(BootstrapVue);
 /*
 const app = new Vue({
      el: '#app'
