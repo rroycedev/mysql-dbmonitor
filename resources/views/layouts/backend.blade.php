@@ -59,41 +59,6 @@
      </head>
      <body  onresize="resizeBody()">
           <div id="page-container" class="sidebar-o sidebar-dark enable-page-overlay side-scroll page-header page-header-dark main-content-narrow">
-               <!-- Side Overlay-->
-               <aside id="side-overlay">
-                    <!-- Side Header -->
-                    <div class="bg-image" style="background-image: url('{{ asset('media/various/bg_side_overlay_header.jpg') }}');">
-                         <div class="bg-primary-op">
-                              <div class="content-header">
-                                   <!-- User Avatar -->
-                                   <a class="img-link mr-1" href="javascript:void(0)">
-                                        <img class="img-avatar img-avatar48" src="{{ asset('media/avatars/avatar10.jpg') }}" alt="">
-                                   </a>
-                                   <!-- END User Avatar -->
-
-                                   <!-- User Info -->
-                                   <div class="ml-2">
-                                        <a class="text-white font-w600" href="javascript:void(0)"></a>
-                                        <div class="text-white-75 font-size-sm font-italic"></div>
-                                   </div>
-                                   <!-- END User Info -->
-
-                                   <!-- Close Side Overlay -->
-                                   <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-                                   <a class="ml-auto text-white" href="javascript:void(0)" data-toggle="layout" data-action="side_overlay_close">
-                                        <i class="fa fa-times-circle"></i>
-                                   </a>
-                                   <!-- END Close Side Overlay -->
-                              </div>
-                         </div>
-                    </div>
-                    <div class="content-side">
-                         <p>
-                              Content..
-                         </p>
-                    </div>
-                    <!-- END Side Content -->
-               </aside>
                <div id="app-menu">
                     <appmenu user-full-name="{{ Auth::User() ? Auth::user()->name : '' }}" request-url="{{ request()->path() }}" email-verification-date="{{ Auth::user() ? Auth::user()->email_verified_at : '' }}"></appmenu>
                </div>
@@ -104,20 +69,11 @@
                <main id="main-container">
                     <div id="app">
                          @yield('content')
-          </div>
-               </main>
-               <footer id="page-footer" class="footer-bg">
-                    <div class="content py-0">
-                         <div class="row font-size-sm">
-                         <div class="col-sm-6 order-sm-2 mb-1 mb-sm-0 text-center text-sm-right">
-                              Crafted with <i class="fa fa-heart text-danger"></i> by <a class="font-w600" href="" target="_blank">Ronald Royce</a>
-                         </div>
-                         <div class="col-sm-6 order-sm-1 text-center text-sm-left">
-                              <a class="font-w600" href="" target="_blank">Royce Consulting</a> &copy; <span data-toggle="year-copy">2018</span>
-                         </div>
-                         </div>
                     </div>
-               </footer>
+               </main>
+               <div id="app-footer">
+                    <appfooter></appfooter>
+               </div>
         </div>
         <script src="{{ mix('/js/dashmix.app.js') }}"></script>
 

@@ -20,6 +20,7 @@ Vue.component('monitor', require('./components/MonitorComponent.vue'));
 Vue.component('monitor-filterbar-component', require('./components/MonitorFilterbarComponent.vue'));
 Vue.component('appmenu', require('./components/MenuComponent.vue'));
 Vue.component('appheader', require('./components/HeaderComponent.vue'));
+Vue.component('appfooter', require('./components/FooterComponent.vue'));
 
 import Vue from 'vue'
 import BootstrapVue from 'bootstrap-vue'
@@ -34,6 +35,11 @@ const menuApp = new Vue({
 
 const headerApp = new Vue({
      el: '#app-header'
+
+});
+
+const footerApp = new Vue({
+     el: '#app-footer'
 
 });
 
