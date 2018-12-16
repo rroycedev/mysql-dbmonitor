@@ -190,6 +190,9 @@ export default {
   data: function() {
     return {};
   },
-  methods: {}
+  methods: {},
+  components() {
+    "monitor-component";
+  }
 };
 </script>
