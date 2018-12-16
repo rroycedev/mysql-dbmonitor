@@ -18,16 +18,15 @@ window.Vue.use(require('vue-cookies'))
 
 Vue.component('monitor-component', require('./components/MonitorComponent.vue'));
 Vue.component('monitor-filterbar-component', require('./components/MonitorFilterbarComponent.vue'));
+Vue.component('app-menu', require('./components/MenuComponent.vue'));
 
 import Vue from 'vue'
 import BootstrapVue from 'bootstrap-vue'
 
 
 Vue.use(BootstrapVue);
-/*
+
 const app = new Vue({
-     el: '#app'
+     el: '#app-menu'
 
 });
-
-*/
