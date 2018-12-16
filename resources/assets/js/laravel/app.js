@@ -16,9 +16,10 @@ window.Vue.use(require('vue-cookies'))
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('monitor-component', require('./components/MonitorComponent.vue'));
+Vue.component('monitor', require('./components/MonitorComponent.vue'));
 Vue.component('monitor-filterbar-component', require('./components/MonitorFilterbarComponent.vue'));
-Vue.component('app-menu', require('./components/MenuComponent.vue'));
+Vue.component('appmenu', require('./components/MenuComponent.vue'));
+Vue.component('appheader', require('./components/HeaderComponent.vue'));
 
 import Vue from 'vue'
 import BootstrapVue from 'bootstrap-vue'
@@ -26,7 +27,17 @@ import BootstrapVue from 'bootstrap-vue'
 
 Vue.use(BootstrapVue);
 
-const app = new Vue({
+const menuApp = new Vue({
      el: '#app-menu'
+
+});
+
+const headerApp = new Vue({
+     el: '#app-header'
+
+});
+
+const app = new Vue({
+     el: '#app'
 
 });

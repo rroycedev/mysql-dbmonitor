@@ -1,22 +1,12 @@
 <template>
-  <!-- Sidebar -->
   <nav id="sidebar" aria-label="Main Navigation">
     <!-- Side Header -->
     <div class="side-header">
       <div class="content-header">
-        <!-- Logo -->
         <a class="link-fx font-w600 font-size-lg text-white" href="/">
           <h2 class="text-white-75 mb-0">Royce Consulting</h2>
         </a>
-        <!-- END Logo -->
-        <!-- Options -->
         <div>
-          <!-- Toggle Sidebar Style -->
-          <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-          <!-- Class Toggle, functionality initialized in Helpers.coreToggleClass() -->
-          <!-- END Toggle Sidebar Style -->
-          <!-- Close Sidebar, Visible only on mobile screens -->
-          <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
           <a
             class="d-lg-none text-white ml-2"
             data-toggle="layout"
@@ -25,15 +15,10 @@
           >
             <i class="fa fa-times-circle"></i>
           </a>
-          <!-- END Close Sidebar -->
         </div>
-        <!-- END Options -->
       </div>
     </div>
-    <!-- END Side Header -->
-    <!-- Side Navigation -->
     <div class="content-side content-side-full">
-      <!-- Right Side Of Navbar -->
       <ul v-show="userFullName != '' && emailVerificationDate != ''" class="nav-main">
         <li class="nav-main-item nav-item-bordered">
           <a
@@ -176,7 +161,6 @@
         </li>
       </ul>
     </div>
-    <!-- END Side Navigation -->
   </nav>
 </template>
 
@@ -191,8 +175,6 @@ export default {
     return {};
   },
   methods: {},
-  components() {
-    "monitor-component";
-  }
+  components: {}
 };
 </script>
