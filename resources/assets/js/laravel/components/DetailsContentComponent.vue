@@ -35,7 +35,13 @@ export default {
           switch (this.objectType) {
                case 'environment':
                     this.$parent.$refs.navbar.environmentId = pkId;
-                    this.$parent.$refs.navbar.environmentName = this.objects[pkId];
+                    var objs = JSON.parse(this.objects);
+
+                    for (var i = 0; i < objs.length; i++) {
+                         if (objs[i].environment_id == pkId) {
+                              this.$parent.$refs.navbar.environmentName = objs[i].name;
+                         }
+                    }
                     break;
           }
        }
