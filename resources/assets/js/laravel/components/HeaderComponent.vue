@@ -10,7 +10,7 @@
       <div>
         <!-- User Dropdown -->
         <div
-          v-show="userFullName == '' || emailVerificationDate == ''"
+          v-if="userFullName == '' || emailVerificationDate == ''"
           class="dropdown d-inline-block"
         >
           <button
@@ -34,10 +34,15 @@
                 <i class="far fa-fw fa-arrow-alt-circle-left mr-1"></i> Login
               </a>
             </div>
+            <div class>
+              <a class="nav-main-link" v-bind:href="registerUrl">
+                <i class="far fa-fw fa-arrow-alt-circle-left mr-1"></i> Register
+              </a>
+            </div>
           </div>
         </div>
         <div
-          v-show="userFullName != ''  && emailVerificationDate != ''"
+          v-if="userFullName != ''  && emailVerificationDate != ''"
           class="dropdown d-inline-block"
         >
           <button
@@ -83,7 +88,10 @@
 
         <!-- END User Dropdown -->
         <!-- Notifications Dropdown -->
-        <div class="dropdown d-inline-block">
+        <div
+          v-if="userFullName != ''  && emailVerificationDate != ''"
+          class="dropdown d-inline-block"
+        >
           <button
             type="button"
             class="btn btn-dual"
@@ -166,6 +174,7 @@ export default {
     userFullName: String,
     emailVerificationDate: String,
     loginUrl: String,
+    registerUrl: String,
     logoutUrl: String,
     settingsUrl: String
   },

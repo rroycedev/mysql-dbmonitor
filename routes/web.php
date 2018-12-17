@@ -17,7 +17,7 @@
 
 Route::get(
     '/',
-    'HomeController@index'
+    'WelcomeController@index'
 );
 
 Route::get(
@@ -379,3 +379,19 @@ Route::get(
     '/testemail',
     'Email\ServersEmailController@ship'
 )->name('testemail');
+
+Route::get(
+     '/envdetail/{environmentId}',
+     'EnvironmentDetailController@index'
+ );
+ 
+ Route::get(
+     '/dcdetail/{environmentId}/{datacenterId}',
+     'DatacenterDetailController@index'
+ );
+
+ Route::get(
+     '/clusterdetail/{environmentId}/{datacenterId}/{clusterId}',
+     'ClusterDetailController@index'
+ );
+  

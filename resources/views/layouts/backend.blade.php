@@ -23,7 +23,6 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,400i,600,700">
         <link rel="stylesheet" href="{{ mix('/css/dashmix.css') }}">
 
-        <link rel="stylesheet" href="/css/form.css">
         <link rel="stylesheet" href="/css/tooltip.css">
 
         <!-- You can include a specific file from public/css/themes/ folder to alter the default color theme of the template. eg: -->
@@ -41,6 +40,17 @@
                     $('#main-container').css('max-height', (height - 140) + 'px');
 
                     var homeContainer = $('#home-container');
+
+                    var detailsNavBar = $('#details-nav-bar');
+
+                    if (detailsNavBar[0] !== undefined) {
+                         var navBarHeight = $('#details-nav-bar').height();
+
+                         $('.container').css('max-height', (height - 220 - navBarHeight) + 'px');
+                    }
+                    else {
+                         $('.container').css('max-height', (height - 140) + 'px');
+                    }
 
                     if (homeContainer[0] !== undefined) {
                          var homeContainerHeight = homeContainer[0].clientHeight;
@@ -64,7 +74,7 @@
                </div>
                <div id="app-header">
                     <appheader user-full-name="{{ Auth::User() ? Auth::user()->name : '' }}" email-verification-date="{{ Auth::user() ? Auth::user()->email_verified_at : '' }}"
-                         login-url="{{ route('login') }}" logout-url="{{ route('logout') }}" settings-url="{{ route('settings') }}"></appheader>
+                         login-url="{{ route('login') }}" logout-url="{{ route('logout') }}" register-url="{{ route('register') }}" settings-url="{{ route('settings') }}"></appheader>
                </div>
                <main id="main-container">
                     <div id="app">

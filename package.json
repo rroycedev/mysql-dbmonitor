@@ -29,7 +29,7 @@
         "js-cookie": "^2.2.0",
         "simplebar": "^2.6.1",
         "vue-context": "^3.4.0",
-        "vue-cookies": "^1.5.11",
-        "vue-template-compiler": "^2.5.20"
+        "vue-cookies": "^1.5.12",
+        "vue-template-compiler": "^2.5.21"
     }
 }

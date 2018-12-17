@@ -21,6 +21,9 @@ Vue.component('monitor-filterbar-component', require('./components/MonitorFilter
 Vue.component('appmenu', require('./components/MenuComponent.vue'));
 Vue.component('appheader', require('./components/HeaderComponent.vue'));
 Vue.component('appfooter', require('./components/FooterComponent.vue'));
+Vue.component('detailsnav', require('./components/DetailsNavBarComponent.vue'));
+Vue.component('detailscontent', require('./components/DetailsContentComponent.vue'));
+Vue.component('detailscomponent', require('./components/DetailsComponent.vue'));
 
 import Vue from 'vue'
 import BootstrapVue from 'bootstrap-vue'

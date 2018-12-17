@@ -149,6 +149,9 @@ a.text-dark:hover {
      color: #ffffff;
 }
 
+.color-blue {
+     color: $blue;
+}
 .color-black {
      color: #000000;
 }
@@ -204,4 +207,43 @@ li.notification:hover {
 
 .bl-w {
      border-left: 1px solid white;
+}
+
+.panel-header-light {
+     background-color: #faebd7;
+     color: #000000;
+     border-bottom: 1px solid gray;
+     padding: 8px;
+     border-top-left-radius: 6px;
+     border-top-right-radius: 6px;
+     border: 1px solid gray;
+}
+
+.panel-header-light h3 {
+     text-align: center;
+     margin: 0px;
+     padding: 0px;
+     font-size: 18px;          
+}
+
+.panel-body-light {
+     background-color: $panel-light-bg;
+     color: #000000;
+     min-width: 300px;
+     min-height: 200px;
+     padding: 8px;
+     border: 1px outset gray;
+     box-shadow: inset 2px 1px 12px 1px #ababab;
+}
+
+.cursor-pointer {
+     cursor: pointer;
+}
+
+.details-nav-bar {
+     background-color: $panel-light-bg;
+     padding: 8px;
+     font-size: 16px;
+     border-radius: 5px;  
+     border: 2px solid black;   
 }

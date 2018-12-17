@@ -24842,6 +24842,14 @@ body {
   overflow: auto;
 }
 
+.of-y-auto {
+  overflow-y: auto;
+}
+
+.of-x-auto {
+  overflow-x: auto;
+}
+
 .checkbox-form-col {
   line-height: 1.5;
   vertical-align: middle;
@@ -24863,6 +24871,258 @@ a.nav-main-link.nav-main-link-font.active {
 
 .nav-main-link-font:hover {
   color: #ffff00 !important;
+}
+
+.dns-alias-name {
+  min-width: 300px;
+  max-width: 300px;
+}
+
+.vip-port {
+  width: 100px;
+}
+
+.hidden {
+  display: none;
+}
+
+.ellipsis-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.alert-level-secs {
+  min-width: 140px;
+  max-width: 140px;
+}
+
+.alert-level-input {
+  min-width: 56px;
+  max-width: 56px;
+  text-align: right;
+}
+
+.alert-level-load-input {
+  min-width: 82px;
+  max-width: 82px;
+  text-align: right;
+}
+
+.hostname-select {
+  min-width: 300px;
+  max-width: 300px;
+}
+
+.volume-table-col {
+  min-width: 300px;
+  max-width: 300px;
+}
+
+.percent-label {
+  padding-left: 3px;
+  float: left;
+  line-height: calc(2.25rem + 2px);
+  font-weight: bold;
+}
+
+.ta-r {
+  text-align: right;
+}
+
+.ta-c {
+  text-align: center;
+}
+
+.ta-l {
+  text-align: left;
+}
+
+a.text-dark:hover {
+  color: #ffffff;
+}
+
+.media-body:hover {
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.text-muted:hover {
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.fl {
+  float: left;
+}
+
+.hostname-table-col {
+  min-width: 200px;
+  max-width: 200px;
+}
+
+.ip-address-table-col {
+  min-width: 180px;
+  max-width: 180px;
+}
+
+.port-name-table-col {
+  min-width: 180px;
+  max-width: 180px;
+}
+
+.environment-table-col {
+  min-width: 200px;
+  max-width: 200px;
+}
+
+.datacenter-table-col {
+  min-width: 200px;
+  max-width: 200px;
+}
+
+.cluster-table-col {
+  min-width: 200px;
+  max-width: 200px;
+}
+
+.change-delete-btn-table-col {
+  min-width: 170px;
+  max-width: 170px;
+}
+
+.view-order-table-col {
+  min-width: 120px;
+  max-width: 120px;
+}
+
+.active-table-col {
+  min-width: 80px;
+  max-width: 80px;
+}
+
+.table-tbody {
+  display: block;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.color-red {
+  color: #ff0000;
+}
+
+.color-red-bold {
+  color: #ff0000;
+  font-weight: bold;
+}
+
+.color-green {
+  color: #00ff00;
+}
+
+.color-white {
+  color: #ffffff;
+}
+
+.color-blue {
+  color: #007bff;
+}
+
+.color-black {
+  color: #000000;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.tm-outset {
+  border-top: 1px outset #969494;
+}
+
+.user-nav-item {
+  background-color: #faebd7 !important;
+  font-weight: bold !important;
+  color: #000000 !important;
+}
+
+.user-nav-item:hover {
+  background-color: #faebd7 !important;
+  color: #000000 !important;
+}
+
+.dropdown-height {
+  height: 30px;
+}
+
+.guest-dropdown {
+  height: 85px;
+}
+
+.home-main {
+  width: 90%;
+  margin: auto;
+}
+
+.home-font {
+  font-size: 1rem;
+}
+
+.notifications-main-div {
+  width: 350px;
+}
+
+li.notification:hover {
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.nav-items a:hover {
+  color: #ffffff;
+}
+
+.bl-w {
+  border-left: 1px solid white;
+}
+
+.panel-header-light {
+  background-color: #faebd7;
+  color: #000000;
+  border-bottom: 1px solid gray;
+  padding: 8px;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  border: 1px solid gray;
+}
+
+.panel-header-light h3 {
+  text-align: center;
+  margin: 0px;
+  padding: 0px;
+  font-size: 18px;
+}
+
+.panel-body-light {
+  background-color: #faebd7;
+  color: #000000;
+  min-width: 300px;
+  min-height: 200px;
+  padding: 8px;
+  border: 1px outset gray;
+  -webkit-box-shadow: inset 2px 1px 12px 1px #ababab;
+          box-shadow: inset 2px 1px 12px 1px #ababab;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.details-nav-bar {
+  background-color: #faebd7;
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 2px solid black;
 }
 
 .monitor-th {
@@ -25082,6 +25342,8 @@ a.nav-main-link.nav-main-link-font.active {
   border-left: 1px solid #000000;
   color: #000000;
   margin-bottom: 2em;
+  position: relative;
+  top: -2px;
 }
 
 .filter-select-li {

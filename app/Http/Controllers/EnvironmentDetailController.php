@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\Cluster;
 use App\Models\Datacenter;
 use App\Models\Environment;
 use App\Models\Server;
 
-class HomeController extends Controller
+class EnvironmentDetailController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -23,12 +24,13 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($environmentId)
     {
-        $envs = Environment::orderBy('view_order')->get();
+        $env = Environment::find($environmentId);
+        
         $dcs = Datacenter::orderBy('view_order')->get();
         $clusters = Cluster::orderBy('view_order')->get();
 
-        return view('home', array("environments" => $envs, "datacenters" => $dcs, "clusters" => $clusters));
+        return view('envdetail', array("environment" => $env, "datacenters" => $dcs, "clusters" => $clusters));
     }
 }

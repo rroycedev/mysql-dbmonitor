@@ -115,6 +115,14 @@ body {
      overflow: auto;
 }
 
+.of-y-auto {
+     overflow-y: auto;
+}
+
+.of-x-auto {
+     overflow-x: auto;
+}
+
 .checkbox-form-col {
      line-height: $line-height-sm;
      vertical-align: middle;
