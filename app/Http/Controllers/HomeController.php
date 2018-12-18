@@ -25,10 +25,14 @@ class HomeController extends Controller
      */
     public function index()
     {
+         /*
         $envs = Environment::orderBy('view_order')->get();
         $dcs = Datacenter::orderBy('view_order')->get();
         $clusters = Cluster::orderBy('view_order')->get();
 
         return view('home', array("environments" => json_encode($envs), "datacenters" => json_encode($dcs), "clusters" => json_encode($clusters)));
+        */
+
+        return view('home');
     }
 }

@@ -20,16 +20,41 @@
     </div>
     <div class="content-side content-side-full">
       <ul v-show="userFullName != '' && emailVerificationDate != ''" class="nav-main">
-        <li class="nav-main-item nav-item-bordered">
+        <li
+          v-bind:class="'nav-main-item nav-item-bordered' + (requestUrl.substring(0, 7) == 'monitor' ? ' open' : '')"
+        >
           <a
-            v-bind:class="'nav-main-link' + (requestUrl == 'monitor' ? ' active' : '')"
-            href="/monitor"
+            v-bind:class="'nav-main-link nav-main-link-submenu' + (requestUrl.substring(0, 7) == 'monitor' ? ' active' : '')"
+            data-toggle="submenu"
+            aria-haspopup="true"
+            aria-expanded="true"
+            href="#"
           >
             <i class="nav-main-link-icon si si-eyeglasses"></i>
             <span class="nav-main-link-name">Monitor</span>
-            <span class="nav-main-link-badge badge badge-pill badge-success">5</span>
           </a>
+          <ul class="nav-main-submenu">
+            <li class="nav-main-item">
+              <a
+                v-bind:class="'nav-main-link nav-main-link-font' + (requestUrl == 'monitor/all' ? ' active' : '')"
+                href="/monitor/all"
+              >
+                <span class="nav-main-link-name">All Servers</span>
+              </a>
+            </li>
+            <li class="nav-main-item">
+              <a
+                v-bind:class="'nav-main-link nav-main-link-font' + (requestUrl == 'monitor/specific' ? ' active' : '')"
+                href="/monitor/specific"
+              >
+                <span class="nav-main-link-name">Specific</span>
+              </a>
+            </li>
+          </ul>
         </li>
+
+
+        <!--  Admin menu -->
         <li
           v-bind:class="'nav-main-item nav-item-bordered' + (requestUrl.substring(0, 5) == 'admin' ? ' open' : '')"
         >

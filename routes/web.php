@@ -26,9 +26,14 @@ Route::get(
 );
 
 Route::get(
-    '/monitor',
-    'MonitorController@index'
-);
+     '/monitor/all',
+     'MonitorController@all'
+)->name('monitorall');
+ 
+Route::get(
+    '/monitor/specific',
+    'MonitorController@specific'
+)->name('monitorspecific');
 
 Route::view(
     '/reports/dataintegrity',

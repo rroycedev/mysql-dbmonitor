@@ -24,8 +24,13 @@ class MonitorController extends Controller
     {
         $this->middleware('auth');
     }
-    public function index()
+    public function all()
     {
-        return view('monitor');
+        return view('monitor.all');
     }
+
+    public function specific()
+    {
+        return view('monitor.specific');
+    }    
 }

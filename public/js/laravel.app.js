@@ -41549,6 +41549,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -41593,35 +41618,79 @@ var render = function() {
             staticClass: "nav-main"
           },
           [
-            _c("li", { staticClass: "nav-main-item nav-item-bordered" }, [
-              _c(
-                "a",
-                {
-                  class:
-                    "nav-main-link" +
-                    (_vm.requestUrl == "monitor" ? " active" : ""),
-                  attrs: { href: "/monitor" }
-                },
-                [
-                  _c("i", {
-                    staticClass: "nav-main-link-icon si si-eyeglasses"
-                  }),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "nav-main-link-name" }, [
-                    _vm._v("Monitor")
+            _c(
+              "li",
+              {
+                class:
+                  "nav-main-item nav-item-bordered" +
+                  (_vm.requestUrl.substring(0, 7) == "monitor" ? " open" : "")
+              },
+              [
+                _c(
+                  "a",
+                  {
+                    class:
+                      "nav-main-link nav-main-link-submenu" +
+                      (_vm.requestUrl.substring(0, 7) == "monitor"
+                        ? " active"
+                        : ""),
+                    attrs: {
+                      "data-toggle": "submenu",
+                      "aria-haspopup": "true",
+                      "aria-expanded": "true",
+                      href: "#"
+                    }
+                  },
+                  [
+                    _c("i", {
+                      staticClass: "nav-main-link-icon si si-eyeglasses"
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "nav-main-link-name" }, [
+                      _vm._v("Monitor")
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c("ul", { staticClass: "nav-main-submenu" }, [
+                  _c("li", { staticClass: "nav-main-item" }, [
+                    _c(
+                      "a",
+                      {
+                        class:
+                          "nav-main-link nav-main-link-font" +
+                          (_vm.requestUrl == "monitor/all" ? " active" : ""),
+                        attrs: { href: "/monitor/all" }
+                      },
+                      [
+                        _c("span", { staticClass: "nav-main-link-name" }, [
+                          _vm._v("All Servers")
+                        ])
+                      ]
+                    )
                   ]),
                   _vm._v(" "),
-                  _c(
-                    "span",
-                    {
-                      staticClass:
-                        "nav-main-link-badge badge badge-pill badge-success"
-                    },
-                    [_vm._v("5")]
-                  )
-                ]
-              )
-            ]),
+                  _c("li", { staticClass: "nav-main-item" }, [
+                    _c(
+                      "a",
+                      {
+                        class:
+                          "nav-main-link nav-main-link-font" +
+                          (_vm.requestUrl == "monitor/specific"
+                            ? " active"
+                            : ""),
+                        attrs: { href: "/monitor/specific" }
+                      },
+                      [
+                        _c("span", { staticClass: "nav-main-link-name" }, [
+                          _vm._v("Specific")
+                        ])
+                      ]
+                    )
+                  ])
+                ])
+              ]
+            ),
             _vm._v(" "),
             _c(
               "li",
