@@ -47,7 +47,7 @@
                 v-bind:class="'nav-main-link nav-main-link-font' + (requestUrl == 'monitor/specific' ? ' active' : '')"
                 href="/monitor/specific"
               >
-                <span class="nav-main-link-name">Specific</span>
+                <span class="nav-main-link-name">Specific Server</span>
               </a>
             </li>
           </ul>

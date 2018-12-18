@@ -41683,7 +41683,7 @@ var render = function() {
                       },
                       [
                         _c("span", { staticClass: "nav-main-link-name" }, [
-                          _vm._v("Specific")
+                          _vm._v("Specific Server")
                         ])
                       ]
                     )
@@ -42992,7 +42992,7 @@ var render = function() {
       ),
       _vm._v(" "),
       _vm.environmentId != 0
-        ? _c("span", { staticClass: "mt-auto mb-auto" }, [
+        ? _c("span", { staticClass: "mt-auto mb-auto pl-1 pr-1" }, [
             _c("i", {
               staticClass: "fa fa-arrow-right",
               attrs: { "aria-hidden": "true" }
@@ -43021,7 +43021,7 @@ var render = function() {
         : _vm._e(),
       _vm._v(" "),
       _vm.environmentId != "0" && _vm.datacenterId != "0"
-        ? _c("span", { staticClass: "mt-auto mb-auto" }, [
+        ? _c("span", { staticClass: "mt-auto mb-auto pl-1 pr-1" }, [
             _c("i", {
               staticClass: "fa fa-arrow-right",
               attrs: { "aria-hidden": "true" }
@@ -43048,7 +43048,7 @@ var render = function() {
         : _vm._e(),
       _vm._v(" "),
       _vm.clusterId != "0"
-        ? _c("span", { staticClass: "mt-auto mb-auto" }, [
+        ? _c("span", { staticClass: "mt-auto mb-auto pl-1 pr-1" }, [
             _c("i", {
               staticClass: "fa fa-arrow-right",
               attrs: { "aria-hidden": "true" }
@@ -43075,7 +43075,7 @@ var render = function() {
         : _vm._e(),
       _vm._v(" "),
       _vm.serverId != "0"
-        ? _c("span", { staticClass: "mt-auto mb-auto" }, [
+        ? _c("span", { staticClass: "mt-auto mb-auto pl-1 pr-1" }, [
             _c("i", {
               staticClass: "fa fa-arrow-right",
               attrs: { "aria-hidden": "true" }
@@ -43678,7 +43678,7 @@ var render = function() {
                 _c("div", [
                   _c("div", { staticClass: "row justify-content-center p-2" }, [
                     _c("div", { staticClass: "last-updated" }, [
-                      _vm._v("Last Update: " + _vm._s(_vm.lastUpdated))
+                      _vm._v("Last Updated: " + _vm._s(_vm.lastUpdated))
                     ])
                   ]),
                   _vm._v(" "),

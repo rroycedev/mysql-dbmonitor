@@ -6,7 +6,7 @@
       style="font-size: 16px;"
     >Home</button>
     
-    <span class="mt-auto mb-auto" v-if="environmentId != 0">
+    <span class="mt-auto mb-auto pl-1 pr-1" v-if="environmentId != 0">
       <i class="fa fa-arrow-right" aria-hidden="true"></i>
     </span>
     
@@ -17,7 +17,7 @@
       style="font-size: 16px;"
     >{{environmentName}}</button>
     
-    <span class="mt-auto mb-auto" v-if="environmentId != '0' && datacenterId != '0'">
+    <span class="mt-auto mb-auto pl-1 pr-1" v-if="environmentId != '0' && datacenterId != '0'">
       <i class="fa fa-arrow-right" aria-hidden="true"></i>
     </span>
     
@@ -28,7 +28,7 @@
       style="font-size: 16px;"
     >{{datacenterName}}</button>
     
-    <span class="mt-auto mb-auto" v-if="clusterId != '0'">
+    <span class="mt-auto mb-auto pl-1 pr-1" v-if="clusterId != '0'">
       <i class="fa fa-arrow-right" aria-hidden="true"></i>
     </span>
     
@@ -39,7 +39,7 @@
       style="font-size: 16px;"
     >{{clusterName}}</button>
     
-    <span class="mt-auto mb-auto" v-if="serverId != '0'">
+    <span class="mt-auto mb-auto pl-1 pr-1" v-if="serverId != '0'">
       <i class="fa fa-arrow-right" aria-hidden="true"></i>
     </span>
     

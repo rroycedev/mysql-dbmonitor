@@ -44,7 +44,7 @@
 
 
                          <div>
-                              <div class="row justify-content-center p-2"><div class="last-updated">Last Update: {{lastUpdated}}</div></div>
+                              <div class="row justify-content-center p-2"><div class="last-updated">Last Updated: {{lastUpdated}}</div></div>
                               <div class="monitor-main-div bl-w">
                                    <div class="monitor-expand-collapse-div monitor-th">&nbsp;</div>
                                    <div class="monitor-hostname-div monitor-th">Hostname</div>
