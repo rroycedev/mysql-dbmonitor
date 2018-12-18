@@ -35,12 +35,21 @@ class RestAPIController extends Controller
         echo json_encode(array("environments" => $envs, "datacenters" => $dcs, "clusters" => $clusters));
     }
 
-    public function getServerStatus()
+    public function getServerStatus($serverId = "")
     {
-
-        $servers = Server::with('cluster')->with('datacenter')->with('environment')->orderBy('hostname')->get();
+          if ($serverId == "") {
+               $servers = Server::with('cluster')->with('datacenter')->with('environment')->orderBy('hostname')->get();
+          }
+          else {
+               $servers = Server::with('cluster')->with('datacenter')->with('environment')->where('server_id', '=', $serverId)->orderBy('hostname')->get();
+          }
 
         for ($i = 0; $i < count($servers); $i++) {
+               $servers[$i]->server_name = $servers[$i]->hostname;
+               if ($servers[$i]->port_name != "") {
+                    $servers[$i]->server_name .= ":" . $servers[$i]->port_name;
+               }
+
             $serverStatus = ServerStatus::where("server_id", $servers[$i]->server_id)->get();
 
             $slaves = ServerSlavesStatus::where("server_id", $servers[$i]->server_id)->orderBy("connection_name")->get();
@@ -160,6 +169,51 @@ class RestAPIController extends Controller
             echo json_encode(array("success" => false, "msg" => $pdoEx->getMessage()));
         }
 
+    }
+
+    public function getEnvironments()
+    {
+        $environments = Environment::all();
+        echo json_encode(array("success" => true, "msg" => "", "environments" => $environments));
+    }
+
+    public function getDatacenters()
+    {
+        $datacenters = Datacenter::all();
+        echo json_encode(array("success" => true, "msg" => "", "datacenters" => $datacenters));
+    }
+
+    public function getClusters()
+    {
+        $clusters = Cluster::all();
+        echo json_encode(array("success" => true, "msg" => "", "clusters" => $clusters));
+    }
+
+    public function getServers($environmentId, $datacenterId, $clusterId)
+    {
+          $servers = Server::where("environment_id", "=", $environmentId, "and")->where("datacenter_id", "=", $datacenterId, "and")->where("cluster_id", "=", $clusterId)->orderBy("hostname")->orderBy("port_name")->get();
+
+          for ($i = 0; $i < count($servers); $i++) {
+               $servers[$i]->server_name = $servers[$i]->hostname;
+               if ($servers[$i]->port_name != "") {
+                    $servers[$i]->server_name .= ":" . $servers[$i]->port_name;
+               }
+          }
+
+          echo json_encode(array("success" => true, "msg" => "", "servers" => $servers));
+    }
+
+    public function getServer($serverId)
+    {
+          $servers = Server::where("server_id", "=", $serverId)->get();
+          
+          $servers[0]->server_name = $servers[0]->hostname;
+
+          if ($servers[0]->port_name != "") {
+               $servers[0]->server_name .= ":" . $servers[0]->port_name;
+          }
+          
+          echo json_encode(array("success" => true, "msg" => "", "servers" => $servers));
     }
 
 }

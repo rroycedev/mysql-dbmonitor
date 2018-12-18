@@ -29,6 +29,6 @@ class HomeController extends Controller
         $dcs = Datacenter::orderBy('view_order')->get();
         $clusters = Cluster::orderBy('view_order')->get();
 
-        return view('home', array("environments" => $envs, "datacenters" => $dcs, "clusters" => $clusters));
+        return view('home', array("environments" => json_encode($envs), "datacenters" => json_encode($dcs), "clusters" => json_encode($clusters)));
     }
 }

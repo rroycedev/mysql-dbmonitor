@@ -314,18 +314,6 @@ export default {
     };
   },
   methods: {
-    convertUTCDateToLocalDate(date) {
-      var newDate = new Date(
-        date.getTime() + date.getTimezoneOffset() * 60 * 1000
-      );
-
-      var offset = date.getTimezoneOffset() / 60;
-      var hours = date.getHours();
-
-      newDate.setHours(hours - offset);
-
-      return newDate;
-    },
     makeServerActive(server_id, $event) {
       var self = this;
 
@@ -572,8 +560,7 @@ export default {
         dataType: "json",
         success: function(response) {
           self.status = response.status;
-          self.lastUpdated = self
-            .convertUTCDateToLocalDate(new Date(response.last_updated))
+          self.lastUpdated = convertUTCDateToLocalDate(new Date(response.last_updated))
             .toLocaleString();
           for (var i = 0; i < self.status.length; i++) {
             if (self.expandedServers.includes(self.status[i].server_id)) {

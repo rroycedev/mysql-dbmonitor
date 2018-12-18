@@ -39913,16 +39913,6 @@ function statusPoller(c) {}
     };
   },
   methods: {
-    convertUTCDateToLocalDate: function convertUTCDateToLocalDate(date) {
-      var newDate = new Date(date.getTime() + date.getTimezoneOffset() * 60 * 1000);
-
-      var offset = date.getTimezoneOffset() / 60;
-      var hours = date.getHours();
-
-      newDate.setHours(hours - offset);
-
-      return newDate;
-    },
     makeServerActive: function makeServerActive(server_id, $event) {
       var self = this;
 
@@ -40158,7 +40148,7 @@ function statusPoller(c) {}
         dataType: "json",
         success: function success(response) {
           self.status = response.status;
-          self.lastUpdated = self.convertUTCDateToLocalDate(new Date(response.last_updated)).toLocaleString();
+          self.lastUpdated = convertUTCDateToLocalDate(new Date(response.last_updated)).toLocaleString();
           for (var i = 0; i < self.status.length; i++) {
             if (self.expandedServers.includes(self.status[i].server_id)) {
               self.status[i].expanded = true;
@@ -42847,17 +42837,59 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      environmentId: '0',
-      environmentName: '',
-      datacenterId: '0',
-      datacenterName: '',
-      clusterId: '',
-      clusterName: ''
+      environmentId: "0",
+      environmentName: "",
+      datacenterId: "0",
+      datacenterName: "",
+      clusterId: "0",
+      clusterName: "",
+      serverId: "0",
+      serverName: ""
     };
+  },
+  methods: {
+    goTo: function goTo(target) {
+      switch (target) {
+        case "environment":
+          this.$parent.goToEnvironment(this.environmentId, this.environmentName);
+          break;
+        case "datacenter":
+          this.$parent.goToDatacenter(this.datacenterId, this.datacenterName);
+          break;
+        case "cluster":
+          this.$parent.goToCluster(this.clusterId, this.clusterName);
+          break;
+        case "home":
+          this.$parent.goToHome();
+          break;
+      }
+    }
   }
 });
 
@@ -42872,60 +42904,131 @@ var render = function() {
   return _c(
     "div",
     {
-      staticClass: "row justify-content-center details-nav-bar m-1",
+      staticClass: "row justify-content-left details-nav-bar m-1 pl-3",
       attrs: { id: "details-nav-bar" }
     },
     [
+      _c(
+        "button",
+        {
+          class: "btn btn-info" + (_vm.environmentId == 0 ? " disabled" : ""),
+          staticStyle: { "font-size": "16px" },
+          on: {
+            click: function($event) {
+              _vm.goTo("home")
+            }
+          }
+        },
+        [_vm._v("Home")]
+      ),
+      _vm._v(" "),
       _vm.environmentId != 0
-        ? _c(
-            "a",
-            { staticStyle: { "font-size": "16px" }, attrs: { href: "/home" } },
-            [_vm._v("Home")]
-          )
+        ? _c("span", { staticClass: "mt-auto mb-auto" }, [
+            _c("i", {
+              staticClass: "fa fa-arrow-right",
+              attrs: { "aria-hidden": "true" }
+            })
+          ])
         : _vm._e(),
       _vm._v(" "),
-      _vm.environmentId == 0 ? _c("span", [_vm._v(" ")]) : _vm._e(),
-      _vm._v(" "),
-      _vm.environmentId != 0 ? _c("span", [_vm._v("->")]) : _vm._e(),
-      _vm._v(" "),
-      _vm.environmentId != "0" && _vm.datacenterId != "0"
+      _vm.environmentId != "0"
         ? _c(
-            "a",
+            "button",
             {
+              class:
+                "btn" +
+                (_vm.datacenterId == 0
+                  ? " btn-danger disabled"
+                  : " btn btn-info"),
               staticStyle: { "font-size": "16px" },
-              attrs: { href: "/envdetail/" + _vm.environmentId }
+              on: {
+                click: function($event) {
+                  _vm.goTo("environment")
+                }
+              }
             },
             [_vm._v(_vm._s(_vm.environmentName))]
           )
         : _vm._e(),
       _vm._v(" "),
-      _vm.environmentId != "0" && _vm.datacenterId == "0"
-        ? _c("div", [_vm._v(_vm._s(_vm.environmentName))])
-        : _vm._e(),
-      _vm._v(" "),
       _vm.environmentId != "0" && _vm.datacenterId != "0"
-        ? _c("span", [_vm._v("->")])
+        ? _c("span", { staticClass: "mt-auto mb-auto" }, [
+            _c("i", {
+              staticClass: "fa fa-arrow-right",
+              attrs: { "aria-hidden": "true" }
+            })
+          ])
         : _vm._e(),
       _vm._v(" "),
-      _vm.datacenterId != "0" && _vm.clusterId != "0"
+      _vm.datacenterId != "0"
         ? _c(
-            "a",
+            "button",
             {
+              class:
+                "btn" +
+                (_vm.clusterId == 0 ? " btn-danger disabled" : " btn btn-info"),
               staticStyle: { "font-size": "16px" },
-              attrs: {
-                href: "/dcdetail/" + _vm.environmentId + "/" + _vm.datacenterId
+              on: {
+                click: function($event) {
+                  _vm.goTo("datacenter")
+                }
               }
             },
             [_vm._v(_vm._s(_vm.datacenterName))]
           )
         : _vm._e(),
       _vm._v(" "),
-      _vm.datacenterId != "0" && _vm.clusterId == "0"
-        ? _c("div", [_vm._v(_vm._s(_vm.datacenterName))])
+      _vm.clusterId != "0"
+        ? _c("span", { staticClass: "mt-auto mb-auto" }, [
+            _c("i", {
+              staticClass: "fa fa-arrow-right",
+              attrs: { "aria-hidden": "true" }
+            })
+          ])
         : _vm._e(),
       _vm._v(" "),
-      _vm.clusterId != "0" ? _c("span", [_vm._v("->")]) : _vm._e(),
-      _vm._v("\n\n  " + _vm._s(_vm.clusterName) + "  \n")
+      _vm.clusterId != "0"
+        ? _c(
+            "button",
+            {
+              class:
+                "btn" +
+                (_vm.serverId == 0 ? " btn-danger disabled" : " btn btn-info"),
+              staticStyle: { "font-size": "16px" },
+              on: {
+                click: function($event) {
+                  _vm.goTo("cluster")
+                }
+              }
+            },
+            [_vm._v(_vm._s(_vm.clusterName))]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.serverId != "0"
+        ? _c("span", { staticClass: "mt-auto mb-auto" }, [
+            _c("i", {
+              staticClass: "fa fa-arrow-right",
+              attrs: { "aria-hidden": "true" }
+            })
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.serverId != "0"
+        ? _c(
+            "button",
+            {
+              staticClass: "btn btn-danger disabled",
+              staticStyle: { "font-size": "16px" },
+              on: {
+                click: function($event) {
+                  _vm.goTo("cluster")
+                }
+              }
+            },
+            [_vm._v(_vm._s(_vm.serverName))]
+          )
+        : _vm._e()
     ]
   )
 }
@@ -43014,28 +43117,383 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-     props: {
-          objectType: String,
-          objects: String,
-          objectName: String
+     mounted: function mounted() {
+          $(".monitor-expand-collapse-div").on("contextmenu", function (e) {
+               var top = e.pageY - 10;
+               var left = e.pageX - 90;
+               $("#context-menu").css({
+                    display: "block",
+                    top: top,
+                    left: left
+               }).addClass("show");
+               return false; //blocks default Webbrowser right click menu
+          }).on("click", function () {
+               $("#context-menu").removeClass("show").hide();
+          });
+     },
+
+     data: function data() {
+          return {
+               pkId: 0,
+               objecType: '',
+               objects: [],
+               objectName: '',
+               lastUpdated: '',
+               pollerTimeoutHandler: null
+          };
      },
      methods: {
-          drillDown: function drillDown(pkId) {
+          statusPoller: function statusPoller() {
+               var self = this;
+
+               $.ajax({
+                    url: "/api/serverstatus/" + self.pkId,
+                    cache: false,
+                    dataType: "json",
+                    success: function success(response) {
+                         self.objects = response.status;
+                         self.lastUpdated = convertUTCDateToLocalDate(new Date(response.last_updated)).toLocaleString();
+                         self.pollerTimeoutHandler = setTimeout(self.statusPoller, 10000);
+                    }
+               });
+          },
+          goToHome: function goToHome() {
+               if (this.pollerTimeoutHandler) {
+                    clearTimeout(this.pollerTimeoutHandler);
+                    this.pollerTimeoutHandler = null;
+               }
+
+               this.objecType = 'environment';
+
+               this.$parent.$refs.navbar.environmentId = "0";
+               this.$parent.$refs.navbar.datacenterId = "0";
+               this.$parent.$refs.navbar.clusterId = "0";
+               this.$parent.$refs.navbar.environmentName = "";
+               this.$parent.$refs.navbar.datacenterName = "";
+               this.$parent.$refs.navbar.clusterName = "";
+
+               var self = this;
+
+               $.ajax({
+                    url: "/api/getenvironments",
+                    cache: false,
+                    dataType: "json",
+                    success: function success(response) {
+                         self.pkId = pkId;
+                         self.objectType = "environment";
+                         self.objectName = "Environments";
+                         self.objects = response.environments;
+                    }
+               });
+          },
+          goToEnvironment: function goToEnvironment(pkId, envName) {
+               if (this.pollerTimeoutHandler) {
+                    clearTimeout(this.pollerTimeoutHandler);
+                    this.pollerTimeoutHandler = null;
+               }
+
+               this.objecType = 'datacenter';
+
+               this.$parent.$refs.navbar.environmentId = pkId;
+               this.$parent.$refs.navbar.environmentName = envName;
+
+               this.$parent.$refs.navbar.datacenterId = "0";
+               this.$parent.$refs.navbar.datacenterName = "";
+               this.$parent.$refs.navbar.clusterId = "0";
+               this.$parent.$refs.navbar.clusterName = "";
+               this.$parent.$refs.navbar.serverId = 0;
+               this.$parent.$refs.navbar.serverName = "";
+
+               var self = this;
+
+               $.ajax({
+                    url: "/api/getdatacenters",
+                    cache: false,
+                    dataType: "json",
+                    success: function success(response) {
+                         self.pkId = pkId;
+                         self.objectType = "datacenter";
+                         self.objectName = "Datacenters";
+                         self.objects = response.datacenters;
+                    }
+               });
+          },
+          goToDatacenter: function goToDatacenter(pkId, dcName) {
+               if (this.pollerTimeoutHandler) {
+                    clearTimeout(this.pollerTimeoutHandler);
+                    this.pollerTimeoutHandler = null;
+               }
+
+               this.objecType = 'cluster';
+
+               this.$parent.$refs.navbar.datacenterId = pkId;
+               this.$parent.$refs.navbar.datacenterName = dcName;
+
+               this.$parent.$refs.navbar.clusterId = "0";
+               this.$parent.$refs.navbar.clusterName = "";
+
+               this.$parent.$refs.navbar.serverId = 0;
+               this.$parent.$refs.navbar.serverName = "";
+
+               var self = this;
+
+               $.ajax({
+                    url: "/api/getclusters",
+                    cache: false,
+                    dataType: "json",
+                    success: function success(response) {
+                         self.pkId = pkId;
+                         self.objectType = "cluster";
+                         self.objectName = "Clusters";
+                         self.objects = response.clusters;
+                    }
+               });
+          },
+          goToCluster: function goToCluster(pkId, clustName) {
+               if (this.pollerTimeoutHandler) {
+                    clearTimeout(this.pollerTimeoutHandler);
+                    this.pollerTimeoutHandler = null;
+               }
+
+               this.objecType = 'server';
+
+               this.$parent.$refs.navbar.clusterId = pkId;
+               this.$parent.$refs.navbar.clusterName = clustName;
+
+               this.$parent.$refs.navbar.serverId = 0;
+               this.$parent.$refs.navbar.serverName = "";
+
+               var self = this;
+
+               $.ajax({
+                    url: "/api/getservers/" + self.$parent.$refs.navbar.environmentId + "/" + self.$parent.$refs.navbar.datacenterId + "/" + self.$parent.$refs.navbar.clusterId,
+                    cache: false,
+                    dataType: "json",
+                    success: function success(response) {
+                         self.pkId = pkId;
+                         self.objectType = "server";
+                         self.objectName = "Servers";
+                         self.objects = response.servers;
+                    }
+               });
+          },
+          goToServer: function goToServer(pkId, servName) {
+               this.objecType = 'serverdetail';
+
+               this.$parent.$refs.navbar.serverId = pkId;
+               this.$parent.$refs.navbar.serverName = servName;
+
+               var self = this;
+
+               $.ajax({
+                    url: "/api/serverstatus/" + self.$parent.$refs.navbar.serverId,
+                    cache: false,
+                    dataType: "json",
+                    success: function success(response) {
+                         self.pkId = pkId;
+                         self.objectType = "serverdetails";
+                         self.objectName = "Monitoring Status";
+                         self.objects = response.status;
+
+                         self.statusPoller();
+                    }
+               });
+          },
+          drillDown: function drillDown(pkId, objName) {
                var a = 1;
                var nb = this.$parent.$refs.navbar;
 
                switch (this.objectType) {
+                    case 'home':
+                         this.goToHome();
+                         break;
                     case 'environment':
-                         this.$parent.$refs.navbar.environmentId = pkId;
-                         var objs = JSON.parse(this.objects);
-
-                         for (var i = 0; i < objs.length; i++) {
-                              if (objs[i].environment_id == pkId) {
-                                   this.$parent.$refs.navbar.environmentName = objs[i].name;
-                              }
-                         }
+                         this.goToEnvironment(pkId, objName);
+                         break;
+                    case 'datacenter':
+                         this.goToDatacenter(pkId, objName);
+                         break;
+                    case 'cluster':
+                         this.goToCluster(pkId, objName);
+                         break;
+                    case 'server':
+                         this.goToServer(pkId, objName);
                          break;
                }
           }
@@ -43050,75 +43508,501 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container of-y-auto mt-5" }, [
+  return _c("div", { staticClass: "of-y-auto mt-5" }, [
+    _c("div", { staticClass: "row justify-content-center mb-3" }, [
+      _c("h1", { staticClass: "mb-0 color-white" }, [
+        _vm._v(_vm._s(_vm.objectName))
+      ])
+    ]),
+    _vm._v(" "),
     _c(
       "div",
       { staticClass: "row justify-content-center" },
-      _vm._l(JSON.parse(_vm.objects), function(o) {
-        return _c("div", { staticClass: "fl mr-2" }, [
-          _c("div", { staticClass: "panel-header-light" }, [
-            _c("h3", [
-              _vm._v(
-                _vm._s(_vm.objectName) + "\n                              "
-              ),
-              _c("br"),
-              _vm._v(" "),
-              _vm.objectType == "server"
-                ? _c("span", { staticClass: "color-blue" }, [
-                    _vm._v(_vm._s(o.hostname) + " " + _vm._s(o.port_name))
-                  ])
+      _vm._l(_vm.objects, function(o) {
+        return _c("div", { staticClass: "fl mr-2 mb-2" }, [
+          _c("div", { staticClass: "panel-header justify-content-center" }, [
+            _c("h3", { staticClass: "mb-0 color-white ta-c" }, [
+              _vm.objectType == "server" || _vm.objecType == "serverdetail"
+                ? _c("span", [_vm._v(_vm._s(o.server_name))])
                 : _vm._e(),
               _vm._v(" "),
               _vm.objectType != "server"
-                ? _c("span", { staticClass: "color-blue" }, [
-                    _vm._v(_vm._s(o.name))
-                  ])
+                ? _c("span", [_vm._v(_vm._s(o.name))])
                 : _vm._e()
             ])
           ]),
           _vm._v(" "),
           _vm.objectType == "server"
-            ? _c("div", {
-                staticClass: "panel-body-light cursor-pointer",
-                on: {
-                  click: function($event) {
-                    _vm.drillDown(o.server_id)
-                  }
-                }
-              })
+            ? _c("div", { staticClass: "panel-body-light ta-c" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-info",
+                    staticStyle: { "font-size": "16px" },
+                    on: {
+                      click: function($event) {
+                        _vm.drillDown(o.server_id, o.server_name)
+                      }
+                    }
+                  },
+                  [_vm._v("Select")]
+                )
+              ])
             : _vm._e(),
           _vm._v(" "),
           _vm.objectType == "environment"
-            ? _c("div", {
-                staticClass: "panel-body-light cursor-pointer",
-                on: {
-                  click: function($event) {
-                    _vm.drillDown(o.environment_id)
-                  }
-                }
-              })
+            ? _c("div", { staticClass: "panel-body-light ta-c" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-info",
+                    staticStyle: { "font-size": "16px" },
+                    on: {
+                      click: function($event) {
+                        _vm.drillDown(o.environment_id, o.name)
+                      }
+                    }
+                  },
+                  [_vm._v("Select")]
+                )
+              ])
             : _vm._e(),
           _vm._v(" "),
           _vm.objectType == "datacenter"
-            ? _c("div", {
-                staticClass: "panel-body-light cursor-pointer",
-                on: {
-                  click: function($event) {
-                    _vm.drillDown(o.datacenter_id)
-                  }
-                }
-              })
+            ? _c("div", { staticClass: "panel-body-light ta-c" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-info",
+                    staticStyle: { "font-size": "16px" },
+                    on: {
+                      click: function($event) {
+                        _vm.drillDown(o.datacenter_id, o.name)
+                      }
+                    }
+                  },
+                  [_vm._v("Select")]
+                )
+              ])
             : _vm._e(),
           _vm._v(" "),
           _vm.objectType == "cluster"
-            ? _c("div", {
-                staticClass: "panel-body-light cursor-pointer",
-                on: {
-                  click: function($event) {
-                    _vm.drillDown(o.cluster_id)
-                  }
-                }
-              })
+            ? _c("div", { staticClass: "panel-body-light ta-c" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-info",
+                    staticStyle: { "font-size": "16px" },
+                    on: {
+                      click: function($event) {
+                        _vm.drillDown(o.cluster_id, o.name)
+                      }
+                    }
+                  },
+                  [_vm._v("Select")]
+                )
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.objectType == "serverdetails"
+            ? _c("div", { staticClass: "panel-body-light cursor-pointer" }, [
+                _c("div", [
+                  _c("div", { staticClass: "row justify-content-center p-2" }, [
+                    _c("div", { staticClass: "last-updated" }, [
+                      _vm._v("Last Update: " + _vm._s(_vm.lastUpdated))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(0, true),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "monitor-server-div" }, [
+                    _c(
+                      "div",
+                      {
+                        class:
+                          "monitor-expand-collapse-div monitor-td monitor-td " +
+                          (o.slaves.length > 0 ? "cursor-pointer" : ""),
+                        on: {
+                          click: function($event) {
+                            _vm.expandCollapseServer(o.server_id, $event)
+                          }
+                        }
+                      },
+                      [
+                        o.slaves.length > 0 && !o.expanded
+                          ? _c("i", {
+                              staticClass: "fa fa-caret-down",
+                              attrs: { "aria-hidden": "true" }
+                            })
+                          : _vm._e(),
+                        _vm._v(" "),
+                        o.slaves.length > 0 && o.expanded
+                          ? _c("i", {
+                              staticClass: "fa fa-caret-up",
+                              attrs: { "aria-hidden": "true" }
+                            })
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: o.slaves.length == 0,
+                                expression: "o.slaves.length == 0"
+                              }
+                            ]
+                          },
+                          [_vm._v(" ")]
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "monitor-hostname-div monitor-td" },
+                      [_vm._v(_vm._s(o.hostname))]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "monitor-port-name-div monitor-td" },
+                      [_vm._v(_vm._s(o.port_name == "" ? " " : o.port_name))]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "monitor-ipaddress-div monitor-td" },
+                      [_vm._v(_vm._s(o.ipaddress))]
+                    ),
+                    _vm._v(" "),
+                    o.status == 0
+                      ? _c(
+                          "div",
+                          {
+                            directives: [
+                              {
+                                name: "b-tooltip",
+                                rawName: "v-b-tooltip.html.hover",
+                                modifiers: { html: true, hover: true }
+                              }
+                            ],
+                            staticClass:
+                              "monitor-active-div monitor-td ta-c cursor-pointer",
+                            attrs: {
+                              tabindex: "0",
+                              title: "Click to make active"
+                            },
+                            on: {
+                              click: function($event) {
+                                _vm.makeServerActive(o.server_id, $event)
+                              }
+                            }
+                          },
+                          [_vm._v("No")]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    o.status != 0
+                      ? _c(
+                          "div",
+                          {
+                            directives: [
+                              {
+                                name: "b-tooltip",
+                                rawName: "v-b-tooltip.html.hover",
+                                modifiers: { html: true, hover: true }
+                              }
+                            ],
+                            staticClass:
+                              "monitor-active-div monitor-td ta-c cursor-pointer",
+                            attrs: {
+                              tabindex: "0",
+                              title: "Click to make in-active"
+                            },
+                            on: {
+                              click: function($event) {
+                                _vm.makeServerInactive(o.server_id, $event)
+                              }
+                            }
+                          },
+                          [_vm._v("Yes")]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    o.status == 0
+                      ? _c(
+                          "div",
+                          { staticClass: "monitor-maintenance-div monitor-td" },
+                          [_vm._v(" ")]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    o.status == 1
+                      ? _c(
+                          "div",
+                          {
+                            staticClass:
+                              "monitor-maintenance-div monitor-td color-red"
+                          },
+                          [
+                            _c("i", {
+                              directives: [
+                                {
+                                  name: "b-tooltip",
+                                  rawName: "v-b-tooltip.html.hover",
+                                  modifiers: { html: true, hover: true }
+                                }
+                              ],
+                              staticClass: "fa fa-wrench",
+                              attrs: {
+                                title: "Turn on maintenance",
+                                "data-toggle": "tooltip",
+                                "data-html": "true"
+                              },
+                              on: {
+                                click: function($event) {
+                                  _vm.turnOnMaintenance(o.server_id, $event)
+                                }
+                              }
+                            })
+                          ]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    o.status == 2
+                      ? _c(
+                          "div",
+                          {
+                            staticClass:
+                              "monitor-maintenance-div monitor-td color-green"
+                          },
+                          [
+                            _c("i", {
+                              directives: [
+                                {
+                                  name: "b-tooltip",
+                                  rawName: "v-b-tooltip.html.hover",
+                                  modifiers: { html: true, hover: true }
+                                }
+                              ],
+                              staticClass: "fa fa-wrench",
+                              attrs: {
+                                title: "Turn off maintenance",
+                                "data-toggle": "tooltip",
+                                "data-html": "true"
+                              },
+                              on: {
+                                click: function($event) {
+                                  _vm.turnOffMaintenance(o.server_id, $event)
+                                }
+                              }
+                            })
+                          ]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "monitor-connections-div monitor-td ta-r"
+                      },
+                      [_vm._v(_vm._s(o.connection_count))]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        directives: [
+                          {
+                            name: "b-tooltip",
+                            rawName: "v-b-tooltip.html.hover",
+                            modifiers: { html: true, hover: true }
+                          }
+                        ],
+                        staticClass: "monitor-disk-usage-div monitor-td ta-c",
+                        attrs: { tabindex: "0", title: o.disk_used_title }
+                      },
+                      [_vm._v(_vm._s(o.disk_used != "" ? o.disk_used : " "))]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "monitor-cpu-load-div monitor-td ta-r" },
+                      [_vm._v(_vm._s(o.cpu_load))]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        class:
+                          "monitor-status-indicator-div monitor-td " +
+                          o.status_class
+                      },
+                      [_vm._v(" ")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticStyle: { clear: "both" } })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "mt-1" },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "monitor-server-slave-header-div",
+                        attrs: { id: "slave-header-" + o.server_id }
+                      },
+                      [
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "monitor-connection-name-div monitor-th"
+                          },
+                          [_vm._v("Connection Name")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "monitor-master-binlog-filename-div monitor-th"
+                          },
+                          [_vm._v("Master Binlog Filename")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "monitor-master-binlog-pos-div monitor-th"
+                          },
+                          [_vm._v("Master Binlog Position")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "monitor-lag-time-div monitor-th" },
+                          [_vm._v("Lag Time")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "monitor-slave-error-msg-div monitor-th"
+                          },
+                          [_vm._v("Last Error")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "monitor-last-checked-div monitor-th"
+                          },
+                          [_vm._v("Last Checked")]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticStyle: { clear: "both" } })
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _vm._l(o.slaves, function(slave) {
+                      return _c(
+                        "div",
+                        {
+                          key: slave.server_slave_status_id,
+                          staticClass: "monitor-slave-entry"
+                        },
+                        [
+                          _c("div", [
+                            _c(
+                              "div",
+                              { staticClass: "monitor-server-slave-div" },
+                              [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "monitor-connection-name-div monitor-slave-td"
+                                  },
+                                  [_vm._v(_vm._s(slave.connection_name))]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "monitor-master-binlog-filename-div monitor-slave-td"
+                                  },
+                                  [_vm._v(_vm._s(slave.master_binlog_filename))]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "monitor-master-binlog-pos-div monitor-slave-td"
+                                  },
+                                  [_vm._v(_vm._s(slave.master_binlog_position))]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "monitor-lag-time-div monitor-slave-td"
+                                  },
+                                  [_vm._v(_vm._s(slave.lag_time_secs))]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "b-tooltip",
+                                        rawName: "v-b-tooltip.html.hover",
+                                        modifiers: { html: true, hover: true }
+                                      }
+                                    ],
+                                    staticClass:
+                                      "monitor-slave-error-msg-div monitor-td color-red-bold",
+                                    attrs: {
+                                      title: slave.last_error_msg,
+                                      "data-toggle": "tooltip",
+                                      "data-html": "true"
+                                    }
+                                  },
+                                  [_vm._v(_vm._s(slave.last_error_msg))]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "monitor-last-checked-div monitor-slave-td"
+                                  },
+                                  [_vm._v(_vm._s(slave.check_datetime))]
+                                ),
+                                _vm._v(" "),
+                                _c("div", { staticStyle: { clear: "both" } })
+                              ]
+                            )
+                          ])
+                        ]
+                      )
+                    })
+                  ],
+                  2
+                )
+              ])
             : _vm._e()
         ])
       }),
@@ -43126,7 +44010,56 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "monitor-main-div bl-w" }, [
+      _c("div", { staticClass: "monitor-expand-collapse-div monitor-th" }, [
+        _vm._v(" ")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "monitor-hostname-div monitor-th" }, [
+        _vm._v("Hostname")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "monitor-port-name-div monitor-th" }, [
+        _vm._v("Port Name")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "monitor-ipaddress-div monitor-th" }, [
+        _vm._v("IP Address")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "monitor-active-div monitor-th" }, [
+        _vm._v("Active")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "monitor-maintenance-div monitor-th" }, [
+        _vm._v("Maintenance")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "monitor-connections-div monitor-th" }, [
+        _vm._v("Connections")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "monitor-disk-usage-div monitor-th" }, [
+        _vm._v("Disk Usage")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "monitor-cpu-load-div monitor-th" }, [
+        _vm._v("CPU Load")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "monitor-status-indicator-div monitor-th" }, [
+        _vm._v(" ")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticStyle: { clear: "both" } })
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -43197,32 +44130,55 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: {
-    objectType: String,
-    objects: String,
-    objectName: String,
-    environmentId: String,
-    environmentName: String,
-    datacenterId: String,
-    datacenterName: String,
-    clusterId: String,
-    clusterName: String
-  }
+     props: {
+          objectType: String
+     },
+     data: function data() {
+          return {
+               objectName: ''
+          };
+     },
+     mounted: function mounted() {
+          var self = this;
+
+          //  This is mounted
+          switch (self.objectType) {
+               case 'home':
+
+                    $.ajax({
+                         url: "/api/getenvironments",
+                         cache: false,
+                         dataType: "json",
+                         success: function success(response) {
+                              self.$refs.detailscontent.objectType = 'environment';
+                              self.$refs.detailscontent.objectName = 'Environment';
+                              self.$refs.detailscontent.objects = response.environments;
+                         }
+                    });
+                    break;
+
+          }
+     },
+
+     methods: {
+          goToHome: function goToHome() {
+               this.$refs.detailscontent.goToHome();
+          },
+          goToEnvironment: function goToEnvironment(envId, envName) {
+               this.$refs.detailscontent.goToEnvironment(envId, envName);
+          },
+          goToDatacenter: function goToDatacenter(dcId, dcName) {
+               this.$refs.detailscontent.goToDatacenter(dcId, dcName);
+          },
+          goToCluster: function goToCluster(clustId, clustName) {
+               this.$refs.detailscontent.goToCluster(clustId, clustName);
+          },
+          goToServer: function goToServer(servId, servName) {
+               this.$refs.detailscontent.goToServer(servId, servName);
+          }
+     }
 
 });
 
@@ -43237,26 +44193,9 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("detailsnav", {
-        ref: "navbar",
-        attrs: {
-          "environment-id": _vm.environmentId,
-          "environment-name": _vm.environmentName,
-          "datacenter-id": _vm.datacenterId,
-          "data-center-name": _vm.datacenterName,
-          "cluster-id": _vm.clusterId,
-          "cluster-name": _vm.clusterName
-        }
-      }),
+      _c("detailsnav", { ref: "navbar" }),
       _vm._v(" "),
-      _c("detailscontent", {
-        ref: "detailscontent",
-        attrs: {
-          objects: _vm.objects,
-          "object-type": _vm.objectType,
-          "object-name": _vm.objectName
-        }
-      })
+      _c("detailscontent", { ref: "detailscontent" })
     ],
     1
   )

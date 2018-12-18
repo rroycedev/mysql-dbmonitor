@@ -559,8 +559,8 @@ pre code {
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  margin-right: -14px;
-  margin-left: -14px;
+  margin-right: 14px;
+  margin-left: 14px;
 }
 
 .no-gutters {
@@ -25106,7 +25106,6 @@ li.notification:hover {
   background-color: #faebd7;
   color: #000000;
   min-width: 300px;
-  min-height: 200px;
   padding: 8px;
   border: 1px outset gray;
   -webkit-box-shadow: inset 2px 1px 12px 1px #ababab;
@@ -25369,4 +25368,9 @@ li.notification:hover {
   border: 1px outset gray;
   padding: 8px;
   background-color: lightgray;
+}
+
+.last-updated {
+  font-size: 16px;
+  font-weight: bold;
 }

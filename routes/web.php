@@ -349,6 +349,12 @@ Route::get(
 );
 
 Route::get(
+     '/api/serverstatus/{serverId}',
+     'RestAPIController@getServerStatus'
+ );
+
+ 
+Route::get(
     '/api/turnoffmaintenance/{server_id}',
     'RestAPIController@turnOffMaintenance'
 );
@@ -366,6 +372,31 @@ Route::get(
 Route::get(
     '/api/makeserverinactive/{server_id}',
     'RestAPIController@makeServerInactive'
+);
+
+Route::get(
+     '/api/getenvironments',
+     'RestAPIController@getEnvironments'
+);
+
+Route::get(
+     '/api/getclusters',
+     'RestAPIController@getClusters'
+);
+
+Route::get(
+     '/api/getdatacenters',
+     'RestAPIController@getDatacenters'
+);
+
+Route::get(
+     '/api/getservers/{environmentId}/{datacenterId}/{clusterId}',
+     'RestAPIController@getServers'
+);
+
+Route::get(
+     '/api/getserver/{serverId}',
+     'RestAPIController@getServer'
 );
 
 Auth::routes(['verify' => true]);
