@@ -43424,7 +43424,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     cache: false,
                     dataType: "json",
                     success: function success(response) {
-                         self.pkId = pkId;
+                         self.pkId = 0;
                          self.objectType = "environment";
                          self.objectName = "Environments";
                          self.objects = response.environments;

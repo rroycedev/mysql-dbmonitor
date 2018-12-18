@@ -266,7 +266,7 @@ export default {
                     cache: false,
                     dataType: "json",
                     success: function(response) {
-                         self.pkId = pkId;
+                         self.pkId = 0;
                          self.objectType = "environment";
                          self.objectName = "Environments";
                          self.objects = response.environments;
