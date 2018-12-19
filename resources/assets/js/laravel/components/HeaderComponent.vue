@@ -10,7 +10,7 @@
       <div>
         <!-- User Dropdown -->
         <div
-          v-if="userFullName == '' || emailVerificationDate == ''"
+          v-if="userLoggedIn == '0'"
           class="dropdown d-inline-block"
         >
           <button
@@ -42,7 +42,7 @@
           </div>
         </div>
         <div
-          v-if="userFullName != ''  && emailVerificationDate != ''"
+          v-if="userLoggedIn == '1'"
           class="dropdown d-inline-block"
         >
           <button
@@ -54,7 +54,7 @@
             aria-expanded="false"
           >
             <i class="fa fa-fw fa-user d-sm-none"></i>
-            <span class="d-none d-sm-inline-block">{{ userFullName }}</span>
+            <span class="d-none d-sm-inline-block">{{ userFirstName }}&nbsp;{{ userLastName }}</span>
             <i class="fa fa-fw fa-angle-down ml-1 d-none d-sm-inline-block"></i>
           </button>
           <div
@@ -89,7 +89,7 @@
         <!-- END User Dropdown -->
         <!-- Notifications Dropdown -->
         <div
-          v-if="userFullName != ''  && emailVerificationDate != ''"
+          v-if="userLoggedIn == '1'"
           class="dropdown d-inline-block"
         >
           <button
@@ -171,8 +171,9 @@
 <script>
 export default {
   props: {
-    userFullName: String,
-    emailVerificationDate: String,
+    userFirstName: String,
+    userLastName: String,
+    userLoggedIn: String,
     loginUrl: String,
     registerUrl: String,
     logoutUrl: String,

@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="content-side content-side-full">
-      <ul v-show="userFullName != '' && emailVerificationDate != ''" class="nav-main">
+      <ul v-show="userLoggedIn == '1'" class="nav-main">
         <li
           v-bind:class="'nav-main-item nav-item-bordered' + (requestUrl.substring(0, 7) == 'monitor' ? ' open' : '')"
         >
@@ -69,6 +69,14 @@
             <span class="nav-main-link-name">Administration</span>
           </a>
           <ul class="nav-main-submenu">
+            <li class="nav-main-item">
+              <a
+                v-bind:class="'nav-main-link nav-main-link-font' + (requestUrl == 'admin/user' ? ' active' : '')"
+                href="/admin/user"
+              >
+                <span class="nav-main-link-name">Users</span>
+              </a>
+            </li>
             <li class="nav-main-item">
               <a
                 v-bind:class="'nav-main-link nav-main-link-font' + (requestUrl == 'admin/server' ? ' active' : '')"
@@ -192,8 +200,7 @@
 <script>
 export default {
   props: {
-    userFullName: String,
-    emailVerificationDate: String,
+    userLoggedIn: String,
     requestUrl: String
   },
   data: function() {

@@ -113,7 +113,7 @@ return [
      */
 
     'markdown' => [
-        'theme' => 'dbmonitor',
+        'theme' => 'default',
 
         'paths' => [
             resource_path('views/vendor/mail'),

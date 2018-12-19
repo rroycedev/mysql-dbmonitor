@@ -22,6 +22,8 @@ use App\Models\Environment;
 use App\Models\Server;
 use App\Models\ServerSlavesStatus;
 use App\Models\ServerStatus;
+use App\User;
+
 use Illuminate\Support\Facades\DB;
 
 class RestAPIController extends Controller
@@ -214,6 +216,13 @@ class RestAPIController extends Controller
           }
           
           echo json_encode(array("success" => true, "msg" => "", "servers" => $servers));
+    }
+
+    public function getUsers()
+    {
+          $users = User::with('roles')->get();
+          
+          echo json_encode(array("success" => true, "msg" => "", "users" => $users));
     }
 
 }

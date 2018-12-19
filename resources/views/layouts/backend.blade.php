@@ -70,10 +70,10 @@
      <body  onresize="resizeBody()">
           <div id="page-container" class="sidebar-o sidebar-dark enable-page-overlay side-scroll page-header page-header-dark main-content-narrow">
                <div id="app-menu">
-                    <appmenu user-full-name="{{ Auth::User() ? Auth::user()->name : '' }}" request-url="{{ request()->path() }}" email-verification-date="{{ Auth::user() ? Auth::user()->email_verified_at : '' }}"></appmenu>
+                    <appmenu user-logged-in="{{ (Auth::user() && Auth::user()->email_verified_at != '') ? true : false }}" request-url="{{ request()->path() }}"></appmenu>
                </div>
                <div id="app-header">
-                    <appheader user-full-name="{{ Auth::User() ? Auth::user()->name : '' }}" email-verification-date="{{ Auth::user() ? Auth::user()->email_verified_at : '' }}"
+                    <appheader user-logged-in="{{ (Auth::user() && Auth::user()->email_verified_at != '') ? true : false }}" user-first-name="{{ Auth::User() ? Auth::user()->first_name : '' }}" user-last-name="{{ Auth::user() ? Auth::user()->last_name : '' }}"
                          login-url="{{ route('login') }}" logout-url="{{ route('logout') }}" register-url="{{ route('register') }}" settings-url="{{ route('settings') }}"></appheader>
                </div>
                <main id="main-container">

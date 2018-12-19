@@ -45,6 +45,10 @@ Route::view(
     'reports.dbcompare'
 );
 
+// User Admin
+
+ Route::get('/admin/user', 'UserAdminController@index');
+
 // Server Admin
 
 Route::get(
@@ -341,69 +345,6 @@ Route::post(
     'CPULoadAlertAdminController@performDelete'
 );
 
-//  API Routes
-
-Route::get(
-    '/api/monitoringfilters',
-    'RestAPIController@getMonitoringFilters'
-);
-
-Route::get(
-    '/api/serverstatus',
-    'RestAPIController@getServerStatus'
-);
-
-Route::get(
-     '/api/serverstatus/{serverId}',
-     'RestAPIController@getServerStatus'
- );
-
- 
-Route::get(
-    '/api/turnoffmaintenance/{server_id}',
-    'RestAPIController@turnOffMaintenance'
-);
-
-Route::get(
-    '/api/turnonmaintenance/{server_id}',
-    'RestAPIController@turnOnMaintenance'
-);
-
-Route::get(
-    '/api/makeserveractive/{server_id}',
-    'RestAPIController@makeServerActive'
-);
-
-Route::get(
-    '/api/makeserverinactive/{server_id}',
-    'RestAPIController@makeServerInactive'
-);
-
-Route::get(
-     '/api/getenvironments',
-     'RestAPIController@getEnvironments'
-);
-
-Route::get(
-     '/api/getclusters',
-     'RestAPIController@getClusters'
-);
-
-Route::get(
-     '/api/getdatacenters',
-     'RestAPIController@getDatacenters'
-);
-
-Route::get(
-     '/api/getservers/{environmentId}/{datacenterId}/{clusterId}',
-     'RestAPIController@getServers'
-);
-
-Route::get(
-     '/api/getserver/{serverId}',
-     'RestAPIController@getServer'
-);
-
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -431,3 +372,4 @@ Route::get(
      'ClusterDetailController@index'
  );
   
+ 

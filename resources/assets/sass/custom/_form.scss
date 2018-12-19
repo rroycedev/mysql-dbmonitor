@@ -113,7 +113,6 @@ a.text-dark:hover {
 
 .change-delete-btn-table-col {
      min-width: 170px;
-     max-width: 170px;
 }
 
 .view-order-table-col {
@@ -246,3 +245,12 @@ li.notification:hover {
      border-radius: 5px;  
      border: 2px solid black;   
 }
+
+.user-name-table-col {
+     min-width: 100px;
+}
+
+.user-email-table-col {
+     min-width: 100px;
+}
+

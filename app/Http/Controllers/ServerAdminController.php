@@ -141,6 +141,11 @@ class ServerAdminController extends Controller
 
     public function performUpdateServer(Request $request)
     {
+         $all = $request->all();
+
+         print_r($all);
+
+
         $serverId = $request->input('server_id');
 
         $hostname = $request->input('hostname');
@@ -153,6 +158,9 @@ class ServerAdminController extends Controller
         $excludeNoc = $request->input('excludenoc');
         $excludeDiskCheck = $request->input('excludediskcheck');
 
+        echo "Port Name [" . $portName . "]<br>";
+          echo "Server Id [" . $serverId . "]<br>";
+          
         $server = Server::find($serverId);
 
         $server->hostname = $hostname;
@@ -165,8 +173,14 @@ class ServerAdminController extends Controller
         $server->exclude_noc = $excludeNoc;
         $server->exclude_disk_check = $excludeDiskCheck;
 
+        print_r($server);
+
+        return;
+
         try {
             $server->save();
+
+            throw new Exception("Error");
 
             return redirect('/admin/server')->with('msg', 'Server has been saved successfully');
         } catch (Illuminate\Database\QueryException $ex) {

@@ -24,6 +24,7 @@ Vue.component('appfooter', require('./components/FooterComponent.vue'));
 Vue.component('detailsnav', require('./components/DetailsNavBarComponent.vue'));
 Vue.component('detailscontent', require('./components/DetailsContentComponent.vue'));
 Vue.component('detailscomponent', require('./components/DetailsComponent.vue'));
+Vue.component('user-table', require('./components/UserTableComponent.vue'));
 
 import Vue from 'vue'
 import BootstrapVue from 'bootstrap-vue'
