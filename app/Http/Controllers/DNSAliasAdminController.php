@@ -17,13 +17,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\DNSAlias;
+use Auth;
 use Illuminate\Http\Request;
 
 class DNSAliasAdminController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'acl:view_data']);
     }
 
     public function dnsaliases()
@@ -35,21 +36,45 @@ class DNSAliasAdminController extends Controller
 
     public function addDNSAlias()
     {
-        return view('admin.dnsalias.add');
+        $canEdit = false;
+
+        foreach (Auth::user()->roles[0]->permissions as $p) {
+            if ($p["permission_slug"] == "manage_data") {
+                $canEdit = true;
+            }
+        }
+
+        return view('admin.dnsalias.add', array("canEdit" => $canEdit));
     }
 
     public function updateDNSAlias($alias_id)
     {
         $dnsAlias = DNSAlias::where("alias_id", $alias_id)->get()[0];
 
-        return view('admin.dnsalias.edit', array("alias" => $dnsAlias));
+        $canEdit = false;
+
+        foreach (Auth::user()->roles[0]->permissions as $p) {
+            if ($p["permission_slug"] == "manage_data") {
+                $canEdit = true;
+            }
+        }
+
+        return view('admin.dnsalias.edit', array("alias" => $dnsAlias, "canEdit" => $canEdit));
     }
 
     public function deleteDNSAlias($alias_id)
     {
         $dnsAlias = DNSAlias::where("alias_id", $alias_id)->get()[0];
 
-        return view('admin.dnsalias.delete', array("alias" => $dnsAlias));
+        $canEdit = false;
+
+        foreach (Auth::user()->roles[0]->permissions as $p) {
+            if ($p["permission_slug"] == "manage_data") {
+                $canEdit = true;
+            }
+        }
+
+        return view('admin.dnsalias.delete', array("alias" => $dnsAlias, "canEdit" => $canEdit));
     }
 
     public function performAddDNSAlias(Request $request)

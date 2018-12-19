@@ -35,6 +35,12 @@ class User extends Authenticatable implements MustVerifyEmail
      
     protected function checkPermission($perm)
     {
+        // echo "Checking permission:";
+
+       //  print_r($perm);
+
+      //   exit(1);
+         
         $permissions = $this->getAllPernissionsFormAllRoles();
         
         $permissionArray = is_array($perm) ? $perm : [$perm];

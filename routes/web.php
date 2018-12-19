@@ -164,7 +164,7 @@ Route::post(
 
 Route::get(
     '/admin/cluster',
-    'ClusterAdminController@clusters'
+    'ClusterAdminController@index'
 );
 
 Route::get(

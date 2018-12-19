@@ -20,13 +20,14 @@ use App\Models\Cluster;
 use App\Models\Datacenter;
 use App\Models\Environment;
 use App\Models\Server;
+use Auth;
 use Illuminate\Http\Request;
 
 class ServerAdminController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'acl:view_data']);
     }
 
     public function servers()
@@ -62,7 +63,15 @@ class ServerAdminController extends Controller
             $clusters[$row->cluster_id] = $row->name;
         }
 
-        return view('admin.server.add', array("environments" => json_encode($envs), "datacenters" => json_encode($dcs), "clusters" => json_encode($clusters)));
+        $canEdit = false;
+
+        foreach (Auth::user()->roles[0]->permissions as $p) {
+            if ($p["permission_slug"] == "manage_data") {
+                $canEdit = true;
+            }
+        }
+
+        return view('admin.server.add', array("environments" => json_encode($envs), "datacenters" => json_encode($dcs), "clusters" => json_encode($clusters), "canEdit" => $canEdit));
     }
 
     public function updateServer($server_id)
@@ -93,14 +102,30 @@ class ServerAdminController extends Controller
             $clusters[$row->cluster_id] = $row->name;
         }
 
-        return view('admin.server.edit', array("server" => $server[0], "environments" => json_encode($envs), "datacenters" => json_encode($dcs), "clusters" => json_encode($clusters)));
+        $canEdit = false;
+
+        foreach (Auth::user()->roles[0]->permissions as $p) {
+            if ($p["permission_slug"] == "manage_data") {
+                $canEdit = true;
+            }
+        }
+
+        return view('admin.server.edit', array("server" => $server[0], "environments" => json_encode($envs), "datacenters" => json_encode($dcs), "clusters" => json_encode($clusters), "canEdit" => $canEdit));
     }
 
     public function deleteServer($server_id)
     {
         $server = Server::where("server_id", $server_id)->get();
 
-        return view('admin.server.delete', array("server" => $server[0]));
+        $canEdit = false;
+
+        foreach (Auth::user()->roles[0]->permissions as $p) {
+            if ($p["permission_slug"] == "manage_data") {
+                $canEdit = true;
+            }
+        }
+
+        return view('admin.server.delete', array("server" => $server[0], "canEdit" => $canEdit));
     }
 
     public function performAddServer(Request $request)
@@ -141,10 +166,9 @@ class ServerAdminController extends Controller
 
     public function performUpdateServer(Request $request)
     {
-         $all = $request->all();
+        $all = $request->all();
 
-         print_r($all);
-
+        print_r($all);
 
         $serverId = $request->input('server_id');
 
@@ -159,8 +183,8 @@ class ServerAdminController extends Controller
         $excludeDiskCheck = $request->input('excludediskcheck');
 
         echo "Port Name [" . $portName . "]<br>";
-          echo "Server Id [" . $serverId . "]<br>";
-          
+        echo "Server Id [" . $serverId . "]<br>";
+
         $server = Server::find($serverId);
 
         $server->hostname = $hostname;

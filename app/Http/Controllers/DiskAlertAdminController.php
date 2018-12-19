@@ -18,6 +18,7 @@ namespace App\Http\Controllers;
 
 use App\Models\DiskAlert;
 use App\Models\Server;
+use Auth;
 use Illuminate\Http\Request;
 
 /**
@@ -37,7 +38,7 @@ class DiskAlertAdminController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'acl:view_data']);
     }
 
     /**
@@ -80,7 +81,15 @@ class DiskAlertAdminController extends Controller
             }
         }
 
-        return view('admin.alert.disk.add', array("servers" => json_encode($servers)));
+        $canEdit = false;
+
+        foreach (Auth::user()->roles[0]->permissions as $p) {
+            if ($p["permission_slug"] == "manage_data") {
+                $canEdit = true;
+            }
+        }
+
+        return view('admin.alert.disk.add', array("servers" => json_encode($servers), "canEdit" => $canEdit));
     }
 
     /**
@@ -99,7 +108,15 @@ class DiskAlertAdminController extends Controller
             'servers.server_id'
         )->where("disk_alerts.alert_id", "=", $alert_id)->orderBy('servers.hostname')->get();
 
-        return view('admin.alert.disk.edit', array("alert" => $rows[0]));
+        $canEdit = false;
+
+        foreach (Auth::user()->roles[0]->permissions as $p) {
+            if ($p["permission_slug"] == "manage_data") {
+                $canEdit = true;
+            }
+        }
+
+        return view('admin.alert.disk.edit', array("alert" => $rows[0], "canEdit" => $canEdit));
     }
 
     /**
@@ -113,7 +130,15 @@ class DiskAlertAdminController extends Controller
     {
         $alerts = DiskAlert::where("alert_id", $alert_id)->get();
 
-        return view('admin.alert.disk.delete', array("alert" => $alerts[0]));
+        $canEdit = false;
+
+        foreach (Auth::user()->roles[0]->permissions as $p) {
+            if ($p["permission_slug"] == "manage_data") {
+                $canEdit = true;
+            }
+        }
+
+        return view('admin.alert.disk.delete', array("alert" => $alerts[0], "canEdit" => $canEdit));
     }
 
     /**

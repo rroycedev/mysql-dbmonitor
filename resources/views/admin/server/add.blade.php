@@ -74,7 +74,7 @@
             </div>
         </div>
         <div class="row justify-content-center">
-            {!! Form::submit('Add', ['class' => 'btn btn-info']) !!}&nbsp;<a href="/admin/server" class="btn btn-danger">Cancel</a>
+            {!! Form::submit('Add', ['class' => 'btn btn-info', 'disabled' => !$canEdit]) !!}&nbsp;<a href="/admin/server" class="btn btn-danger">Cancel</a>
         </div>
         {!! Form::close() !!}
 </div>

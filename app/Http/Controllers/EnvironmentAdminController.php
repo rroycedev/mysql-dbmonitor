@@ -17,13 +17,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Environment;
+use Auth;
 use Illuminate\Http\Request;
 
 class EnvironmentAdminController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'acl:view_data']);
     }
 
     public function environments()
@@ -35,21 +36,45 @@ class EnvironmentAdminController extends Controller
 
     public function addEnvironment()
     {
-        return view('admin.environment.add');
+        $canEdit = false;
+
+        foreach (Auth::user()->roles[0]->permissions as $p) {
+            if ($p["permission_slug"] == "manage_data") {
+                $canEdit = true;
+            }
+        }
+
+        return view('admin.environment.add', array("canEdit" => $canEdit));
     }
 
     public function updateEnvironment($environment_id)
     {
         $environment = Environment::where("environment_id", $environment_id)->get()[0];
 
-        return view('admin.environment.edit', array("environment" => $environment));
+        $canEdit = false;
+
+        foreach (Auth::user()->roles[0]->permissions as $p) {
+            if ($p["permission_slug"] == "manage_data") {
+                $canEdit = true;
+            }
+        }
+
+        return view('admin.environment.edit', array("environment" => $environment, "canEdit" => $canEdit));
     }
 
     public function deleteEnvironment($environment_id)
     {
         $environment = Environment::where("environment_id", $environment_id)->get()[0];
 
-        return view('admin.environment.delete', array("environment" => $environment));
+        $canEdit = false;
+
+        foreach (Auth::user()->roles[0]->permissions as $p) {
+            if ($p["permission_slug"] == "manage_data") {
+                $canEdit = true;
+            }
+        }
+
+        return view('admin.environment.delete', array("environment" => $environment, "canEdit" => $canEdit));
     }
 
     public function performAddEnvironment(Request $request)

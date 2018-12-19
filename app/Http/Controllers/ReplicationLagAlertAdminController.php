@@ -18,16 +18,17 @@ namespace App\Http\Controllers;
 
 use App\Models\ReplicationLagAlert;
 use App\Models\Server;
+use Auth;
 use Illuminate\Http\Request;
 
 class ReplicationLagAlertAdminController extends Controller
 {
-     public function __construct()
-     {
-         $this->middleware('auth');
-     }
+    public function __construct()
+    {
+        $this->middleware(['auth', 'acl:view_data']);
+    }
 
-     public function alerts()
+    public function alerts()
     {
         $rows = ReplicationLagAlert::join(
             'servers',
@@ -52,7 +53,15 @@ class ReplicationLagAlertAdminController extends Controller
             }
         }
 
-        return view('admin.alert.repllag.add', array("servers" => json_encode($servers)));
+        $canEdit = false;
+
+        foreach (Auth::user()->roles[0]->permissions as $p) {
+            if ($p["permission_slug"] == "manage_data") {
+                $canEdit = true;
+            }
+        }
+
+        return view('admin.alert.repllag.add', array("servers" => json_encode($servers), "canEdit" => $canEdit));
     }
 
     public function update($server_id)
@@ -63,14 +72,30 @@ class ReplicationLagAlertAdminController extends Controller
             '=',
             'servers.server_id')->where("replication_lag_alerts.server_id", "=", $server_id)->orderBy('servers.hostname')->get();
 
-        return view('admin.alert.repllag.edit', array("alert" => $rows[0]));
+        $canEdit = false;
+
+        foreach (Auth::user()->roles[0]->permissions as $p) {
+            if ($p["permission_slug"] == "manage_data") {
+                $canEdit = true;
+            }
+        }
+
+        return view('admin.alert.repllag.edit', array("alert" => $rows[0], "canEdit" => $canEdit));
     }
 
     public function delete($server_id)
     {
         $alerts = ReplicationLagAlert::where("server_id", $server_id)->get();
 
-        return view('admin.alert.repllag.delete', array("alert" => $alerts[0]));
+        $canEdit = false;
+
+        foreach (Auth::user()->roles[0]->permissions as $p) {
+            if ($p["permission_slug"] == "manage_data") {
+                $canEdit = true;
+            }
+        }
+
+        return view('admin.alert.repllag.delete', array("alert" => $alerts[0], "canEdit" => $canEdit));
     }
 
     public function performAdd(Request $request)

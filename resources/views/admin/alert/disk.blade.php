@@ -30,8 +30,8 @@
                                 <td class="port-name-table-col ellipsis-text" data-toggle="tooltip" title="">{{$alert->port_name}}</td>
                                 <td class="volume-table-col ellipsis-text" data-toggle="tooltip" title="">{{$alert->volume}}</td>
                                 <td class="change-delete-btn-table-col">
-                                    <button class="btn btn-info" onclick="location.href='/admin/alert/disk/edit/{{$alert->alert_id}}'">Edit</button>&nbsp;
-                                    <button class="btn btn-info" onclick="location.href='/admin/alert/disk/delete/{{$alert->alert_id}}'">Delete</button>
+                                    <button class="btn btn-info"  onclick="location.href='/admin/alert/disk/edit/{{$alert->alert_id}}'">Edit</button>&nbsp;
+                                    <button class="btn btn-info"  onclick="location.href='/admin/alert/disk/delete/{{$alert->alert_id}}'">Delete</button>
                                 </td>
                             </tr>
                             @endforeach

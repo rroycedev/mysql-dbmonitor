@@ -41740,7 +41740,12 @@ var render = function() {
                       {
                         class:
                           "nav-main-link nav-main-link-font" +
-                          (_vm.requestUrl == "admin/user" ? " active" : ""),
+                          (_vm.requestUrl.substring(
+                            0,
+                            _vm.strlen("admin/user")
+                          ) == "admin/user"
+                            ? " active"
+                            : ""),
                         attrs: { href: "/admin/user" }
                       },
                       [
@@ -41757,7 +41762,12 @@ var render = function() {
                       {
                         class:
                           "nav-main-link nav-main-link-font" +
-                          (_vm.requestUrl == "admin/server" ? " active" : ""),
+                          (_vm.requestUrl.substring(
+                            0,
+                            _vm.strlen("admin/server")
+                          ) == "admin/server"
+                            ? " active"
+                            : ""),
                         attrs: { href: "/admin/server" }
                       },
                       [
@@ -41774,7 +41784,10 @@ var render = function() {
                       {
                         class:
                           "nav-main-link nav-main-link-font" +
-                          (_vm.requestUrl == "admin/environment"
+                          (_vm.requestUrl.substring(
+                            0,
+                            _vm.strlen("admin/environment")
+                          ) == "admin/environment"
                             ? " active"
                             : ""),
                         attrs: { href: "/admin/environment" }
@@ -41793,7 +41806,10 @@ var render = function() {
                       {
                         class:
                           "nav-main-link nav-main-link-font" +
-                          (_vm.requestUrl == "admin/datacenter"
+                          (_vm.requestUrl.substring(
+                            0,
+                            _vm.strlen("admin/datacenter")
+                          ) == "admin/datacenter"
                             ? " active"
                             : ""),
                         attrs: { href: "/admin/datacenter" }
@@ -41812,7 +41828,12 @@ var render = function() {
                       {
                         class:
                           "nav-main-link nav-main-link-font" +
-                          (_vm.requestUrl == "admin/cluster" ? " active" : ""),
+                          (_vm.requestUrl.substring(
+                            0,
+                            _vm.strlen("admin/cluster")
+                          ) == "admin/cluster"
+                            ? " active"
+                            : ""),
                         attrs: { href: "/admin/cluster" }
                       },
                       [
@@ -41829,7 +41850,12 @@ var render = function() {
                       {
                         class:
                           "nav-main-link nav-main-link-font" +
-                          (_vm.requestUrl == "admin/dnsalias" ? " active" : ""),
+                          (_vm.requestUrl.substring(
+                            0,
+                            _vm.strlen("admin/dnsalias")
+                          ) == "admin/dnsalias"
+                            ? " active"
+                            : ""),
                         attrs: { href: "/admin/dnsalias" }
                       },
                       [
@@ -41845,7 +41871,10 @@ var render = function() {
                     {
                       class:
                         "nav-main-item" +
-                        (_vm.requestUrl.substring(0, 11) == "admin/alert"
+                        (_vm.requestUrl.substring(
+                          0,
+                          _vm.strlen("admin/alert")
+                        ) == "admin/alert"
                           ? " open"
                           : "")
                     },

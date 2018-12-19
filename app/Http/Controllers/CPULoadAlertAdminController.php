@@ -18,13 +18,14 @@ namespace App\Http\Controllers;
 
 use App\Models\CPULoadAlert;
 use App\Models\Server;
+use Auth;
 use Illuminate\Http\Request;
 
 class CPULoadAlertAdminController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'acl:view_data']);
     }
 
     public function alerts()
@@ -41,6 +42,14 @@ class CPULoadAlertAdminController extends Controller
 
     public function add()
     {
+        $canEdit = false;
+
+        foreach (Auth::user()->roles[0]->permissions as $p) {
+            if ($p["permission_slug"] == "manage_data") {
+                $canEdit = true;
+            }
+        }
+
         $rows = Server::with('cluster')->with('datacenter')->with('environment')->orderBy('hostname')->get();
 
         $servers = array();
@@ -53,11 +62,19 @@ class CPULoadAlertAdminController extends Controller
             }
         }
 
-        return view('admin.alert.cpuload.add', array("servers" => json_encode($servers)));
+        return view('admin.alert.cpuload.add', array("servers" => json_encode($servers), "canEdit" => $canEdit));
     }
 
     public function update($server_id)
     {
+        $canEdit = false;
+
+        foreach (Auth::user()->roles[0]->permissions as $p) {
+            if ($p["permission_slug"] == "manage_data") {
+                $canEdit = true;
+            }
+        }
+
         $rows = CPULoadAlert::join(
             'servers',
             'cpu_load_alerts.server_id',
@@ -65,14 +82,22 @@ class CPULoadAlertAdminController extends Controller
             'servers.server_id'
         )->where("cpu_load_alerts.server_id", "=", $server_id)->orderBy('servers.hostname')->get();
 
-        return view('admin.alert.cpuload.edit', array("alert" => $rows[0]));
+        return view('admin.alert.cpuload.edit', array("alert" => $rows[0], "canEdit" => $canEdit));
     }
 
     public function delete($server_id)
     {
         $alerts = CPULoadAlert::where("server_id", $server_id)->get();
 
-        return view('admin.alert.cpuload.delete', array("alert" => $alerts[0]));
+        $canEdit = false;
+
+        foreach (Auth::user()->roles[0]->permissions as $p) {
+            if ($p["permission_slug"] == "manage_data") {
+                $canEdit = true;
+            }
+        }
+
+        return view('admin.alert.cpuload.delete', array("alert" => $alerts[0], "canEdit" => $canEdit));
     }
 
     public function performAdd(Request $request)

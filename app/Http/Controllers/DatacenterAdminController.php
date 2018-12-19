@@ -17,13 +17,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Datacenter;
+use Auth;
 use Illuminate\Http\Request;
 
 class DatacenterAdminController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'acl:view_data']);
     }
 
     public function datacenters()
@@ -35,21 +36,45 @@ class DatacenterAdminController extends Controller
 
     public function addDatacenter()
     {
-        return view('admin.datacenter.add');
+        $canEdit = false;
+
+        foreach (Auth::user()->roles[0]->permissions as $p) {
+            if ($p["permission_slug"] == "manage_data") {
+                $canEdit = true;
+            }
+        }
+
+        return view('admin.datacenter.add', array("canEdit" => $canEdit));
     }
 
     public function updateDatacenter($datacenter_id)
     {
         $datacenter = Datacenter::where("datacenter_id", $datacenter_id)->get()[0];
 
-        return view('admin.datacenter.edit', array("datacenter" => $datacenter));
+        $canEdit = false;
+
+        foreach (Auth::user()->roles[0]->permissions as $p) {
+            if ($p["permission_slug"] == "manage_data") {
+                $canEdit = true;
+            }
+        }
+
+        return view('admin.datacenter.edit', array("datacenter" => $datacenter, "canEdit" => $canEdit));
     }
 
     public function deleteDatacenter($datacenter_id)
     {
         $datacenter = Datacenter::where("datacenter_id", $datacenter_id)->get()[0];
 
-        return view('admin.datacenter.delete', array("datacenter" => $datacenter));
+        $canEdit = false;
+
+        foreach (Auth::user()->roles[0]->permissions as $p) {
+            if ($p["permission_slug"] == "manage_data") {
+                $canEdit = true;
+            }
+        }
+
+        return view('admin.datacenter.delete', array("datacenter" => $datacenter, "canEdit" => $canEdit));
     }
 
     public function performAddDatacenter(Request $request)

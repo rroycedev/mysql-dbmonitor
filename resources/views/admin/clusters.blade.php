@@ -40,8 +40,8 @@
             </div>
         </div>
     </div>
-    <div class="row justify-content-center">
-            <a class="btn btn-info" href="/admin/cluster/add">Add</a>
+     <div class="row justify-content-center">
+            <button class="btn btn-info" onclick="location.href='/admin/cluster/add'">Add</button>
     </div>
 </div>
 @endsection

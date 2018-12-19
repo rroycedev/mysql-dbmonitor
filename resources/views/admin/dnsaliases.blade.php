@@ -32,8 +32,8 @@
                                 <td class="view-order-table-col">{{$alias->is_vip == "1" ? $alias->vip_port : ""}}</td>
                                 <td class="view-order-table-col">{{$alias->active ? "Yes" : "No"}}</td>
                                 <td class="change-delete-btn-table-col">
-                                    <button class="btn btn-info" onclick="location.href='/admin/dnsalias/edit/{{$alias->alias_id}}'">Edit</button>&nbsp;
-                                    <button class="btn btn-info" onclick="location.href='/admin/dnsalias/delete/{{$alias->alias_id}}'">Delete</button>
+                                    <button class="btn btn-info"  onclick="location.href='/admin/dnsalias/edit/{{$alias->alias_id}}'">Edit</button>&nbsp;
+                                    <button class="btn btn-info"  onclick="location.href='/admin/dnsalias/delete/{{$alias->alias_id}}'">Delete</button>
                                 </td>
                             </tr>
                             @endforeach

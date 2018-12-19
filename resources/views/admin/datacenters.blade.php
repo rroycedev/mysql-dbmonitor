@@ -28,8 +28,8 @@
                                 <td class="datacenter-table-col ellipsis-text" data-toggle="tooltip" title="{{$d->name}}">{{$d->name}}</td>
                                 <td class="view-order-table-col">{{$d->view_order}}</td>
                                 <td class="change-delete-btn-table-col">
-                                    <button class="btn btn-info" onclick="location.href='/admin/datacenter/edit/{{$d->datacenter_id}}'">Edit</button>&nbsp;
-                                    <button class="btn btn-info" onclick="location.href='/admin/datacenter/delete/{{$d->datacenter_id}}'">Delete</button>
+                                    <button class="btn btn-info"  onclick="location.href='/admin/datacenter/edit/{{$d->datacenter_id}}'">Edit</button>&nbsp;
+                                    <button class="btn btn-info"  onclick="location.href='/admin/datacenter/delete/{{$d->datacenter_id}}'">Delete</button>
                                 </td>
                             </tr>
                             @endforeach

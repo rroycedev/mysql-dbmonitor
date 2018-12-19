@@ -17,16 +17,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cluster;
+use Auth;
 use Illuminate\Http\Request;
 
 class ClusterAdminController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'acl:view_data']);
     }
 
-    public function clusters()
+    public function index()
     {
         $rows = Cluster::orderBy('view_order')->get();
 
@@ -43,7 +44,15 @@ class ClusterAdminController extends Controller
             $clusters[$row->cluster_id] = $row->name;
         }
 
-        return view('admin.cluster.add', array("clusters" => json_encode($clusters)));
+        $canEdit = false;
+
+        foreach (Auth::user()->roles[0]->permissions as $p) {
+            if ($p["permission_slug"] == "manage_data") {
+                $canEdit = true;
+            }
+        }
+
+        return view('admin.cluster.add', array("clusters" => json_encode($clusters), "canEdit" => $canEdit));
     }
 
     public function updateCluster($cluster_id)
@@ -58,14 +67,32 @@ class ClusterAdminController extends Controller
             $clusters[$row->cluster_id] = $row->name;
         }
 
-        return view('admin.cluster.edit', array("cluster" => $cluster, "clusters" => json_encode($clusters)));
+
+        $canEdit = false;
+
+        foreach (Auth::user()->roles[0]->permissions as $p) {
+             if ($p["permission_slug"] == "manage_data") {
+                  $canEdit = true;
+             }
+        }
+
+        return view('admin.cluster.edit', array("cluster" => $cluster, "clusters" => json_encode($clusters), "canEdit" => $canEdit));
     }
 
     public function deleteCluster($cluster_id)
     {
         $cluster = Cluster::where("cluster_id", $cluster_id)->get()[0];
 
-        return view('admin.cluster.delete', array("cluster" => $cluster));
+
+        $canEdit = false;
+
+        foreach (Auth::user()->roles[0]->permissions as $p) {
+             if ($p["permission_slug"] == "manage_data") {
+                  $canEdit = true;
+             }
+        }
+
+        return view('admin.cluster.delete', array("cluster" => $cluster, "canEdit" => $canEdit));
     }
 
     public function performAddCluster(Request $request)
