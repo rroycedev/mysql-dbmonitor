@@ -25,6 +25,7 @@
             <span class="d-none d-sm-inline-block">Guest</span>
             <i class="fa fa-fw fa-angle-down ml-1 d-none d-sm-inline-block"></i>
           </button>
+
           <div
             class="dropdown-menu dropdown-menu-right"
             aria-labelledby="page-header-user-dropdown"

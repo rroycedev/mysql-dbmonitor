@@ -41582,7 +41582,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -41740,10 +41739,7 @@ var render = function() {
                       {
                         class:
                           "nav-main-link nav-main-link-font" +
-                          (_vm.requestUrl.substring(
-                            0,
-                            _vm.strlen("admin/user")
-                          ) == "admin/user"
+                          (_vm.requestUrl.substring(0, 10) == "admin/user"
                             ? " active"
                             : ""),
                         attrs: { href: "/admin/user" }
@@ -41762,10 +41758,7 @@ var render = function() {
                       {
                         class:
                           "nav-main-link nav-main-link-font" +
-                          (_vm.requestUrl.substring(
-                            0,
-                            _vm.strlen("admin/server")
-                          ) == "admin/server"
+                          (_vm.requestUrl.substring(0, 12) == "admin/server"
                             ? " active"
                             : ""),
                         attrs: { href: "/admin/server" }
@@ -41784,10 +41777,8 @@ var render = function() {
                       {
                         class:
                           "nav-main-link nav-main-link-font" +
-                          (_vm.requestUrl.substring(
-                            0,
-                            _vm.strlen("admin/environment")
-                          ) == "admin/environment"
+                          (_vm.requestUrl.substring(0, 17) ==
+                          "admin/environment"
                             ? " active"
                             : ""),
                         attrs: { href: "/admin/environment" }
@@ -41806,10 +41797,7 @@ var render = function() {
                       {
                         class:
                           "nav-main-link nav-main-link-font" +
-                          (_vm.requestUrl.substring(
-                            0,
-                            _vm.strlen("admin/datacenter")
-                          ) == "admin/datacenter"
+                          (_vm.requestUrl.substring(0, 16) == "admin/datacenter"
                             ? " active"
                             : ""),
                         attrs: { href: "/admin/datacenter" }
@@ -41828,10 +41816,7 @@ var render = function() {
                       {
                         class:
                           "nav-main-link nav-main-link-font" +
-                          (_vm.requestUrl.substring(
-                            0,
-                            _vm.strlen("admin/cluster")
-                          ) == "admin/cluster"
+                          (_vm.requestUrl.substring(0, 13) == "admin/cluster"
                             ? " active"
                             : ""),
                         attrs: { href: "/admin/cluster" }
@@ -41850,10 +41835,7 @@ var render = function() {
                       {
                         class:
                           "nav-main-link nav-main-link-font" +
-                          (_vm.requestUrl.substring(
-                            0,
-                            _vm.strlen("admin/dnsalias")
-                          ) == "admin/dnsalias"
+                          (_vm.requestUrl.substring(0, 14) == "admin/dnsalias"
                             ? " active"
                             : ""),
                         attrs: { href: "/admin/dnsalias" }
@@ -41871,10 +41853,7 @@ var render = function() {
                     {
                       class:
                         "nav-main-item" +
-                        (_vm.requestUrl.substring(
-                          0,
-                          _vm.strlen("admin/alert")
-                        ) == "admin/alert"
+                        (_vm.requestUrl.substring(0, 11) == "admin/alert"
                           ? " open"
                           : "")
                     },
@@ -41888,7 +41867,8 @@ var render = function() {
                             {
                               class:
                                 "nav-main-link nav-main-link-font" +
-                                (_vm.requestUrl == "admin/alert/repllag"
+                                (_vm.requestUrl.substring(0, 19) ==
+                                "admin/alert/repllag"
                                   ? " active"
                                   : ""),
                               attrs: { href: "/admin/alert/repllag" }
@@ -41909,7 +41889,8 @@ var render = function() {
                             {
                               class:
                                 "nav-main-link nav-main-link-font" +
-                                (_vm.requestUrl == "admin/alert/disk"
+                                (_vm.requestUrl.substring(0, 16) ==
+                                "admin/alert/disk"
                                   ? " active"
                                   : ""),
                               attrs: { href: "/admin/alert/disk" }
@@ -41930,7 +41911,8 @@ var render = function() {
                             {
                               class:
                                 "nav-main-link nav-main-link-font" +
-                                (_vm.requestUrl == "admin/alert/cpuload"
+                                (_vm.requestUrl.substring(0, 19) ==
+                                "admin/alert/cpuload"
                                   ? " active"
                                   : ""),
                               attrs: { href: "/admin/alert/cpuload" }
@@ -42150,6 +42132,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //

@@ -37,7 +37,7 @@
                     var height = window.innerHeight;
                     var width = window.innerWidth;
 
-                    $('#main-container').css('max-height', (height - 140) + 'px');
+                    $('#main-container').css('height', (height - 540) + 'px');
 
                     var homeContainer = $('#home-container');
 
@@ -70,10 +70,10 @@
      <body  onresize="resizeBody()">
           <div id="page-container" class="sidebar-o sidebar-dark enable-page-overlay side-scroll page-header page-header-dark main-content-narrow">
                <div id="app-menu">
-                    <appmenu user-logged-in="{{ (Auth::user() && Auth::user()->email_verified_at != '') ? true : false }}" request-url="{{ request()->path() }}"></appmenu>
+                    <appmenu user-logged-in="{{ (Auth::user() && Auth::user()->email_verified_at != '') ? '1' : '0' }}" request-url="{{ request()->path() }}"></appmenu>
                </div>
                <div id="app-header">
-                    <appheader user-logged-in="{{ (Auth::user() && Auth::user()->email_verified_at != '') ? true : false }}" user-first-name="{{ Auth::User() ? Auth::user()->first_name : '' }}" user-last-name="{{ Auth::user() ? Auth::user()->last_name : '' }}"
+                    <appheader user-logged-in="{{ (Auth::user() && Auth::user()->email_verified_at != '') ? '1' : '0' }}" user-first-name="{{ Auth::User() ? Auth::user()->first_name : '' }}" user-last-name="{{ Auth::user() ? Auth::user()->last_name : '' }}"
                          login-url="{{ route('login') }}" logout-url="{{ route('logout') }}" register-url="{{ route('register') }}" settings-url="{{ route('settings') }}"></appheader>
                </div>
                <main id="main-container">

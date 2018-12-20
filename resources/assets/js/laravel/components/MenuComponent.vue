@@ -53,7 +53,6 @@
           </ul>
         </li>
 
-
         <!--  Admin menu -->
         <li
           v-bind:class="'nav-main-item nav-item-bordered' + (requestUrl.substring(0, 5) == 'admin' ? ' open' : '')"
@@ -71,7 +70,7 @@
           <ul class="nav-main-submenu">
             <li class="nav-main-item">
               <a
-                v-bind:class="'nav-main-link nav-main-link-font' + (requestUrl.substring(0, strlen('admin/user')) == 'admin/user' ? ' active' : '')"
+                v-bind:class="'nav-main-link nav-main-link-font' + (requestUrl.substring(0, 10) == 'admin/user' ? ' active' : '')"
                 href="/admin/user"
               >
                 <span class="nav-main-link-name">Users</span>
@@ -79,7 +78,7 @@
             </li>
             <li class="nav-main-item">
               <a
-                v-bind:class="'nav-main-link nav-main-link-font' + (requestUrl.substring(0, strlen('admin/server')) == 'admin/server' ? ' active' : '')"
+                v-bind:class="'nav-main-link nav-main-link-font' + (requestUrl.substring(0, 12) == 'admin/server' ? ' active' : '')"
                 href="/admin/server"
               >
                 <span class="nav-main-link-name">Servers</span>
@@ -87,7 +86,7 @@
             </li>
             <li class="nav-main-item">
               <a
-                v-bind:class="'nav-main-link nav-main-link-font' + (requestUrl.substring(0, strlen('admin/environment')) == 'admin/environment' ? ' active' : '')"
+                v-bind:class="'nav-main-link nav-main-link-font' + (requestUrl.substring(0, 17) == 'admin/environment' ? ' active' : '')"
                 href="/admin/environment"
               >
                 <span class="nav-main-link-name">Environments</span>
@@ -95,7 +94,7 @@
             </li>
             <li class="nav-main-item">
               <a
-                v-bind:class="'nav-main-link nav-main-link-font' + (requestUrl.substring(0, strlen('admin/datacenter')) == 'admin/datacenter' ? ' active' : '')"
+                v-bind:class="'nav-main-link nav-main-link-font' + (requestUrl.substring(0, 16) == 'admin/datacenter' ? ' active' : '')"
                 href="/admin/datacenter"
               >
                 <span class="nav-main-link-name">Datacenters</span>
@@ -103,7 +102,7 @@
             </li>
             <li class="nav-main-item">
               <a
-                v-bind:class="'nav-main-link nav-main-link-font' + (requestUrl.substring(0, strlen('admin/cluster')) == 'admin/cluster' ? ' active' : '')"
+                v-bind:class="'nav-main-link nav-main-link-font' + (requestUrl.substring(0, 13) == 'admin/cluster' ? ' active' : '')"
                 href="/admin/cluster"
               >
                 <span class="nav-main-link-name">Clusters</span>
@@ -111,7 +110,7 @@
             </li>
             <li class="nav-main-item">
               <a
-                v-bind:class="'nav-main-link nav-main-link-font' + (requestUrl.substring(0, strlen('admin/dnsalias')) == 'admin/dnsalias' ? ' active' : '')"
+                v-bind:class="'nav-main-link nav-main-link-font' + (requestUrl.substring(0, 14) == 'admin/dnsalias' ? ' active' : '')"
                 href="/admin/dnsalias"
               >
                 <span class="nav-main-link-name">DNS Aliases</span>
@@ -119,7 +118,7 @@
             </li>
 
             <li
-              v-bind:class="'nav-main-item' + (requestUrl.substring(0, strlen('admin/alert')) == 'admin/alert' ? ' open' : '')"
+              v-bind:class="'nav-main-item' + (requestUrl.substring(0, 11) == 'admin/alert' ? ' open' : '')"
             >
               <a
                 class="nav-main-link nav-main-link-submenu nav-main-link-font"
@@ -133,7 +132,7 @@
               <ul class="nav-main-submenu">
                 <li class="nav-main-item">
                   <a
-                    v-bind:class="'nav-main-link nav-main-link-font' + (requestUrl == 'admin/alert/repllag' ? ' active' : '')"
+                    v-bind:class="'nav-main-link nav-main-link-font' + (requestUrl.substring(0, 19) == 'admin/alert/repllag' ? ' active' : '')"
                     href="/admin/alert/repllag"
                   >
                     <span class="nav-main-link-name">Replication Lag</span>
@@ -141,7 +140,7 @@
                 </li>
                 <li class="nav-main-item">
                   <a
-                    v-bind:class="'nav-main-link nav-main-link-font' + (requestUrl == 'admin/alert/disk' ? ' active' : '')"
+                    v-bind:class="'nav-main-link nav-main-link-font' + (requestUrl.substring(0, 16) == 'admin/alert/disk' ? ' active' : '')"
                     href="/admin/alert/disk"
                   >
                     <span class="nav-main-link-name">Disk Space</span>
@@ -149,7 +148,7 @@
                 </li>
                 <li class="nav-main-item">
                   <a
-                    v-bind:class="'nav-main-link nav-main-link-font' + (requestUrl == 'admin/alert/cpuload' ? ' active' : '')"
+                    v-bind:class="'nav-main-link nav-main-link-font' + (requestUrl.substring(0, 19) == 'admin/alert/cpuload' ? ' active' : '')"
                     href="/admin/alert/cpuload"
                   >
                     <span class="nav-main-link-name">CPU Load</span>
