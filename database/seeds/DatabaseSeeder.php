@@ -11,6 +11,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $adminFirstName = $this->command->ask('Super admin user first name', 255);
+        $adminLastName = $this->command->ask('Super admin user last name', 255);
+        $adminEmail = $this->command->ask('Super admin user email', 255);
+        $adminPassword = $this->command->ask('Super admin user password', 255);
+
         DB::table('permissions')->insert([
             'permission_title' => 'Manage Users',
             'permission_slug' => 'manage_user',
@@ -70,10 +75,10 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'first_name' => 'Ron',
-            'last_name' => 'Royce',
-            'email' => 'ruhruhroy@gmail.com',
-            'password' => bcrypt('mcdoodle22'),
+            'first_name' => $adminFirstName,
+            'last_name' => $adminLastName,
+            'email' => $adminEmail,
+            'password' => bcrypt($adminPassword),
             'email_verified_at' => date("Y-m-d H:i:s"),
         ]);
 
